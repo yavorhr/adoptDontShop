@@ -1,0 +1,235 @@
+
+/*body{*/
+/*    background:rgb(242, 248, 248)*/
+/*}*/
+
+/* Navigations */
+
+.mynav {
+  background:#fff !important;
+  box-shadow: 0px 2px 5px #777;
+}
+
+#logout-btn{
+    margin-right: 30px;
+    color:#636368 !important;
+    border-bottom : 2px solid transparent;
+}
+
+#logout-btn:hover{
+    border-bottom: 2px solid lightslategray;
+}
+
+
+.mynav a {
+    margin-right: 30px;
+    color:#636368 !important;
+    border-bottom : 2px solid transparent;
+}
+
+.mynav a:hover {
+   border-bottom: 2px solid lightslategray;
+}
+
+.active a{
+    border-bottom: 2px solid  lightslategray;
+ }
+
+ .links-nav{
+    background:#fff !important;
+    box-shadow: 0px 2px 5px #777;
+}
+
+
+.links-nav a {
+    margin-right: 30px;
+    color:#636368 !important;
+    border-bottom : 2px solid transparent;
+}
+
+.links-nav a:hover {
+   border-bottom: 2px solid  lightslategray;
+}
+
+.active a{
+    border-bottom: 2px solid  lightslategray;
+ }
+
+/* Spacing */
+.gap100 {
+    padding: 30px 0px;
+}
+
+/*Typograpgy*/
+
+h3{
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+    color: #181174;
+    text-transform: uppercase;
+}
+
+.h2w {
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 50px 0;
+}
+
+h4 {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+}
+
+.card{
+    box-shadow: 2px 5px 20px #777;
+}
+
+.main-card-text{
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+
+.gapmargin200 {
+    margin-left: 200px ;
+    padding-top: 40px;
+}
+
+/* Team section */
+
+#team {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Flag_of_Libya_%281977%E2%80%932011%2C_3-2%29.svg/1200px-Flag_of_Libya_%281977%E2%80%932011%2C_3-2%29.svg.png");
+}
+
+.tm {
+    background-color: #fff;
+    padding: 30px 20px;
+    box-shadow: 2px 5px 20px #777;
+}
+
+.tm i {
+    color: #731396;
+font-size: 40px;
+padding: 3px;
+}
+
+.tm i:hover {
+    color: #181174
+}
+
+/* Video section */
+
+#vid{
+    padding: 100px 0px;
+    background:silver
+    
+}
+
+/* Cover backgrounds */
+
+body {
+    margin:0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.add-dog{
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1637396187/adoptDontShop/cover/cover-add-dog_aijcbu.jpg");
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+}
+
+.box-dog-add-main-info{
+    position: relative;
+    border:1px solid #fff;
+    border-radius: 20px;
+    color: white;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(94, 41, 5, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+.box-dog-add-main-info h3{
+    color: white;
+}
+
+.box-add-dog-advanced-characteristics{
+    position: relative;
+    border:1px solid #fff;
+    border-radius: 20px;
+    color: white;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(94, 41, 5, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+.box-add-dog-advanced-characteristics h3{
+    color: white;
+}
+
+.box-add-dog-medical-stats{
+    position: relative;
+    border:1px solid #fff;
+    border-radius: 20px;
+    color: white;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(94, 41, 5, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+.box-add-dog-medical-stats h3{
+    color: white;
+}
+
+/* Donation form layout */
+
+/*#donation {*/
+/*    background-color: #333333;*/
+/*    font: #fff;*/
+/*    padding: 50px;*/
+/*}*/
+
+
+/* Progress bars */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.progress-bar{
+    width: 500px;
+    position: relative;
+    height: 3em;
+    background-color: grey;
+    border-radius: 1.5em;
+    margin-top: 5px;
+}
+
+/*.progress-bar::before{*/
+/*    content: attr(data-label);*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    position: absolute;*/
+/*    left: .5em;*/
+/*    top: .5em;*/
+/*    bottom: .5em;*/
+/*    width: calc(var(--width,0) * 1%);*/
+/*    min-width:2rem;*/
+/*    max-width: calc(100%-1em);*/
+/*    background-color: green;*/
+/*    border-radius: 1em;*/
+/*    padding: 1em;*/
+/*   */
+/*    */
+/*}*/
+
+/* Portfolio */

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="common_fragments/head::head"></head>
+
+<body>
+
+<div th:replace="common_fragments/navbar::navigation"></div>
+
+<div class="add-dog">
+    <div class="container">
+        <div class="row">
+            <form
+                    th:action="@{/admin/add}"
+                    th:object="${dogAddBindingModel}"
+                    th:method="POST"
+                    class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+                <div class="box-dog-add-main-info ">
+
+                    <h3 class="text-center">Essential information</h3>
+                    <div class="form-group col-md-6 mb-3 justify-content-end">
+                        <label for="inputName" class="font-weight-bold">Name</label>
+                        <input
+                                th:field="*{name}"
+                                th:errorclass="is-invalid"
+                                id="inputName"
+                                type="text"
+                                class="form-control"
+                                aria-describedby="inputNameError"
+                                placeholder="My name is...">
+                        <small id="inputNameError" class="invalid-feedback bg-danger text-light rounded">
+                            Name must be between 2 and 15 characters.
+                        </small>
+                    </div>
+
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="age" class="font-weight-bold">Age (in months)</label>
+                        <input
+                                th:field="*{age}"
+                                th:errorclass="is-invalid"
+                                id="age"
+                                type="number"
+                                min="1" max="500"
+                                class="form-control"
+                                aria-describedby="inputAgeError"
+                                placeholder="I'm ... months old.">
+                        <small id="inputAgeError"
+                               class="invalid-feedback form-text text-light bg-danger rounded">Age must be greater than
+                            0.
+                        </small>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="breed">Select breed</label>
+                        <select
+                                th:errorclass="is-invalid"
+                                id="breed"
+                                name="breed"
+                                class="custom-select"
+                                aria-describedby="breedSelectError">
+                            <option value="" selected>Select breed</option>
+                            <option
+                                    th:each="b : ${allBreedsNames}"
+                                    th:value="${b.name}"
+                                    th:text="${b.name}">Select breed
+                            </option>
+                        </select>
+                        <small id="breedSelectError"
+                               class="invalid-feedback form-text text-light bg-danger rounded">Please select breed.
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-3 col-md-6">
+                        <label class="font-weight-bold" for="imageUrl">Image</label>
+                        <input
+                                th:errorclass="is-invalid"
+                                th:field="*{imageUrl}"
+                                id="imageUrl"
+                                type="url" class="form-control"
+                                placeholder="Put dog image url here"
+                                aria-describedby="inputImageUrlError">
+                        <small id="inputImageUrlError"
+                               class="invalid-feedback form-text text-light bg-danger rounded">Please enter valid image url.
+                        </small>
+                    </div>
+
+                    <div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label for="inputDescription" class="col-form-label ">Description</label>
+                        </div>
+                        <div class="form-group">
+                    <textarea
+                            th:field="*{description}"
+                            th:errorclass="is-invalid"
+                            id="inputDescription"
+                            class="form-control"
+                            aria-describedby="inputDescriptionError"
+                            placeholder="Please fill the history of the dog...">></textarea>
+                            <small id="inputDescriptionError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Description length
+                                must be more
+                                than 5 characters</small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label for="inputMedicalNotes" class="col-form-label ">Medical notes</label>
+                        </div>
+                        <div class="form-group">
+                    <textarea
+                            th:field="*{medicalNotes}"
+                            th:errorclass="is-invalid"
+                            id="inputMedicalNotes"
+                            class="form-control"
+                            placeholder="Please fill the current medical notes ..."
+                            aria-describedby="inputDescriptionError"></textarea>
+                            <small id="inputMedicalNotesError"
+                                   class="invalid-feedback form-text text-light bg-danger rounded">Medical notes length
+                                must be
+                                more than 5 characters</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-add-dog-advanced-characteristics">
+
+                    <h3 class="text-center">More details</h3>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="gender">Gender</label>
+                        <select
+                                th:field="*{gender}"
+                                th:errorclass="is-invalid"
+                                id="gender"
+                                aria-describedby="inputGenderError"
+                                class="custom-select">
+                            <option value="" selected>Select gender</option>
+                            <option
+                                    th:each="g : ${T(softuni.adoptdontshop.Model.Enum.GenderEnum).values()}"
+                                    th:value="${g}"
+                                    th:text="${g}">Select gender
+                            </option>
+                        </select>
+                        <small id="inputGenderError"
+                               class="invalid-feedback form-text text-light bg-danger rounded">Please select
+                            gender.</small>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="coat-length">Coat length</label>
+                        <select
+                                th:field="*{coatLength}"
+                                th:errorclass="is-invalid"
+                                id="coat-length"
+                                aria-describedby="inputCoatLengthError"
+                                class="custom-select">
+                            <option value="" selected>Select coat length</option>
+                            <option
+                                    th:each="c : ${T(softuni.adoptdontshop.Model.Enum.CoatLengthEnum).values()}"
+                                    th:value="${c}"
+                                    th:text="${c}">Select coat length
+                            </option>
+                        </select>
+                        <small id="inputCoatLengthError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Please select coat
+                            length.
+                        </small>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="size">Size</label>
+                        <select
+                                th:field="*{size}"
+                                th:errorclass="is-invalid"
+                                id="size"
+                                aria-describedby="sizeInputError"
+                                class="custom-select">
+                            <option value="" selected>Select size</option>
+                            <option
+                                    th:each="s : ${T(softuni.adoptdontshop.Model.Enum.SizeEnum).values()}"
+                                    th:value="${s}"
+                                    th:text="${s}">Select size
+                            </option>
+                        </select>
+                        <small id="sizeInputError"
+                               class="invalid-feedback  form-text text-light bg-danger rounded">Please select size.</small>
+                    </div>
+
+                    <div class="form-group col-md-5 mb-3">
+                        <label for="house-trained">House trained</label>
+                        <select
+                                th:field="*{houseTrained}"
+                                th:errorclass="is-invalid" id="house-trained" class="custom-select">
+                            <option
+                                    value="true" selected> Yes
+                            </option>
+                            <option
+                                    value="false" selected> No
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="colour" class="font-weight-bold">Colour</label>
+                        <input
+                                th:field="*{colour}"
+                                th:errorclass="is-invalid"
+                                id="colour"
+                                type="text"
+                                class="form-control"
+                                aria-describedby="inputColourError"
+                                placeholder="My colour is ...">
+                        <small id="inputColourError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Please insert colour.
+                        </small>
+                    </div>
+
+
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="getAlongWith" class="font-weight-bold">Get a long with</label>
+                        <input
+                                th:field="*{getAlongWith}"
+                                th:errorclass="is-invalid"
+                                id="getAlongWith"
+                                type="text"
+                                class="form-control"
+                                aria-describedby="inputGetAlongWithError"
+                                placeholder="I feel good with ...">
+                        <small id="getAlongWithError"
+                               class="invalid-feedback  form-text text-light bg-danger rounded">Please insert short information.</small>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="weight" class="font-weight-bold">Weight</label>
+                        <input
+                                th:field="*{weight}"
+                                th:errorclass="is-invalid"
+                                id="weight"
+                                type="number"
+                                class="form-control"
+                                aria-describedby="inputWeightError"
+                                placeholder="My weight is ...">
+                        <small id="inputWeightError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Weight must be greater than 0.
+                        </small>
+                    </div>
+
+
+
+                </div>
+
+                <div class="box-add-dog-medical-stats">
+                    <h3 class="text-center">Medical record</h3>
+                    <div class="form-group p-3">
+                        <label class="p-2" for="medicalRecord"></label>
+                        <input
+                                th:each="m : ${T(softuni.adoptdontshop.Model.Enum.MedicalRecordEnum).values()}"
+                                th:text="${m}"
+                                th:value="${m}"
+                                class="m-3"
+                                type="checkbox"
+                                name="medicalRecord"
+                                id="medicalRecord"
+                                value="1" text="medicalRecord">
+                        <br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-md-4">
+                        <div class="button-holder d-flex justify-content-center">
+                            <input type="submit" class="btn btn-info btn-lg" value="Add dog"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

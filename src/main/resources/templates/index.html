@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="common_fragments/head::head"></head>
+
+<body>
+
+<div th:replace="common_fragments/navbar.html::navigation">
+</div>
+
+<div class="container-fluid">
+    <h5 class="text-center mt-5">Welcome,
+        <span
+                sec:authorize="isAuthenticated()"
+                sec:authentication="name">
+            Name of the logged in userEntity.
+        </span>
+        <span sec:authorize="!isAuthenticated()">
+            Anonymous!
+        </span>
+    </h5>
+</div>
+
+<section class="m-5">
+    <div class="card bg-dark text-white ">
+        <img class="card-img" src="../images/front.JPG" alt="Card image">
+        <div class="card-img-overlay">
+            <h5 class="main-card-text display-4 position-absolute top-50 start-50 translate-middle "> "Saving one
+                dog will
+                not change the world, but surely for that one dog, the world will change forever." </h5>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+    For almost two decades, PetRescue has helped in creating true social change by bringing pet adoption
+    into
+    the mainstream. Our work has helped make a difference to the Australian rescue community and thousands
+    of
+    pets in need of rescue and rehabilitation. But, until every pet is safe, respected, and loved, we all
+    still
+    have big, hairy work to do. Find out more about our mission to help save 100,000 healthy and rehomable
+    pets
+    each year.
+</div>
+
+<div class="position-absolute start-50 m-">
+    <a class="btn" th:href="@{/dogs/all}">
+        <button class="btn btn btn-success " type="submit">Adopt</button>
+    </a>
+</div>
+
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-center mb-auto p-2 ">
+                <h3 class="text-center">Available dogs for adoption :
+                </h3>
+            </div>
+            <div class="col-md-3 p-2 text-center" th:each="d : ${dogsHomePage}" th:object="${d}">
+                <div class="card m-2" style="width: 18rem;">
+                    <img class="card-img-top" data-src="holder.js/100px160/" th:src="*{imageUrl}"
+                         alt="Card image cap" data-holder-rendered="true"
+                         style="height:160px; width:100%; display: block;">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="*{name}"></h5>
+                        <p th:text="*{breed}">Breed</p>
+                        <p th:text="*{size} + ' ' + *{age} + ' ' + *{gender} + ' ' + *{colour}">Short description</p>
+                        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container mt-3">
+    <div class="flex-row">
+        <h3>
+            Dog's adopted :
+            <small class="text-muted">3000</small>
+        </h3>
+        <h3>
+            Savings :
+            <small class="text-muted">300,421</small>
+        </h3>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
