@@ -5,6 +5,7 @@ import softuni.adoptdontshop.Model.Enum.SizeEnum;
 
 public class DogCardView {
 
+    private Long id;
     private String name;
     private String imageUrl;
     private String breed;
@@ -31,6 +32,15 @@ public class DogCardView {
 
     public DogCardView setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public DogCardView setId(Long id) {
+        this.id = id;
         return this;
     }
 

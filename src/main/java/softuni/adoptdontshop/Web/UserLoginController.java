@@ -12,10 +12,10 @@ public class UserLoginController {
 
     @GetMapping("/users/login")
     public String login(){
-        System.out.println("yes");
         return "auth-login";
     }
 
+    //TODO - to implement with user register ?
     @PostMapping("/users/login-error")
     public String failedLogin(
             @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)

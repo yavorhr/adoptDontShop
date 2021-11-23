@@ -14,7 +14,15 @@
         <form
                 th:action="@{/users/register}"
                 th:method="post"
-                th:object="${userModel}">
+                th:object="${userRegisterBindingModel}">
+
+            <div th:if="${doesUsernameExist}" class="row">
+                <div class="form-group col-md-12 mb-6">
+                    <p class="errors alert alert-danger">
+                        Email is already occupied.
+                    </p>
+                </div>
+            </div>
 
             <div>
                 <label for="inputEmail" class="form-label">Email address</label>
@@ -32,8 +40,9 @@
                 <div id="emailHelp" class="form-text mb-3 ">We'll never share your email with anyone else.</div>
             </div>
 
+
             <div class="mb-3">
-                <label for="username" class="text-white font-weight-bold">Username</label>
+                <label for="username" class="font-weight-bold">Username</label>
                 <input
                         id="username"
                         name="username"
@@ -47,8 +56,16 @@
                 </p>
             </div>
 
+            <div th:if="${doesUsernameExist}" class="row">
+                <div class="form-group col-md-12 mb-6">
+                    <p class="errors alert alert-danger">
+                        Username is occupied.
+                    </p>
+                </div>
+            </div>
+
             <div class="mb-3">
-                <label for="firstName" class="text-white font-weight-bold">First Name</label>
+                <label for="firstName" class="font-weight-bold">First Name</label>
                 <input
                         id="firstName"
                         name="firstName"
@@ -62,7 +79,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="lastName" class="text-white font-weight-bold">Last Name</label>
+                <label for="lastName" class="font-weight-bold">Last Name</label>
                 <input id="lastName"
                        name="lastName"
                        th:field="*{lastName}"
@@ -75,7 +92,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="lastName" class="text-white font-weight-bold">Age</label>
+                <label for="lastName" class="font-weight-bold">Age</label>
                 <input id="age"
                        name="age"
                        th:field="*{age}"
@@ -88,7 +105,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="password" class="text-white font-weight-bold">Password</label>
+                <label for="password" class="font-weight-bold">Password</label>
                 <input id="password"
                        name="password"
                        th:field="*{password}"
@@ -101,7 +118,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="confirmPassword" class="text-white font-weight-bold">Confirm Password</label>
+                <label for="confirmPassword" class="font-weight-bold">Confirm Password</label>
                 <input id="confirmPassword"
                        th:field="*{confirmPassword}"
                        type="password" min="2" max="20" class="form-control"

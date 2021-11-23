@@ -21,6 +21,7 @@ public class DogAddServiceModel {
     private String description;
     @NotEmpty
     private String medicalNotes;
+    private String imageUrl;
 
     //Dog characteristics
 
@@ -162,6 +163,15 @@ public class DogAddServiceModel {
 
     public DogAddServiceModel setMedicalRecord(Set<MedicalRecordEnum> medicalRecord) {
         this.medicalRecord = medicalRecord;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public DogAddServiceModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 }

@@ -11,7 +11,6 @@ public class DogAddBindingModel {
 
     //Basic data
 
-    private Long id;
     @Size(min = 2, max = 15)
     private String name;
     @NotNull
@@ -48,15 +47,6 @@ public class DogAddBindingModel {
     private Set<MedicalRecordEnum> medicalRecord;
 
     public DogAddBindingModel() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public DogAddBindingModel setId(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getName() {

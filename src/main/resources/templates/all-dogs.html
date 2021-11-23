@@ -27,7 +27,7 @@
                         <h5 class="card-title" th:text="*{name}"></h5>
                         <p th:text="*{breed}">Breed</p>
                         <p th:text="*{size} + ' ' + *{age} + ' ' + *{gender} + ' ' + *{colour}">Short description</p>
-                        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                        <a th:href="@{/profile/{id}(id = *{id})}" class="btn">Learn More</a>
                     </div>
                 </div>
             </div>

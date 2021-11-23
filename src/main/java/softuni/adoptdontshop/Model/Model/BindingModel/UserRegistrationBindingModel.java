@@ -1,5 +1,6 @@
 package softuni.adoptdontshop.Model.Model.BindingModel;
 
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

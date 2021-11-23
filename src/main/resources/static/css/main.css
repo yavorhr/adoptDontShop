@@ -1,4 +1,3 @@
-
 /*body{*/
 /*    background:rgb(242, 248, 248)*/
 /*}*/
@@ -6,54 +5,54 @@
 /* Navigations */
 
 .mynav {
-  background:#fff !important;
-  box-shadow: 0px 2px 5px #777;
+    background: #fff !important;
+    box-shadow: 0px 2px 5px #777;
 }
 
-#logout-btn{
+#logout-btn {
     margin-right: 30px;
-    color:#636368 !important;
-    border-bottom : 2px solid transparent;
+    color: #636368 !important;
+    border-bottom: 2px solid transparent;
 }
 
-#logout-btn:hover{
+#logout-btn:hover {
     border-bottom: 2px solid lightslategray;
 }
 
 
 .mynav a {
     margin-right: 30px;
-    color:#636368 !important;
-    border-bottom : 2px solid transparent;
+    color: #636368 !important;
+    border-bottom: 2px solid transparent;
 }
 
 .mynav a:hover {
-   border-bottom: 2px solid lightslategray;
+    border-bottom: 2px solid lightslategray;
 }
 
-.active a{
-    border-bottom: 2px solid  lightslategray;
- }
+.active a {
+    border-bottom: 2px solid lightslategray;
+}
 
- .links-nav{
-    background:#fff !important;
+.links-nav {
+    background: #fff !important;
     box-shadow: 0px 2px 5px #777;
 }
 
 
 .links-nav a {
     margin-right: 30px;
-    color:#636368 !important;
-    border-bottom : 2px solid transparent;
+    color: #636368 !important;
+    border-bottom: 2px solid transparent;
 }
 
 .links-nav a:hover {
-   border-bottom: 2px solid  lightslategray;
+    border-bottom: 2px solid lightslategray;
 }
 
-.active a{
-    border-bottom: 2px solid  lightslategray;
- }
+.active a {
+    border-bottom: 2px solid lightslategray;
+}
 
 /* Spacing */
 .gap100 {
@@ -62,7 +61,7 @@
 
 /*Typograpgy*/
 
-h3{
+h3 {
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
     color: #181174;
@@ -82,17 +81,17 @@ h4 {
     text-transform: uppercase;
 }
 
-.card{
+.card {
     box-shadow: 2px 5px 20px #777;
 }
 
-.main-card-text{
+.main-card-text {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
 
 .gapmargin200 {
-    margin-left: 200px ;
+    margin-left: 200px;
     padding-top: 40px;
 }
 
@@ -110,8 +109,8 @@ h4 {
 
 .tm i {
     color: #731396;
-font-size: 40px;
-padding: 3px;
+    font-size: 40px;
+    padding: 3px;
 }
 
 .tm i:hover {
@@ -120,21 +119,21 @@ padding: 3px;
 
 /* Video section */
 
-#vid{
+#vid {
     padding: 100px 0px;
-    background:silver
-    
+    background: silver
+
 }
 
 /* Cover backgrounds */
 
 body {
-    margin:0;
+    margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
 
-.add-dog{
+.add-dog {
     background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1637396187/adoptDontShop/cover/cover-add-dog_aijcbu.jpg");
     width: 100%;
     background-size: cover;
@@ -143,52 +142,62 @@ body {
     justify-content: center;
 }
 
-.box-dog-add-main-info{
+.box-dog-add-main-info {
     position: relative;
-    border:1px solid #fff;
+    border: 1px solid #fff;
     border-radius: 20px;
     color: white;
     padding: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
     background: rgba(94, 41, 5, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
-.box-dog-add-main-info h3{
+.box-dog-add-main-info h3 {
     color: white;
 }
 
-.box-add-dog-advanced-characteristics{
+.box-add-dog-advanced-characteristics {
     position: relative;
-    border:1px solid #fff;
+    border: 1px solid #fff;
     border-radius: 20px;
     color: white;
     padding: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
     background: rgba(94, 41, 5, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
-.box-add-dog-advanced-characteristics h3{
+.box-add-dog-advanced-characteristics h3 {
     color: white;
 }
 
-.box-add-dog-medical-stats{
+.box-add-dog-medical-stats {
     position: relative;
-    border:1px solid #fff;
+    border: 1px solid #fff;
     border-radius: 20px;
     color: white;
     padding: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
     background: rgba(94, 41, 5, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
-.box-add-dog-medical-stats h3{
+.box-add-dog-medical-stats h3 {
     color: white;
+}
+
+.box-dog-add-main-info textarea {
+    width: 400px;
+    height: 150px;
+}
+
+.box-dog-add-main-info {
+    justify-content: center;
+    align-items: center;
 }
 
 /* Donation form layout */
@@ -205,7 +214,8 @@ body {
 *, *::before, *::after {
     box-sizing: border-box;
 }
-.progress-bar{
+
+.progress-bar {
     width: 500px;
     position: relative;
     height: 3em;
@@ -233,3 +243,23 @@ body {
 /*}*/
 
 /* Portfolio */
+
+/* Dog details gallery  */
+
+.gallery {
+    background-color: #3b44a5;
+    padding: 50px 0;
+}
+
+.gallery img {
+    background-color: #ffffff;
+    padding: 15px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+
+}
+
+.gallery-dog-profile {
+
+}

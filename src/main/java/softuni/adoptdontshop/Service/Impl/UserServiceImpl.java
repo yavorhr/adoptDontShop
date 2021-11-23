@@ -1,5 +1,6 @@
 package softuni.adoptdontshop.Service.Impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,11 +11,13 @@ import softuni.adoptdontshop.Model.Entity.UserRoleEntity;
 import softuni.adoptdontshop.Model.Entity.UserEntity;
 import softuni.adoptdontshop.Model.Enum.UserRoleEnum;
 import softuni.adoptdontshop.Model.Model.ServiceModel.UserRegistrationServiceModel;
+import softuni.adoptdontshop.Model.Model.ViewModel.UserProfileViewModel;
 import softuni.adoptdontshop.Repository.RoleRepository;
 import softuni.adoptdontshop.Repository.UserRepository;
 import softuni.adoptdontshop.Service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -22,12 +25,14 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
     private final RoleRepository roleRepository;
     private final SecurityUserServiceImpl securityUserService;
 
-    public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository, SecurityUserServiceImpl securityUserService) {
+    public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository, ModelMapper modelMapper, RoleRepository roleRepository, SecurityUserServiceImpl securityUserService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
         this.roleRepository = roleRepository;
         this.securityUserService = securityUserService;
     }
@@ -37,6 +42,30 @@ public class UserServiceImpl implements UserService {
         initializeRoles();
         initializeUsers();
     }
+
+    @Override
+    public boolean doesUsernameAlreadyExist(String username) {
+        return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public boolean doesEmailAddressAlreadyExist(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+
+    //TODO : to check
+    @Override
+    public Optional<UserEntity> findUser(Long id) {
+        return Optional.empty();
+    }
+
+//    @Override
+//    public Optional<UserEntity> findUser(Long id) {
+//        return this.userRepository
+//                .findUserById(id)
+//                .map(user -> modelMapper.map(user, UserProfileViewModel.class))
+//                .orElse(null);
+//    }
 
     private void initializeUsers() {
         if (userRepository.count() == 0) {
@@ -101,8 +130,8 @@ public class UserServiceImpl implements UserService {
 
         newUserEntity = userRepository.save(newUserEntity);
 
+        //TODO: To check what was this for ?
         // this is the Spring representation of a user
-
         UserDetails principal = securityUserService.loadUserByUsername(newUserEntity.getUsername());
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(

@@ -18,22 +18,28 @@
                 <div>
                     <label for="email" class="form-label">Email</label>
                     <input
-                            th:value="*{username}"
-                            type="text" min="2" max="50"
+                            type="text"
+                            required
                             id="email"
                             name="email"
                             class="form-control"
-                            aria-describedby="usernameHelpInline"
-                            placeholder="Email">
+                            placeholder="Email"
+                            >
+
                 </div>
+                <small class="invalid-feedback">
+                    <span class="bg-danger"> Email is not correct</span>
+                </small>
+
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input
                             id="password"
                             name="password"
-                            type="password" min="2"
-                            max="20" class="form-control"
+                            required
+                            type="password"
+                            class="form-control"
                             placeholder="Password"/>
                 </div>
 
