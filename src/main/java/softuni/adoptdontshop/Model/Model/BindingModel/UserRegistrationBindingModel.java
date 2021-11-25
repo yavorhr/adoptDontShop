@@ -1,6 +1,9 @@
 package softuni.adoptdontshop.Model.Model.BindingModel;
 
 
+import softuni.adoptdontshop.Model.Validator.UniqueEmail;
+import softuni.adoptdontshop.Model.Validator.UniqueUsername;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,24 +12,28 @@ import javax.validation.constraints.Size;
 public class UserRegistrationBindingModel {
 
     @NotBlank
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20)
+    @UniqueUsername
     private String username;
     @NotBlank
     @Email
+    @UniqueEmail
     private String email;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20)
     private String firstName;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20)
     private String lastName;
     private Integer age;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20)
     private String password;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20)
     private String confirmPassword;
+
+    private String description;
 
     public String getUsername() {
         return username;
@@ -43,6 +50,15 @@ public class UserRegistrationBindingModel {
 
     public UserRegistrationBindingModel setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public UserRegistrationBindingModel setDescription(String description) {
+        this.description = description;
         return this;
     }
 

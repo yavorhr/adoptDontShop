@@ -247,19 +247,38 @@ body {
 /* Dog details gallery  */
 
 .gallery {
-    background-color: #3b44a5;
-    padding: 50px 0;
+    position: relative;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    color: white;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(94, 41, 5, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
 .gallery img {
     background-color: #ffffff;
     padding: 15px;
     width: 100%;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-
 }
 
-.gallery-dog-profile {
+#gallery-modal .modal-img {
+    width: 100%
+}
+
+.dog-details-div {
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1637668684/adoptDontShop/cover/2858872_qdg1hh.jpg");
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+}
+
+.dog-profile .gallery {
 
 }

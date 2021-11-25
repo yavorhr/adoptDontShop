@@ -10,6 +10,19 @@
 <div th:replace="common_fragments/navbar.html::navigation">
 </div>
 
+<h3 th:text="#{work}">Работи</h3>
+<form th:method="get">
+    <label th:text="#{language}" for="lang"></label>
+    <select
+            onchange="this.form.submit()"
+            id="lang"
+            name="lang">
+        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+    </select>
+</form>
+
+
 <div class="container-fluid">
     <h5 class="text-center mt-5">Welcome,
         <span
@@ -17,7 +30,8 @@
                 sec:authentication="name">
             Name of the logged in userEntity.
         </span>
-        <span sec:authorize="!isAuthenticated()">
+
+        <span sec:authorize="!isAuthenticated()" >
             Anonymous!
         </span>
     </h5>

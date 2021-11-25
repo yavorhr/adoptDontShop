@@ -4,172 +4,184 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="common_fragments/head.html::head">
-
+    <title>Dog profile</title>
 <body>
 
 <header th:replace="common_fragments/navbar.html::navigation"></header>
 
-<div th:object="${dog}">
-    <section>
-        <div class="container">
-            <h4>
-                Meet, <span th:text="*{name}"> !</span>
-            </h4>
-            <h3 th:text="*{size} + ' ' + *{gender} + ' ' + *{breed} + ' ' + *{colour}">
-                Medium Male Staffy Dog Black
-            </h3>
+<div class="dog-details-div" th:object="${dog}">
+    <section class="pt-5">
+        <div class="container ">
+            <div class="row col-md-12">
+                <h4>
+                    Meet, <span th:text="*{name}"> </span> !
+                </h4>
+                <h3 th:text="*{size} + ' ' + *{gender} + ' ' + *{breed} + ' ' + *{colour}">
+                    Medium Male Staffy Dog Black
+                </h3>
+            </div>
         </div>
     </section>
 
-    <section>
-
-        <section class="gallery">
-            <div class="container-md">
-                <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+    <div class="container dog-profile">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3 gallery">
                     <div class="col" th:each="p : *{pictures}">
-                        <img th:src="${p.url}" class="gallery-dog-profile" width="300px" height="300px"
+                        <img th:src="${p.url}" class="gallery-item" width="300px" height="300px"
                              alt="gallery">
                     </div>
                 </div>
             </div>
-        </section>
 
-        <div class="container mt-4">
-            <div class="row">
+            <!-- Modal -->
+            <div class="modal fade" id="gallery-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!--                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col">
+                                <img th:src="*{pictures.toArray()[0]}" class="modal-img"
+                                     alt="gallery">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-md-4">
+                <div class="ps-5 pt-4">
+                    <h3 class="mb-4">About</h3>
 
-                <div class="col-md-3 ps-5">
-                    <h5 class="mb-4">About</h5>
+                    <div>
+                        <h4> Age : <span th:text="*{age}"></span>
+                        </h4>
+                    </div>
+                    <div>
+                        <h4> Weight : <span th:text="*{weight}"></span> kilos
+                        </h4>
+                    </div>
+                    <div>
+                        <h4> House trained :
+                            <span th:text="*{houseTrained} ? 'Yes' : 'No'"></span>
+                        </h4>
+                    </div>
+                    <div>
+                        <h4> Coat length :
+                            <span th:text="*{coatLength}"></span>
+                        </h4>
+                    </div>
+                    <div>
+                        <h4> Feels good with :
 
-                    <h4>Age</h4>
-                    <p>5 years
-                    <p>
+                            <span th:text="*{getGetAlongWith()}"></span>
+                        </h4>
+                    </div>
 
-                    <h4>Weight</h4>
-                    <p>13 kilos
-                    <p>
+                    <div>
+                        <h4> Added on :
+                            <p th:text="*{addedOn}"></p>
+                        </h4>
+                    </div>
 
-                    <h4>Coat length</h4>
-                    <p>Medium
-                    <p>
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <a class="btn btn-link" th:href="@{/dogs/{id}/edit(id=*{id})}">Update</a>
+                        <form th:action="@{/dogs/{id}(id=*{id})}" th:method="delete">
+                            <input type="submit" class="btn btn-link" value="Delete"/>
+                        </form>
+                    </th:block>
 
-                    <h4>House trained</h4>
-                    <p>yes
-                    <p>
+                </div>
+            </div>
 
-                    <h4>Good in home with</h4>
-                    <p>Other people, kids
-                    <p>
-
-                    <h4>Added on :</h4>
-                    <p>31/21/2021
-                    <p>
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>About <span th:text="*{name}"></span></h3>
+                        <p th:text="*{description}" class="mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Natus voluptatibus est
+                            mollitia
+                            praesentium, corrupti ad numquam, nam quis libero omnis placeat id rem aliquam quae minima
+                            vel
+                            assumenda explicabo magni.</p>
+                    </div>
                 </div>
 
-                <div class="col">
-                    <button type="button" class="btn btn-warning">Edit</button>
-                    <button type="button" class="btn btn-danger ms-3">Delete</button>
-                    <button type="button" class="btn btn-info ms-3">Upload picture</button>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>Medical notes</h3>
+                        <p th:text="*{medicalNotes}" class="mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Natus voluptatibus est
+                            mollitia
+                            praesentium, corrupti ad numquam, nam quis libero omnis placeat id rem aliquam quae minima
+                            vel
+                            assumenda explicabo magni.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table">
+                            <tbody>
+
+                            <tr th:each="m : *{medicalRecord}">
+                                <td class="listing-details__title"><span
+                                        class="boolean-image-true boolean-image-yes"></span></td>
+                                <td th:text="${m.name}" class="listing-details__table__detail">
+                                    Desexed :
+                                </td>
+                                <td>
+                                    <span class="material-icons">done</span>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section>
-        <div class="contrainer">
-            <div class="row">
-                <div class="col gapmargin200">
-                    <h3>About Bono</h3>
-                    <p class="mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus voluptatibus est
-                        mollitia
-                        praesentium, corrupti ad numquam, nam quis libero omnis placeat id rem aliquam quae minima vel
-                        assumenda explicabo magni.</p>
-                    <button type="button" class="btn btn-outline-success ">Enquire about Bono</button>
+        <button type="button" class="btn btn-outline-success ">
+            Enquire about <span th:text="*{name}"></span>
+        </button>
+
+        <div class="mt-5">
+            <!-- Comments submission -->
+            <form id="commentForm" method="POST"
+                  action="/">
+                <div class="form-group">
+                    <h4>Leave a comment</h4>
+                    <label for="message">Message</label>
+                    <textarea name="message"
+                              id="message"
+                              cols="20"
+                              rows="5"
+                              class="form-control"
+                              style="background-color: white;"></textarea>
+                    <small id="messageError" class="invalid-feedback">
+                        Message should be at least 10 characters.
+                    </small>
                 </div>
 
-                <div class="col gapmargin200">
-                    <table class="table">
-                        <tbody>
-                        <tr class="">
-                            <td class="listing-details__title"><span
-                                    class="boolean-image-true boolean-image-yes"></span></td>
-                            <td class="listing-details__table__detail">
-                                Desexed
-                            </td>
-                            <td>
-                                <i class="fas fa-check"></i>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td class="listing-details__title"><span
-                                    class="boolean-image-true boolean-image-yes"></span></td>
-                            <td class="listing-details__table__detail">
-                                Vaccinated
-                            </td>
-                            <td>
-                                <i class="fas fa-times"></i>
-                            </td>
-                        </tr>
-                        <tr class="false">
-                            <td class="listing-details__title"><span
-                                    class="boolean-image-true boolean-image-no"></span></td>
-                            <td class="listing-details__table__detail">
-                                Wormed
-                            </td>
-                            <td>
-                                <i class="fas fa-times"></i>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td class="listing-details__title"><span
-                                    class="boolean-image-true boolean-image-yes"></span></td>
-                            <td class="listing-details__table__detail">
-                                Rabies
-                            </td>
-                            <td>
-                                <i class="fas fa-times"></i>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
+                <div class="form-group">
+                    <input type="submit"
+                           class="btn"
+                           id="postComment"
+                           value="Post Comment"/>
                 </div>
-            </div>
+            </form>
+            <!-- Comments submission -->
         </div>
-    </section>
-
-    <div>
-        <!-- Comments submission -->
-        <form id="commentForm" method="POST"
-              action="/">
-            <div class="form-group">
-                <h4>Leave a comment</h4>
-                <label for="message">Message</label>
-                <textarea name="message"
-                          id="message"
-                          cols="30"
-                          rows="5"
-                          class="form-control"
-                          style="background-color: white;"></textarea>
-                <small id="messageError" class="invalid-feedback">
-                    Message should be at least 10 characters.
-                </small>
-            </div>
-
-            <div class="form-group">
-                <input type="submit"
-                       class="btn"
-                       id="postComment"
-                       value="Post Comment"/>
-            </div>
-        </form>
-        <!-- Comments submission -->
     </div>
-</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+</div>
+
 </body>
+
 </html>

@@ -11,6 +11,7 @@ public class DogAddBindingModel {
 
     //Basic data
 
+
     @Size(min = 2, max = 15)
     private String name;
     @NotNull

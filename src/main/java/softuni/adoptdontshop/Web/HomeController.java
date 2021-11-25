@@ -19,4 +19,5 @@ public class HomeController {
         model.addAttribute("dogsHomePage", dogService.findDogsHomePage());
         return "index";
     }
+
 }

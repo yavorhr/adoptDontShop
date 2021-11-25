@@ -32,7 +32,6 @@ VALUES (4, 'RABIES');
 INSERT INTO medical_records (`id`, name)
 VALUES (5, 'MICROCHIPPED');
 
-
 -- Breed
 
 INSERT INTO breeds(name, description, size, image_url, affection_level, ease_of_training, energy_level,

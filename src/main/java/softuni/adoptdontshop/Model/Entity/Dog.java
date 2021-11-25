@@ -7,6 +7,7 @@ import softuni.adoptdontshop.Model.Enum.SizeEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -24,8 +25,8 @@ public class Dog extends BaseEntity {
     @Column(nullable = false)
     private Integer age;
     private boolean isAdopted;
-    private LocalDateTime lastModified;
-    private LocalDateTime addedOn;
+    private LocalDate lastModified;
+    private LocalDate addedOn;
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
     @Column(columnDefinition = "TEXT", nullable = false)
@@ -54,7 +55,7 @@ public class Dog extends BaseEntity {
 
     @NotEmpty
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<MedicalRecord> medicalRecord = new HashSet<>();
+    private List<MedicalRecord> medicalRecord = new LinkedList<>();
 
     public Dog() {
     }
@@ -68,7 +69,7 @@ public class Dog extends BaseEntity {
     @ManyToOne
     private UserEntity userEntity;
 
-    @OneToMany(mappedBy = "dog", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE)
     private List<Picture> pictures;
 
     public String getName() {
@@ -98,20 +99,21 @@ public class Dog extends BaseEntity {
         return this;
     }
 
-    public LocalDateTime getLastModified() {
+
+    public LocalDate getLastModified() {
         return lastModified;
     }
 
-    public Dog setLastModified(LocalDateTime lastModified) {
+    public Dog setLastModified(LocalDate lastModified) {
         this.lastModified = lastModified;
         return this;
     }
 
-    public LocalDateTime getAddedOn() {
+    public LocalDate getAddedOn() {
         return addedOn;
     }
 
-    public Dog setAddedOn(LocalDateTime addedOn) {
+    public Dog setAddedOn(LocalDate addedOn) {
         this.addedOn = addedOn;
         return this;
     }
@@ -215,11 +217,11 @@ public class Dog extends BaseEntity {
         return this;
     }
 
-    public Set<MedicalRecord> getMedicalRecord() {
+    public List<MedicalRecord> getMedicalRecord() {
         return medicalRecord;
     }
 
-    public Dog setMedicalRecord(Set<MedicalRecord> medicalRecord) {
+    public Dog setMedicalRecord(List<MedicalRecord> medicalRecord) {
         this.medicalRecord = medicalRecord;
         return this;
     }

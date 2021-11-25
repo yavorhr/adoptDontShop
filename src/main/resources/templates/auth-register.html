@@ -10,20 +10,11 @@
 
 <div class="d-flex justify-content-center align-items-center container mt-5 ">
 
-    <div class="row ">
+    <div class="row">
         <form
                 th:action="@{/users/register}"
                 th:method="post"
                 th:object="${userRegisterBindingModel}">
-
-            <div th:if="${doesUsernameExist}" class="row">
-                <div class="form-group col-md-12 mb-6">
-                    <p class="errors alert alert-danger">
-                        Email is already occupied.
-                    </p>
-                </div>
-            </div>
-
             <div>
                 <label for="inputEmail" class="form-label">Email address</label>
                 <input
@@ -34,8 +25,8 @@
                         type="email"
                         class="form-control"
                         placeholder="Email"/>
-                <p class="invalid-feedback errors alert alert-danger">
-                    First name is required and should be between 4 and 20 symbols.
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback errors alert alert-danger">
+                    Email is required.
                 </p>
                 <div id="emailHelp" class="form-text mb-3 ">We'll never share your email with anyone else.</div>
             </div>
@@ -50,18 +41,9 @@
                         th:errorclass="is-invalid"
                         type="text" min="2" max="20" class="form-control"
                         placeholder="Username"/>
-                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-                   class="invalid-feedback errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback errors alert alert-danger">
                     Username is required.
                 </p>
-            </div>
-
-            <div th:if="${doesUsernameExist}" class="row">
-                <div class="form-group col-md-12 mb-6">
-                    <p class="errors alert alert-danger">
-                        Username is occupied.
-                    </p>
-                </div>
             </div>
 
             <div class="mb-3">
@@ -104,6 +86,20 @@
                 </p>
             </div>
 
+            <div>
+                <div class="form-group mb-3 col-md-6">
+                    <label for="description" class="col-form-label ">Description</label>
+                </div>
+                <div class="form-group">
+                    <textarea
+                            th:field="*{description}"
+                            id="description"
+                            class="form-control"
+                            aria-describedby="inputDescriptionError"
+                            placeholder="Would you like to share something about you ?">></textarea>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="password" class="font-weight-bold">Password</label>
                 <input id="password"
@@ -126,11 +122,6 @@
                 <p class="invalid-feedback errors alert alert-danger">
                     Confirmation password is required.
                 </p>
-            </div>
-
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

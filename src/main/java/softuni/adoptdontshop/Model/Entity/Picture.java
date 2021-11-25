@@ -12,6 +12,7 @@ public class Picture extends BaseEntity{
     private String title;
     @Column(columnDefinition = "LONGTEXT")
     private String url;
+    private String publicId;
 
 //    @ManyToOne
 //    private UserEntity userEntity;
@@ -55,6 +56,15 @@ public class Picture extends BaseEntity{
 
     public Picture setDog(Dog dog) {
         this.dog = dog;
+        return this;
+    }
+
+    public String getPublicId() {
+        return publicId;
+    }
+
+    public Picture setPublicId(String publicId) {
+        this.publicId = publicId;
         return this;
     }
 }

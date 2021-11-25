@@ -22,6 +22,9 @@ public class UserEntity extends  BaseEntity{
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> userRoleEntities;
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     public UserEntity() {
     }
 
@@ -58,6 +61,24 @@ public class UserEntity extends  BaseEntity{
 
     public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public Set<UserRoleEntity> getUserRoleEntities() {
+        return userRoleEntities;
+    }
+
+    public UserEntity setUserRoleEntities(Set<UserRoleEntity> userRoleEntities) {
+        this.userRoleEntities = userRoleEntities;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public UserEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 

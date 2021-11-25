@@ -21,4 +21,5 @@ public class MedicalRecord extends BaseEntity{
         this.name = name;
         return this;
     }
+
 }

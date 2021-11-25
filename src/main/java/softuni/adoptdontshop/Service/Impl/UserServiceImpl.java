@@ -43,20 +43,29 @@ public class UserServiceImpl implements UserService {
         initializeUsers();
     }
 
-    @Override
-    public boolean doesUsernameAlreadyExist(String username) {
-        return userRepository.findByUsername(username).isPresent();
-    }
-
-    @Override
-    public boolean doesEmailAddressAlreadyExist(String email) {
-        return userRepository.findByEmail(email).isPresent();
-    }
-
     //TODO : to check
     @Override
     public Optional<UserEntity> findUser(Long id) {
         return Optional.empty();
+    }
+
+    @Override
+    public boolean isUsernameFree(String username) {
+        return userRepository.findByUsernameIgnoreCase(username).isEmpty();
+    }
+
+    @Override
+    public boolean isEmailFree(String email) {
+        return userRepository.findByEmail(email).isEmpty();
+    }
+
+    @Override
+    public UserProfileViewModel findUserByUsername(String userIdentifier) {
+        UserEntity userEntity = userRepository
+                .findByUsername(userIdentifier)
+                .orElseThrow();
+
+        return modelMapper.map(userEntity, UserProfileViewModel.class);
     }
 
 //    @Override
@@ -79,6 +88,7 @@ public class UserServiceImpl implements UserService {
                     .setPassword(passwordEncoder.encode("test"))
                     .setFirstName("Admin")
                     .setLastName("Adminov")
+                    .setDescription("I'm Admin Adminov. My job is to maintain this awesome website!")
                     .setEmail("admin@gmail.com")
                     .setAge(31);
 
@@ -91,6 +101,7 @@ public class UserServiceImpl implements UserService {
                     .setPassword(passwordEncoder.encode("test"))
                     .setFirstName("Pesho")
                     .setLastName("Petrov")
+                    .setDescription("My name is Petar Petrov. I'm animal lover and want to contribute with anything I can, to support your cause!")
                     .setEmail("pesho@abv.bg")
                     .setAge(15);
 
@@ -130,9 +141,10 @@ public class UserServiceImpl implements UserService {
 
         newUserEntity = userRepository.save(newUserEntity);
 
-        //TODO: To check what was this for ?
-        // this is the Spring representation of a user
-        UserDetails principal = securityUserService.loadUserByUsername(newUserEntity.getUsername());
+        //лог-ваме User-ът след регистрация.
+
+        //1.Взимаме UserDetails, които са Spring репрезентация на logged User-ът.
+        UserDetails principal = securityUserService.loadUserByUsername(newUserEntity.getEmail());
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 principal,
@@ -140,6 +152,7 @@ public class UserServiceImpl implements UserService {
                 principal.getAuthorities()
         );
 
+        //Кой е този който текущо се е лог-нал в map-а.
         SecurityContextHolder.
                 getContext().
                 setAuthentication(authentication);

@@ -8,11 +8,21 @@ public class UserRegistrationServiceModel {
     private String username;
     private String email;
     private Integer age;
+    private String description;
 
     public String getUsername() {
         return username != null ?
                 username.trim() :
                 null;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public UserRegistrationServiceModel setDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     public String getEmail() {
