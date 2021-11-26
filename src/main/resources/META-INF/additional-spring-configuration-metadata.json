@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.cloudinary",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloudinary."
+    },
+    {
+      "name": "spring.mvc.hiddenmethod.init",
+      "type": "java.lang.String",
+      "description": "Description for spring.mvc.hiddenmethod.init."
+    }
+  ] }

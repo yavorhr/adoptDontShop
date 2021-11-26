@@ -1,12 +1,14 @@
 package softuni.adoptdontshop.Web;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogAddBindingModel;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogUpdateBindingModel;
@@ -16,6 +18,8 @@ import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 import softuni.adoptdontshop.Service.BreedService;
 import softuni.adoptdontshop.Service.DogService;
 import softuni.adoptdontshop.Service.Impl.CurrentUser;
+import softuni.adoptdontshop.Web.exception.GlobalNotFoundException;
+import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -48,7 +52,6 @@ public class DogsController {
 
     @GetMapping("/dogs/{id}/details")
     public String dogDetails(@PathVariable Long id, Model model) {
-
         model.addAttribute("dog", dogService.findDogById(id));
         return "dog-profile";
     }
@@ -76,7 +79,6 @@ public class DogsController {
 
         return "update-dog";
     }
-
 
     @GetMapping("/dogs/{id}/edit/errors")
     public String editDogProfileErrors(@PathVariable Long id, Model model) {
@@ -145,5 +147,12 @@ public class DogsController {
         return "redirect:/profile/" + dogServiceModel.getId() + "/details";
     }
 
-
+    @ExceptionHandler({ResourceNotFoundException.class})
+    public ModelAndView handleDbExceptions(ResourceNotFoundException e, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView("not-found");
+        modelAndView.addObject("resourceId", e.getResourceId());
+        modelAndView.addObject("user", principal.getName());
+        modelAndView.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        return modelAndView;
+    }
 }

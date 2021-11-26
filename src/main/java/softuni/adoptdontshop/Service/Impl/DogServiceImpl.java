@@ -17,6 +17,7 @@ import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 import softuni.adoptdontshop.Repository.*;
 import softuni.adoptdontshop.Service.DogService;
 import softuni.adoptdontshop.Service.MedicalRecordService;
+import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -119,7 +120,7 @@ public class DogServiceImpl implements DogService {
                     dogDetailsViewModel.setBreed(dog.getBreed().getName());
                     return dogDetailsViewModel;
                 })
-                .orElse(null);
+                .orElseThrow(()->new ResourceNotFoundException(id));
     }
 
     @Override
@@ -154,10 +155,10 @@ public class DogServiceImpl implements DogService {
     @Override
     public void updateDogProfile(DogUpdateServiceModel dogServiceModel) {
         //TODO - exception
+
         Dog dog = dogRepository
                 .findById(dogServiceModel.getId())
-                .orElseThrow();
-        // .orElseThrow(() -> new ObjectNotFoundException("Dog with id " + dogUpdateServiceModel.getId() + " not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException(dogServiceModel.getId()));
 
         dog
                 .setName(dogServiceModel.getName())
