@@ -1,6 +1,7 @@
 package softuni.adoptdontshop.Web;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogAddBindingModel;
+import softuni.adoptdontshop.Model.Model.BindingModel.DogUpdateBindingModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogAddServiceModel;
+import softuni.adoptdontshop.Model.Model.ServiceModel.DogUpdateServiceModel;
+import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 import softuni.adoptdontshop.Service.BreedService;
 import softuni.adoptdontshop.Service.DogService;
 import softuni.adoptdontshop.Service.Impl.CurrentUser;
@@ -21,10 +25,12 @@ public class DogsController {
 
     private final DogService dogService;
     private final BreedService breedService;
+    private final ModelMapper modelMapper;
 
-    public DogsController(DogService dogService, BreedService breedService) {
+    public DogsController(DogService dogService, BreedService breedService, ModelMapper modelMapper) {
         this.dogService = dogService;
         this.breedService = breedService;
+        this.modelMapper = modelMapper;
     }
 
     @ModelAttribute
@@ -48,19 +54,60 @@ public class DogsController {
     }
 
     // DELETE
-
+    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
     @DeleteMapping("/dogs/{id}")
     public String deleteOffer(@PathVariable Long id,
                               Principal principal) {
-
         dogService.deleteOffer(id);
-
         return "redirect:/dogs/all";
     }
 
+    // EDIT
+    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
+    @GetMapping("/dogs/{id}/edit")
+    public String editOffer(@PathVariable Long id,
+                            Principal principal, Model model) {
+
+        DogDetailsViewModel dogDetailsViewModel = dogService.findById(id, principal.getName());
+        DogUpdateBindingModel dogUpdateBindingModel = modelMapper.map(dogDetailsViewModel, DogUpdateBindingModel.class);
+
+        model.addAttribute("dogUpdateBindingModel", dogUpdateBindingModel);
+        model.addAttribute(model.addAttribute("allBreedsNames", breedService.findAllBreedsNames()));
+
+        return "update-dog";
+    }
+
+
+    @GetMapping("/dogs/{id}/edit/errors")
+    public String editDogProfileErrors(@PathVariable Long id, Model model) {
+        model.addAttribute(model.addAttribute("allBreedsNames", breedService.findAllBreedsNames()));
+        return "update-dog";
+    }
+
+    @PatchMapping("/dogs/{id}/edit")
+    public String editDogProfile(
+            @PathVariable Long id,
+            @Valid DogUpdateBindingModel dogUpdateBindingModel,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("dogUpdateBindingModel", dogUpdateBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.dogUpdateBindingModel", bindingResult);
+
+            return "redirect:/dogs/" + id + "/edit/errors";
+        }
+
+        DogUpdateServiceModel dogUpdateServiceModel = modelMapper.map(dogUpdateBindingModel,
+                DogUpdateServiceModel.class);
+
+        dogService.updateDogProfile(dogUpdateServiceModel);
+
+        return "redirect:/dogs/" + id + "/details";
+    }
 
     // ADD
-
     @GetMapping("/dogs/add")
     public String addDogPage(Model model) {
         if (!model.containsAttribute("dogAlreadyAdded") || !model.containsAttribute("allBreedsNames")) {
@@ -69,7 +116,6 @@ public class DogsController {
         }
         return "add-dog";
     }
-
 
     @PostMapping("/dogs/add")
     public String addDog(@Valid DogAddBindingModel dogAddBindingModel, BindingResult bindingResult
@@ -100,45 +146,4 @@ public class DogsController {
     }
 
 
-    @GetMapping("/dogs/{id}/edit/details")
-    public String editOffer(@PathVariable Long id, Model model) {
-
-//        OfferDetailsView offerDetailsView = offerService.findById(id, currentUser.getUserIdentifier());
-//        OfferUpdateBindingModel offerModel = modelMapper.map(
-//                offerDetailsView,
-//                OfferUpdateBindingModel.class
-//        );
-
-//        model.addAttribute("offerModel", offerModel);
-        return "update-dog";
-    }
-
-//    @GetMapping("/offers/{id}/edit/errors")
-//    public String editOfferErrors(@PathVariable Long id, Model model) {
-//        return "update";
-//    }
-//
-//    @PatchMapping("/offers/{id}/edit")
-//    public String editOffer(
-//            @PathVariable Long id,
-//            @Valid OfferUpdateBindingModel offerModel,
-//            BindingResult bindingResult,
-//            RedirectAttributes redirectAttributes) {
-//
-//        if (bindingResult.hasErrors()) {
-//
-//            redirectAttributes.addFlashAttribute("offerModel", offerModel);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerModel", bindingResult);
-//
-//            return "redirect:/offers/" + id + "/edit/errors";
-//        }
-//
-//        OfferUpdateServiceModel serviceModel = modelMapper.map(offerModel,
-//                OfferUpdateServiceModel.class);
-//        serviceModel.setId(id);
-//
-//        offerService.updateOffer(serviceModel);
-//
-//        return "redirect:/offers/" + id + "/details";
-//    }
 }

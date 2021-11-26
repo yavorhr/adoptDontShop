@@ -2,6 +2,7 @@ package softuni.adoptdontshop.Service;
 
 import softuni.adoptdontshop.Model.Model.BindingModel.DogAddBindingModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogAddServiceModel;
+import softuni.adoptdontshop.Model.Model.ServiceModel.DogUpdateServiceModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogCardView;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 
@@ -21,6 +22,9 @@ public interface DogService {
 
     void deleteOffer(Long id);
 
-//    boolean isAdmin(String userName, Long id);
+    boolean isAdmin(String username, Long id);
 
+    DogDetailsViewModel findById(Long id,String username);
+
+    void updateDogProfile(DogUpdateServiceModel dogUpdateServiceModel);
 }

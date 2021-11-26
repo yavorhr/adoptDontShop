@@ -1,5 +1,6 @@
 package softuni.adoptdontshop.Service.Impl;
 
+import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import softuni.adoptdontshop.Model.Entity.UserRoleEntity;
 import softuni.adoptdontshop.Model.Enum.UserRoleEnum;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogAddBindingModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogAddServiceModel;
+import softuni.adoptdontshop.Model.Model.ServiceModel.DogUpdateServiceModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogCardView;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 import softuni.adoptdontshop.Repository.*;
@@ -103,7 +105,7 @@ public class DogServiceImpl implements DogService {
 
         Dog savedDog = dogRepository.save(dog);
         pictureRepository.save(picture);
-        return modelMapper.map(savedDog,DogAddServiceModel.class);
+        return modelMapper.map(savedDog, DogAddServiceModel.class);
     }
 
     @Transactional
@@ -125,19 +127,65 @@ public class DogServiceImpl implements DogService {
         dogRepository.deleteById(id);
     }
 
-//    @Override
-//    public boolean isAdmin(String userName, Long id) {
-//        return false;
-//    }
+    @Override
+    public boolean isAdmin(String username, Long id) {
+        Optional<UserEntity> currentLoggedInUser = userRepository.
+                findByUsername(username);
+        Optional<Dog> optDog = dogRepository.findById(id);
 
-//    //TODO : if sec:ADMIN.hasRole not work, to do it with @preauthorize (07. Exception лекция)
-//    public boolean isAdmin(UserEntity user) {
-//        return user.
-//                getRoles().
-//                stream().
-//                map(UserRoleEntity::getRole).
-//                anyMatch(r -> r == UserRoleEnum.ADMIN);
-//    }
+        if (optDog.isEmpty()) {
+            return false;
+        }
 
+        return currentLoggedInUser
+                .get().
+                        getRoles().
+                        stream().
+                        map(UserRoleEntity::getRole).
+                        anyMatch(r -> r == UserRoleEnum.ADMIN);
+    }
 
+    @Override
+    public DogDetailsViewModel findById(Long id, String username) {
+        Optional<Dog> optDog = dogRepository.findById(id);
+        return modelMapper.map(optDog.get(), DogDetailsViewModel.class);
+    }
+
+    @Override
+    public void updateDogProfile(DogUpdateServiceModel dogServiceModel) {
+        //TODO - exception
+        Dog dog = dogRepository
+                .findById(dogServiceModel.getId())
+                .orElseThrow();
+        // .orElseThrow(() -> new ObjectNotFoundException("Dog with id " + dogUpdateServiceModel.getId() + " not found!"));
+
+        dog
+                .setName(dogServiceModel.getName())
+                .setBreed(breedRepository.findByName(dogServiceModel.getBreed()).orElseThrow())
+                .setAge(dogServiceModel.getAge())
+                .setWeight(dogServiceModel.getWeight())
+                .setCoatLength(dogServiceModel.getCoatLength())
+                .setLastModified(LocalDate.now())
+                .setDescription(dogServiceModel.getDescription())
+                .setMedicalNotes(dogServiceModel.getMedicalNotes())
+                .setColour(dogServiceModel.getColour())
+                .setGender(dogServiceModel.getGender())
+                .setSize(dogServiceModel.getSize())
+                .setHouseTrained(dogServiceModel.isHouseTrained())
+                .setGetAlongWith(dogServiceModel.getGetAlongWith());
+
+        dog.getMedicalRecord().clear();
+        dog.setMedicalRecord(
+                dogServiceModel
+                        .getMedicalRecord()
+                        .stream()
+                        .map(medicalRecordService::findMedicalRecord)
+                        .collect(Collectors.toList()));
+
+        dogRepository.save(dog);
+
+    }
 }
+
+
+
