@@ -29,6 +29,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                     //TODO to think what else to be visible to everybody
                     .antMatchers("/", "/users/login", "/users/register", "/donate", "/about").permitAll()
+                    .antMatchers("/dogs/**", "/api/**").permitAll()
                     //only ADMIN can access "/admin" page
                     .antMatchers("/admin", "/dogs/add").hasRole(UserRoleEnum.ADMIN.name())
                     //TODO - for everything else you need to be logged in. What views ?

@@ -54,11 +54,14 @@ public class Dog extends BaseEntity {
     //Dog medical record
 
     @NotEmpty
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<MedicalRecord> medicalRecord = new LinkedList<>();
 
-    public Dog() {
-    }
+    @OneToMany(mappedBy = "dog",fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Picture> pictures;
 
     @ManyToOne
     private Shelter shelter;
@@ -69,8 +72,19 @@ public class Dog extends BaseEntity {
     @ManyToOne
     private UserEntity userEntity;
 
-    @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE)
-    private List<Picture> pictures;
+
+
+    public Dog() {
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public Dog setComments(List<Comment> comments) {
+        this.comments = comments;
+        return this;
+    }
 
     public String getName() {
         return name;

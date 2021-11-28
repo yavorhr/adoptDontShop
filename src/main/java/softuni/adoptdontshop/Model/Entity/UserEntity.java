@@ -1,6 +1,7 @@
 package softuni.adoptdontshop.Model.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -43,6 +44,18 @@ public class UserEntity extends  BaseEntity{
 
     public UserEntity setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    @OneToMany(mappedBy = "userEntity")
+    private List<Dog> addedDogs;
+
+    public List<Dog> getAddedDogs() {
+        return addedDogs;
+    }
+
+    public UserEntity setAddedDogs(List<Dog> addedDogs) {
+        this.addedDogs = addedDogs;
         return this;
     }
 

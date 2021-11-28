@@ -1,6 +1,38 @@
 -- https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
 
 
+-- ROLES
+
+INSERT INTO roles (id, role)
+VALUES (1, 'ADMIN');
+
+INSERT INTO roles (id, role)
+VALUES (2, 'USER');
+
+-- USERS
+
+INSERT INTO users (id, age, description, email, first_name, last_name, password, username)
+VALUES (1, 31, 'Just doing my job!', 'admin@abv.bg', 'admin', 'adminov',
+        '6b0628e300188a8aa14f3ed53a77a5d76f24d47b2686ec7388c4f01f8dcc1d1c3f17377f301a5c62', 'admin');
+
+INSERT INTO users (id, age, description, email, first_name, last_name, password, username)
+VALUES (2, 19, 'I am Pesho from Pernik. Nice to be here!', 'pesho@abv.bg', 'pesho', 'peshov',
+        '6b0628e300188a8aa14f3ed53a77a5d76f24d47b2686ec7388c4f01f8dcc1d1c3f17377f301a5c62', 'pesho');
+
+INSERT INTO users (id, age, description, email, first_name, last_name, password, username)
+VALUES (3, 22, 'I love your cause and I want to support you in every way!', 'petya@abv.bg', 'petya', 'petrova',
+        '6b0628e300188a8aa14f3ed53a77a5d76f24d47b2686ec7388c4f01f8dcc1d1c3f17377f301a5c62', 'petya');
+
+INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
+VALUES  (1,1);
+INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
+VALUES  (1,2);
+
+INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
+VALUES  (2,2);
+INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
+VALUES  (3,2);
+
 -- donations
 
 INSERT INTO donations (`id`, email, first_name, last_name, sum, text)
@@ -12,7 +44,6 @@ VALUES (2, 'dragan@gmail.com', 'dragan', 'draganov', 500, '+359888444333', 'awes
 INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text)
 VALUES (3, 'georgi@gmail.com', 'georgi', 'georgiev', 200, '+359887666444',
         'thank you for your contribution to the society!');
-
 
 -- Shelter
 
@@ -146,6 +177,7 @@ VALUES ('Dalmatian',
 -- Dogs
 
 -- Dog - Frances
+
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
@@ -333,7 +365,7 @@ VALUES (23, 'Rose',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted,  user_entity_id, breed_id, shelter_id)
+                 is_adopted, user_entity_id, breed_id, shelter_id)
 VALUES (7, 'Daisy', 'FEMALE', 40, 'White with black dots', 'MEDIUM', 24,
         'Daisy is a mature lady, who still has a few puppy-like behaviours. She still finds life super interesting and has plenty of energy, life and love to share in her new home. She still enjoys a daily walk and loves a game with a tennis ball. Layla enjoys car rides and is toilet trained. Layla is an outgoing lady who enjoys making friends with other dogs and new people!
 We recommend Daisy for a home with children aged 8 years and older. Please remember that all interactions between children and dogs should be actively monitored.',
@@ -387,47 +419,94 @@ VALUES (30, 'Mikka',
         'https://res.cloudinary.com/yavorhr/image/upload/v1637206997/adoptDontShop/Dogs/Mikka/Mikka-3_ywlzvn.jpg',
         8);
 
-INSERT INTO dogs_medical_record VALUES (1,1);
-INSERT INTO dogs_medical_record VALUES (1,2);
-INSERT INTO dogs_medical_record VALUES (1,3);
-INSERT INTO dogs_medical_record VALUES (1,4);
-INSERT INTO dogs_medical_record VALUES (1,5);
+INSERT INTO dogs_medical_record
+VALUES (1, 1);
+INSERT INTO dogs_medical_record
+VALUES (1, 2);
+INSERT INTO dogs_medical_record
+VALUES (1, 3);
+INSERT INTO dogs_medical_record
+VALUES (1, 4);
+INSERT INTO dogs_medical_record
+VALUES (1, 5);
 
-INSERT INTO dogs_medical_record VALUES (2,1);
-INSERT INTO dogs_medical_record VALUES (2,2);
-INSERT INTO dogs_medical_record VALUES (2,3);
-INSERT INTO dogs_medical_record VALUES (2,4);
+INSERT INTO dogs_medical_record
+VALUES (2, 1);
+INSERT INTO dogs_medical_record
+VALUES (2, 2);
+INSERT INTO dogs_medical_record
+VALUES (2, 3);
+INSERT INTO dogs_medical_record
+VALUES (2, 4);
 
-INSERT INTO dogs_medical_record VALUES (3,1);
-INSERT INTO dogs_medical_record VALUES (3,2);
-INSERT INTO dogs_medical_record VALUES (3,3);
-INSERT INTO dogs_medical_record VALUES (3,4);
-INSERT INTO dogs_medical_record VALUES (3,5);
+INSERT INTO dogs_medical_record
+VALUES (3, 1);
+INSERT INTO dogs_medical_record
+VALUES (3, 2);
+INSERT INTO dogs_medical_record
+VALUES (3, 3);
+INSERT INTO dogs_medical_record
+VALUES (3, 4);
+INSERT INTO dogs_medical_record
+VALUES (3, 5);
 
-INSERT INTO dogs_medical_record VALUES (4,1);
-INSERT INTO dogs_medical_record VALUES (4,2);
-INSERT INTO dogs_medical_record VALUES (4,3);
-INSERT INTO dogs_medical_record VALUES (4,4);
-INSERT INTO dogs_medical_record VALUES (4,5);
+INSERT INTO dogs_medical_record
+VALUES (4, 1);
+INSERT INTO dogs_medical_record
+VALUES (4, 2);
+INSERT INTO dogs_medical_record
+VALUES (4, 3);
+INSERT INTO dogs_medical_record
+VALUES (4, 4);
+INSERT INTO dogs_medical_record
+VALUES (4, 5);
 
-INSERT INTO dogs_medical_record VALUES (5,2);
-INSERT INTO dogs_medical_record VALUES (5,3);
-INSERT INTO dogs_medical_record VALUES (5,4);
-INSERT INTO dogs_medical_record VALUES (5,5);
+INSERT INTO dogs_medical_record
+VALUES (5, 2);
+INSERT INTO dogs_medical_record
+VALUES (5, 3);
+INSERT INTO dogs_medical_record
+VALUES (5, 4);
+INSERT INTO dogs_medical_record
+VALUES (5, 5);
 
-INSERT INTO dogs_medical_record VALUES (6,3);
-INSERT INTO dogs_medical_record VALUES (6,4);
-INSERT INTO dogs_medical_record VALUES (6,5);
-INSERT INTO dogs_medical_record VALUES (6,1);
+INSERT INTO dogs_medical_record
+VALUES (6, 3);
+INSERT INTO dogs_medical_record
+VALUES (6, 4);
+INSERT INTO dogs_medical_record
+VALUES (6, 5);
+INSERT INTO dogs_medical_record
+VALUES (6, 1);
 
-INSERT INTO dogs_medical_record VALUES (7,3);
-INSERT INTO dogs_medical_record VALUES (7,4);
-INSERT INTO dogs_medical_record VALUES (7,5);
-INSERT INTO dogs_medical_record VALUES (7,1);
-INSERT INTO dogs_medical_record VALUES (7,2);
+INSERT INTO dogs_medical_record
+VALUES (7, 3);
+INSERT INTO dogs_medical_record
+VALUES (7, 4);
+INSERT INTO dogs_medical_record
+VALUES (7, 5);
+INSERT INTO dogs_medical_record
+VALUES (7, 1);
+INSERT INTO dogs_medical_record
+VALUES (7, 2);
 
-INSERT INTO dogs_medical_record VALUES (8,3);
-INSERT INTO dogs_medical_record VALUES (8,4);
-INSERT INTO dogs_medical_record VALUES (8,5);
-INSERT INTO dogs_medical_record VALUES (8,1);
-INSERT INTO dogs_medical_record VALUES (8,2);
+INSERT INTO dogs_medical_record
+VALUES (8, 3);
+INSERT INTO dogs_medical_record
+VALUES (8, 4);
+INSERT INTO dogs_medical_record
+VALUES (8, 5);
+INSERT INTO dogs_medical_record
+VALUES (8, 1);
+INSERT INTO dogs_medical_record
+VALUES (8, 2);
+
+-- COMMENTS
+
+INSERT INTO comments (`id`, created, text_content, approved, user_entity_id, dog_id)
+VALUES (1, now(), 'Oh how cute she is!', true, 2, 1);
+INSERT INTO comments (`id`, created, text_content, approved, user_entity_id, dog_id)
+VALUES (2, now(), 'I dont like this dog!', false, 3, 1);
+INSERT INTO comments (`id`, created, text_content, approved, user_entity_id, dog_id)
+VALUES (3, now(), 'I want to adopt her! What should I do ?', true, 2, 1)
+

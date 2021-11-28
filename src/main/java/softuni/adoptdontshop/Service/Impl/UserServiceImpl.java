@@ -15,9 +15,6 @@ import softuni.adoptdontshop.Model.Model.ViewModel.UserProfileViewModel;
 import softuni.adoptdontshop.Repository.RoleRepository;
 import softuni.adoptdontshop.Repository.UserRepository;
 import softuni.adoptdontshop.Service.UserService;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -37,17 +34,7 @@ public class UserServiceImpl implements UserService {
         this.securityUserService = securityUserService;
     }
 
-    @Override
-    public void initializeUsersAndRoles() {
-        initializeRoles();
-        initializeUsers();
-    }
 
-    //TODO : to check
-    @Override
-    public Optional<UserEntity> findUser(Long id) {
-        return Optional.empty();
-    }
 
     @Override
     public boolean isUsernameFree(String username) {
@@ -66,61 +53,6 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow();
 
         return modelMapper.map(userEntity, UserProfileViewModel.class);
-    }
-
-//    @Override
-//    public Optional<UserEntity> findUser(Long id) {
-//        return this.userRepository
-//                .findUserById(id)
-//                .map(user -> modelMapper.map(user, UserProfileViewModel.class))
-//                .orElse(null);
-//    }
-
-    private void initializeUsers() {
-        if (userRepository.count() == 0) {
-
-            UserRoleEntity adminRole = roleRepository.findByRole(UserRoleEnum.ADMIN);
-            UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER);
-
-            UserEntity admin = new UserEntity();
-            admin
-                    .setUsername("admin")
-                    .setPassword(passwordEncoder.encode("test"))
-                    .setFirstName("Admin")
-                    .setLastName("Adminov")
-                    .setDescription("I'm Admin Adminov. My job is to maintain this awesome website!")
-                    .setEmail("admin@gmail.com")
-                    .setAge(31);
-
-            admin.setRoles(Set.of(adminRole, userRole));
-            userRepository.save(admin);
-
-            UserEntity pesho = new UserEntity();
-            pesho
-                    .setUsername("pesho")
-                    .setPassword(passwordEncoder.encode("test"))
-                    .setFirstName("Pesho")
-                    .setLastName("Petrov")
-                    .setDescription("My name is Petar Petrov. I'm animal lover and want to contribute with anything I can, to support your cause!")
-                    .setEmail("pesho@abv.bg")
-                    .setAge(15);
-
-            pesho.setRoles(Set.of(userRole));
-            userRepository.save(pesho);
-        }
-    }
-
-    private void initializeRoles() {
-
-        if (roleRepository.count() == 0) {
-            UserRoleEntity adminRole = new UserRoleEntity();
-            adminRole.setRole(UserRoleEnum.ADMIN);
-
-            UserRoleEntity userRole = new UserRoleEntity();
-            userRole.setRole(UserRoleEnum.USER);
-
-            roleRepository.saveAll(List.of(adminRole, userRole));
-        }
     }
 
     @Override

@@ -1,7 +1,8 @@
 package softuni.adoptdontshop.Service.Impl;
 
-import org.hibernate.ObjectNotFoundException;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import softuni.adoptdontshop.Model.Entity.Dog;
@@ -62,6 +63,7 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public List<DogCardView> findAllDogs() {
+
         return dogRepository
                 .findAll()
                 .stream()
@@ -120,7 +122,7 @@ public class DogServiceImpl implements DogService {
                     dogDetailsViewModel.setBreed(dog.getBreed().getName());
                     return dogDetailsViewModel;
                 })
-                .orElseThrow(()->new ResourceNotFoundException(id));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     @Override

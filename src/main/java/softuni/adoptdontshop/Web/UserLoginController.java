@@ -25,7 +25,6 @@ public class UserLoginController {
 
     @PostMapping("/users/login-error")
     public String failedLogin(
-            //TODO : check in Pathfinder
             @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                     String currentUsername,
             RedirectAttributes attributes) {

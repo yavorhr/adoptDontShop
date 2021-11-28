@@ -1,6 +1,8 @@
 package softuni.adoptdontshop.Web;
 
+import org.hibernate.annotations.Cache;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,15 +16,15 @@ import softuni.adoptdontshop.Model.Model.BindingModel.DogAddBindingModel;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogUpdateBindingModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogAddServiceModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogUpdateServiceModel;
+import softuni.adoptdontshop.Model.Model.ViewModel.DogCardView;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 import softuni.adoptdontshop.Service.BreedService;
 import softuni.adoptdontshop.Service.DogService;
 import softuni.adoptdontshop.Service.Impl.CurrentUser;
-import softuni.adoptdontshop.Web.exception.GlobalNotFoundException;
 import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
-
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class DogsController {
@@ -46,6 +48,7 @@ public class DogsController {
 
     @GetMapping("/dogs/all")
     public String allDogs(Model model) {
+
         model.addAttribute("allDogs", dogService.findAllDogs());
         return "all-dogs";
     }
