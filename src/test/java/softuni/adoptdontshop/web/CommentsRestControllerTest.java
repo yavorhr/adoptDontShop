@@ -109,12 +109,14 @@ public class CommentsRestControllerTest {
         comment1.setUser(testUser);
         comment1.setTextContent(COMMENT_1);
         comment1.setApproved(true);
+        comment1.setDog(testDog);
 
         Comment comment2 = new Comment();
         comment2.setCreated(Instant.now());
         comment2.setUser(testUser);
         comment2.setTextContent(COMMENT_2);
         comment2.setApproved(true);
+        comment2.setDog(testDog);
 
         testDog.setComments(List.of(comment1,comment2));
 
