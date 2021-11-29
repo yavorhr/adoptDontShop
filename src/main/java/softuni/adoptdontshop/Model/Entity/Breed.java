@@ -10,7 +10,8 @@ public class Breed extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
+    @Lob
     private String description;
     private String imageUrl;
 

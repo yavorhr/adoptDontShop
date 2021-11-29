@@ -1,16 +1,13 @@
 package softuni.adoptdontshop.Model.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "pictures")
 public class Picture extends BaseEntity{
 
     private String title;
-    @Column(columnDefinition = "LONGTEXT")
+    @Lob
     private String url;
     private String publicId;
 

@@ -15,6 +15,7 @@ public class Comment extends BaseEntity {
 
     @ManyToOne
     private UserEntity userEntity;
+
     @ManyToOne
     private Dog dog;
 
@@ -27,6 +28,15 @@ public class Comment extends BaseEntity {
 
     public Comment setApproved(boolean approved) {
         this.approved = approved;
+        return this;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public Comment setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
         return this;
     }
 

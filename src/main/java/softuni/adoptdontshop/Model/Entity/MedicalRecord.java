@@ -8,6 +8,7 @@ public class MedicalRecord extends BaseEntity{
 
     @Column(nullable = false,unique = true)
     @Enumerated(EnumType.STRING)
+
     private MedicalRecordEnum name;
 
     public MedicalRecord() {

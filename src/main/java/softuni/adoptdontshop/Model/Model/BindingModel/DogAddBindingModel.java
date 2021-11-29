@@ -44,7 +44,7 @@ public class DogAddBindingModel {
     private String getAlongWith;
 
     //Dog medical record
-    @NotNull
+
     private Set<MedicalRecordEnum> medicalRecord;
 
     public DogAddBindingModel() {

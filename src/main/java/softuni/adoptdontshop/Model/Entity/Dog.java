@@ -9,10 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "dogs")
@@ -27,11 +24,11 @@ public class Dog extends BaseEntity {
     private boolean isAdopted;
     private LocalDate lastModified;
     private LocalDate addedOn;
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(nullable = false)
+    @Lob
     private String description;
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Lob
     private String medicalNotes;
-
     //Dog characteristics
 
     @Column(nullable = false)
@@ -53,15 +50,14 @@ public class Dog extends BaseEntity {
 
     //Dog medical record
 
-    @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<MedicalRecord> medicalRecord = new LinkedList<>();
+    private List<MedicalRecord> medicalRecord = new ArrayList<>();
 
-    @OneToMany(mappedBy = "dog",fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    @OneToMany(mappedBy = "dog",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private List<Picture> pictures;
+    private List<Picture> pictures = new ArrayList<>();
 
     @ManyToOne
     private Shelter shelter;
@@ -71,8 +67,6 @@ public class Dog extends BaseEntity {
 
     @ManyToOne
     private UserEntity userEntity;
-
-
 
     public Dog() {
     }
@@ -266,4 +260,6 @@ public class Dog extends BaseEntity {
         this.pictures = pictures;
         return this;
     }
+
+
 }

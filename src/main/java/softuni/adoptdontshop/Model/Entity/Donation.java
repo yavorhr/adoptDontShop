@@ -2,6 +2,7 @@ package softuni.adoptdontshop.Model.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -18,7 +19,7 @@ public class Donation extends BaseEntity {
     private String phoneNumber;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(columnDefinition = "LONGTEXT")
+    @Lob
     private String text;
 
     public Donation() {

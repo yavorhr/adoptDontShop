@@ -1,14 +1,15 @@
 package softuni.adoptdontshop.Model.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class UserEntity extends  BaseEntity{
+public class UserEntity extends BaseEntity {
 
-    @Column(nullable = false,unique =true)
+    @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)
     private String password;
@@ -17,17 +18,30 @@ public class UserEntity extends  BaseEntity{
     @Column(nullable = false)
     private String lastName;
     private Integer age;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> userRoleEntities;
 
-    @Column(columnDefinition = "TEXT")
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public UserEntity setComments(List<Comment> comments) {
+        this.comments = comments;
+        return this;
+    }
+
+    @Lob
     private String description;
 
     public UserEntity() {
     }
+
 
     public String getUsername() {
         return username;
