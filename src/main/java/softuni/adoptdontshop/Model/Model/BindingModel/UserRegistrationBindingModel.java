@@ -32,7 +32,6 @@ public class UserRegistrationBindingModel {
     @NotNull
     @Size(min = 4, max = 20)
     private String confirmPassword;
-
     private String description;
 
     public String getUsername() {

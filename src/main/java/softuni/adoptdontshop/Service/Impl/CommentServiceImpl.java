@@ -6,11 +6,15 @@ import softuni.adoptdontshop.Model.Entity.Comment;
 import softuni.adoptdontshop.Model.Entity.Dog;
 import softuni.adoptdontshop.Model.Model.ServiceModel.CommentServiceModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.CommentViewModel;
+import softuni.adoptdontshop.Repository.CommentRepository;
 import softuni.adoptdontshop.Repository.DogRepository;
+import softuni.adoptdontshop.Repository.UserRepository;
 import softuni.adoptdontshop.Service.CommentService;
 import softuni.adoptdontshop.Web.exception.ObjectNotFoundException;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -18,9 +22,13 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
 
     private final DogRepository dogRepository;
+    private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
-    public CommentServiceImpl(DogRepository dogRepository) {
+    public CommentServiceImpl(DogRepository dogRepository, UserRepository userRepository, CommentRepository commentRepository) {
         this.dogRepository = dogRepository;
+        this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Transactional
@@ -42,8 +50,22 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentViewModel createComment(CommentServiceModel commentServiceModel) {
-        throw new UnsupportedOperationException("Not yet!");
-    //TODO
+
+        var dog = dogRepository.findById(commentServiceModel.getDogId())
+                .orElseThrow(() -> new ObjectNotFoundException("Route with id" + commentServiceModel.getDogId() + " not found!"));
+
+        var user = userRepository.findByEmail(commentServiceModel.getCreator())
+                .orElseThrow(() -> new ObjectNotFoundException("User with email" + commentServiceModel.getCreator() + " not found!"));
+
+        Comment newComment = new Comment();
+        newComment.setApproved(false);
+        newComment.setTextContent(commentServiceModel.getMessage());
+        newComment.setCreated(Instant.now());
+        newComment.setDog(dog);
+        newComment.setUser(user);
+
+        Comment savedComment = commentRepository.save(newComment);
+        return mapToCommentView(savedComment);
     }
 
     private CommentViewModel mapToCommentView(Comment comment) {

@@ -44,6 +44,7 @@ public class CommentsRestController {
             @RequestBody @Valid CommentBindingModel commentBindingModel) {
 
         CommentServiceModel commentServiceModel = modelMapper.map(commentBindingModel, CommentServiceModel.class);
+        commentServiceModel.setCreator(principal.getUsername());
         commentServiceModel.setDogId(dogId);
 
         CommentViewModel newComment = commentService.createComment(commentServiceModel);

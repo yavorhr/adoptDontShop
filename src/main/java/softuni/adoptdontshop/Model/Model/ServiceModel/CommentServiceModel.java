@@ -6,7 +6,6 @@ public class CommentServiceModel {
     private String message;
     private String creator;
 
-
     public CommentServiceModel() {
     }
 
