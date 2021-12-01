@@ -7,4 +7,6 @@ import java.util.List;
 public interface BreedService {
 
     List<BreedViewModel> findAllBreedsNames();
+
+    void findAllBreedsWithNamesAndSize();
 }

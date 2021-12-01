@@ -29,6 +29,7 @@ public class Dog extends BaseEntity {
     private String description;
     @Lob
     private String medicalNotes;
+
     //Dog characteristics
 
     @Column(nullable = false)

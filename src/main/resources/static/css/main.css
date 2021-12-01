@@ -202,11 +202,9 @@ body {
 
 /* Donation form layout */
 
-/*#donation {*/
-/*    background-color: #333333;*/
-/*    font: #fff;*/
-/*    padding: 50px;*/
-/*}*/
+.donation-form {
+    background-color: #333333;
+}
 
 
 /* Progress bars */
@@ -279,6 +277,100 @@ body {
     justify-content: center;
 }
 
-.dog-profile .gallery {
+
+/* DONATION PAGE */
+
+.donation-pic {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background: url("https://res.cloudinary.com/yavorhr/image/upload/v1638351044/adoptDontShop/cover/photo-1522276498395-f4f68f7f8454_u95abo.jpg");
+    border-radius: 20px;
+    border: 1px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background: rgba(94, 41, 5, 0.2);
+}
+
+.donation-form {
+    border-radius: 20px;
+    border: 1px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background: rgba(132, 130, 130, 0.2);
+    margin-top: 10px;
+    text-align: center;
+}
+
+.donation-form textarea {
+    width: 600px;
+    height: 150px;
+}
+
+#donation-p {
+    margin: auto;
+    text-align: center;
+}
+
+/* BREEDS */
+
+.breeds-section {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px auto;
+}
+
+.breeds-section ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 
 }
+
+.breeds-section ul li {
+    list-style: none;
+    background: #eee;
+    padding: 12px 20px;
+    margin: 5px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.breeds-section ul li.active {
+    background: #181174;
+    color: white;
+}
+
+.breed-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.breed-card .itemBox {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    display: block;
+}
+
+.breed-card .itemBox.hide {
+    display: none;
+}
+
+.breed-card .itemBox img {
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100% ;
+    height: 100%;
+    object-fit: cover;
+
+}
+

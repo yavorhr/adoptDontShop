@@ -5,3 +5,4 @@ if (e.target.classList.contains("gallery-item")) {
     const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'))
     myModal.show();
 }})
+

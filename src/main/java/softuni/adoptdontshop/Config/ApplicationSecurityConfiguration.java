@@ -25,28 +25,29 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                    .authorizeRequests()
-                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                    //TODO to think what else to be visible to everybody
-                    .antMatchers("/", "/users/login", "/users/register", "/donate", "/about").permitAll()
-                    .antMatchers("/dogs/**").permitAll()
-                    //only ADMIN can access "/admin" page
-                    .antMatchers("/admin", "/dogs/add").hasRole(UserRoleEnum.ADMIN.name())
-                    //TODO - for everything else you need to be logged in. What views ?
-                    .antMatchers("/**").authenticated()
+                .authorizeRequests()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                //TODO to think what else to be visible to everybody
+                .antMatchers("/", "/users/login", "/users/register", "/donations", "/about").permitAll()
+                .antMatchers("/dogs/**").permitAll()
+                .antMatchers("/breeds/**").permitAll()
+                //only ADMIN can access "/admin" page
+                .antMatchers("/admin", "/dogs/add").hasRole(UserRoleEnum.ADMIN.name())
+                //TODO - for everything else you need to be logged in. What views ?
+                .antMatchers("/**").authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/users/login")
-                    .usernameParameter("email")
-                    .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                    .defaultSuccessUrl("/")
-                    .failureForwardUrl("/users/login-error")
+                .formLogin()
+                .loginPage("/users/login")
+                .usernameParameter("email")
+                .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                .defaultSuccessUrl("/")
+                .failureForwardUrl("/users/login-error")
                 .and()
-                    .logout()
-                    .logoutUrl("/users/logout")
-                    .logoutSuccessUrl("/")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID");
+                .logout()
+                .logoutUrl("/users/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 
     @Override

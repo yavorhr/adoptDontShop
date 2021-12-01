@@ -33,17 +33,17 @@ VALUES  (2,2);
 INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
 VALUES  (3,2);
 
--- donations
+# -- donations
 
-INSERT INTO donations (`id`, email, first_name, last_name, sum, text)
-VALUES (1, 'ivan@gmail.com', 'ivan', 'ivanov', 300, 'thank you for your great work!');
+INSERT INTO donations (`id`, email, first_name, last_name, sum, text,contributed_on)
+VALUES (1,'yomov@abv.bg','Ivan','Yomov',50,'Keep the good work!','2021-11-05');
 
-INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text)
-VALUES (2, 'dragan@gmail.com', 'dragan', 'draganov', 500, '+359888444333', 'awesome job, keep doing it!');
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text,contributed_on)
+VALUES (2, 'dragan@gmail.com', 'dragan', 'draganov', 500, '+359888444333', 'awesome job, keep doing it!','2021-12-01');
 
-INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text)
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text,contributed_on)
 VALUES (3, 'georgi@gmail.com', 'georgi', 'georgiev', 200, '+359887666444',
-        'thank you for your contribution to the society!');
+        'thank you for your contribution to the society!','2021-11-15');
 
 -- Shelter
 

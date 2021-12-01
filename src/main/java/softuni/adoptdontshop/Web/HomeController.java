@@ -23,4 +23,9 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "about";
+    }
+
 }

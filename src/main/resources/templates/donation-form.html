@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="common_fragments/head.html::head">
+    <title>Dog profile</title>
+
+<body>
+
+<header th:replace="common_fragments/navbar.html::navigation"></header>
+
+<section class="donation-section mb-5 ">
+    <div class="container d-flex justify-content-sm-center text-right pt-5 mt-5 " id="donation">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://res.cloudinary.com/yavorhr/image/upload/v1638351044/adoptDontShop/cover/photo-1522276498395-f4f68f7f8454_u95abo.jpg"
+                     th:width="300" th:height="300" class=" donation-pic">
+            </div>
+            <div class="col-md-6">
+                <h3>
+                    You can help bring joy and save lives!
+                </h3>
+                <p>
+                    For the hundreds of homeless pets on "AdoptDontShop", finding a family of their own to love
+                    would be their best wish come true!
+                </p>
+                <p>
+                    Everyday each of deserving dogs rely on your kindness to gift them the chance to connect with loving
+                    families across Bulgaria by bringing together their stories in one melting pot of love, hope and
+                    potential on "AdoptDontShop".
+                </p>
+                <p>
+                    Your donation makes adoption free and accessible for everyone meaning homeless dogs can find homes
+                    much faster, hopefully many in time for this Christmas!
+                </p>
+                <p>
+                    By connecting dogs with humans to love them you are helping bring joy
+                    for many years to come. And that’s a wish that we all share for these dogs!.
+                </p>
+                <p class="text-">
+                    Donate generously today and you will give the best present ever for dogs waiting patiently.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <p class="mt-4" id="donation-p">As a valued supporter, we won’t share your data. We only use this info to send
+            your donation receipt and keep you updated with PetRescue initiatives.</p>
+        <form
+                th:action="@{/donations}"
+                th:method="POST"
+                th:object="${donationBindingModel}";
+                class="donation-form row mx-auto col-md-8 d-flex flex-column justify-content-center">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label"></label>
+                    <input
+                            class="form-control"
+                            th:field="*{firstName}"
+                            th:errorclass="is-invalid"
+                            id="firstName"
+                            placeholder="First name">
+                    <small id="inputFirstNameError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Must be between 1 and 20
+                        characters.
+                    </small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName" class="form-label"></label>
+                    <input
+                            th:errorclass="is-invalid"
+                            th:field="*{lastName}"
+                            class="form-control"
+                            id="lastName"
+                            placeholder="Last name">
+                    <small id="inputLastName"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Must be between 1 and 20
+                        characters.
+                    </small>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label"></label>
+                    <input
+                            th:errorclass="is-invalid"
+                            th:field="*{email}"
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="Email">
+                    <small id="inputEmailError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please enter valid email
+                        address.
+                    </small>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="phoneNumber" class="form-label"></label>
+                    <input class="form-control"
+                           th:errorclass="is-invalid"
+                           th:field="*{phoneNumber}"
+                           id="phoneNumber"
+                           placeholder="+359">
+                    <small id="inputPhoneNumberError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please enter valid phone
+                        number.
+                    </small>
+                </div>
+
+
+                <div class="col-md-12">
+                    <label for="message" class="form-label"></label>
+                    <textarea
+                            type="text" class="form-control"
+                            id="message"
+                            placeholder="We always appreciate your feedback..."></textarea>
+                </div>
+
+                <h2 class="mt-3"> Your payment details</h2>
+                <div class="col-md-6">
+                    <label for="cardHolderName" class="form-label"></label>
+                    <input class="form-control"
+                           th:errorclass="is-invalid"
+                           th:field="*{cardHolderName}"
+                           id="cardHolderName"
+                           placeholder="Card holder name">
+                    <small id="inputCardHolderNameError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please fill card holder name.
+                    </small>
+                </div>
+                <div class="col-md-6">
+                    <label for="creditCardNumber" class="form-label"></label>
+                    <input class="form-control"  id="creditCardNumber"
+                           th:errorclass="is-invalid"
+                           th:field="*{creditCardNumber}"
+                           placeholder="Credit card number">
+                    <small id="inputCreditCardNumberError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please fill valid credit card
+                        number.
+                    </small>
+                </div>
+                <div class="col-md-2">
+                    <label for="creditCardExp" class="form-label"></label>
+                    <input class="form-control"
+                           id="creditCardExp"
+                           th:errorclass="is-invalid"
+                           th:field="*{expiration}"
+                           placeholder="MM/YY">
+                    <small id="inputCreditCardExp"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please fill expiration date
+                        in MM/YY format.
+                    </small>
+                </div>
+                <div class="col-md-2">
+                    <label for="cvv" class="form-label"></label>
+                    <input class="form-control"
+                           th:errorclass="is-invalid"
+                           th:field="*{cvv}"
+                           id="cvv"
+                           placeholder="CVV">
+                    <small id="inputCvvError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please fill your CVV code.
+                    </small>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-3 mb-3 donation-amount">
+                    <label for="donationAmount" class="form-label"></label>
+                    <input class="form-control"
+                           id="donationAmount"
+                           placeholder="Donation amount"
+                           th:field="*{sum}"
+                           th:errorclass="is-invalid">
+                    <small id="inputAgeError"
+                           class="invalid-feedback form-text text-light bg-danger rounded">Please fill your donation
+                        amount.
+                    </small>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-2">
+                <button type="submit" class="btn btn-success" id="donatebutton">Contribute now!</button>
+            </div>
+            <h2 class="h2w"> Thank you!</h2>
+        </form>
+    </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

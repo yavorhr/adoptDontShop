@@ -1,49 +1,26 @@
-package softuni.adoptdontshop.Model.Entity;
+package softuni.adoptdontshop.Model.Model.ServiceModel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-@Entity
-@Table(name = "donations")
-public class Donation extends BaseEntity {
+public class DonationServiceModel {
 
-    @Column(nullable = false)
     private String firstName;
-    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
     private BigDecimal sum;
     private String phoneNumber;
-    @Column(nullable = false, unique = true)
     private String email;
-    @Lob
     private String text;
-
-    @Column(nullable = false)
     private LocalDate contributedOn;
 
-    public Donation() {
-    }
-
-    public LocalDate getContributedOn() {
-        return contributedOn;
-    }
-
-    public Donation setContributedOn(LocalDate contributedOn) {
-        this.contributedOn = contributedOn;
-        return this;
+    public DonationServiceModel() {
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public Donation setFirstName(String firstName) {
+    public DonationServiceModel setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -52,7 +29,7 @@ public class Donation extends BaseEntity {
         return lastName;
     }
 
-    public Donation setLastName(String lastName) {
+    public DonationServiceModel setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -61,7 +38,16 @@ public class Donation extends BaseEntity {
         return sum;
     }
 
-    public Donation setSum(BigDecimal sum) {
+    public LocalDate getContributedOn() {
+        return contributedOn;
+    }
+
+    public DonationServiceModel setContributedOn(LocalDate contributedOn) {
+        this.contributedOn = contributedOn;
+        return this;
+    }
+
+    public DonationServiceModel setSum(BigDecimal sum) {
         this.sum = sum;
         return this;
     }
@@ -70,7 +56,7 @@ public class Donation extends BaseEntity {
         return phoneNumber;
     }
 
-    public Donation setPhoneNumber(String phoneNumber) {
+    public DonationServiceModel setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
@@ -79,7 +65,7 @@ public class Donation extends BaseEntity {
         return email;
     }
 
-    public Donation setEmail(String email) {
+    public DonationServiceModel setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -88,7 +74,7 @@ public class Donation extends BaseEntity {
         return text;
     }
 
-    public Donation setText(String text) {
+    public DonationServiceModel setText(String text) {
         this.text = text;
         return this;
     }
