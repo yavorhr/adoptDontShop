@@ -18,17 +18,33 @@
     </ul>
 
     <div class="breed-card">
-        <div class="itemBox" data-item="small">
-            <img src="https://res.cloudinary.com/yavorhr/image/upload/v1637162431/adoptDontShop/Breeds/cavalier-king-charles-spaniel-detail_gqagos.jpg"
-                 alt="" class="src">
+        <div class="itemBox"
+             th:each="b : ${allBreeds}"
+             th:object="${b}"
+             th:data-item="${#strings.toLowerCase(b.size)}">
+
+            <div class="card-head">
+                <img th:src="*{imageUrl}"
+                     alt="" class="src">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="*{name}"></h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <a class="card-link" th:href="@{/breeds/{id}/details(id = *{id})}">Learn More</a>
+                </div>
+            </div>
+
         </div>
-        <div class="itemBox" data-item="medium">
-            <img src="https://res.cloudinary.com/yavorhr/image/upload/v1637162631/adoptDontShop/Breeds/mastiff-detail_fcahux.jpg">
-        </div>
-        <div class="itemBox" data-item="large">
-            <img src="https://res.cloudinary.com/yavorhr/image/upload/v1637162431/adoptDontShop/Breeds/cavalier-king-charles-spaniel-detail_gqagos.jpg"
-                 alt="" class="src">
-        </div>
+
+        <!--        <div class="itemBox" data-item="medium">-->
+        <!--            <img src="https://res.cloudinary.com/yavorhr/image/upload/v1637162631/adoptDontShop/Breeds/mastiff-detail_fcahux.jpg">-->
+        <!--        </div>-->
+        <!--        <div class="itemBox" data-item="large">-->
+        <!--            <img src="https://res.cloudinary.com/yavorhr/image/upload/v1637162431/adoptDontShop/Breeds/cavalier-king-charles-spaniel-detail_gqagos.jpg"-->
+        <!--                 alt="" class="src">-->
+        <!--        </div>-->
     </div>
 </section>
 

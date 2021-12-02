@@ -2,6 +2,7 @@ package softuni.adoptdontshop.Service.Impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import softuni.adoptdontshop.Model.Model.ViewModel.BreedDetailsViewModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.BreedViewModel;
 import softuni.adoptdontshop.Repository.BreedRepository;
 import softuni.adoptdontshop.Service.BreedService;
@@ -13,9 +14,11 @@ import java.util.stream.Collectors;
 public class BreedServiceImpl implements BreedService {
 
     private final BreedRepository breedRepository;
+    private final ModelMapper modelMapper;
 
-    public BreedServiceImpl(BreedRepository breedRepository) {
+    public BreedServiceImpl(BreedRepository breedRepository, ModelMapper modelMapper) {
         this.breedRepository = breedRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -29,6 +32,22 @@ public class BreedServiceImpl implements BreedService {
                     breedViewModel.setId(breed.getId());
                     breedViewModel.setName(breed.getName());
                     return breedViewModel;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BreedDetailsViewModel> findAllBreedsWithNamesAndSize() {
+        return breedRepository
+                .findAll()
+                .stream()
+                .map(breed -> {
+                    BreedDetailsViewModel breedDetailsViewModel = new BreedDetailsViewModel();
+                    breedDetailsViewModel.setId(breed.getId());
+                    breedDetailsViewModel.setName(breed.getName());
+                    breedDetailsViewModel.setImageUrl(breed.getImageUrl());
+                    breedDetailsViewModel.setSize(breed.getSize());
+                    return breedDetailsViewModel;
                 })
                 .collect(Collectors.toList());
     }

@@ -3,7 +3,10 @@ package softuni.adoptdontshop.Web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import softuni.adoptdontshop.Model.Model.ViewModel.BreedDetailsViewModel;
 import softuni.adoptdontshop.Service.BreedService;
+
+import java.util.List;
 
 @Controller
 public class BreedsController {
@@ -16,7 +19,8 @@ public class BreedsController {
 
     @GetMapping("/breeds/all")
     public String allDogs(Model model) {
-        breedService.findAllBreedsWithNamesAndSize();
+
+        model.addAttribute("allBreeds",breedService.findAllBreedsWithNamesAndSize());
         return "breeds";
     }
 }

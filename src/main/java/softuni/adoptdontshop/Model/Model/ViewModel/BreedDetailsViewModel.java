@@ -47,4 +47,6 @@ public class BreedDetailsViewModel {
         this.size = size;
         return this;
     }
+
+
 }
