@@ -2,10 +2,11 @@ package softuni.adoptdontshop.Service.Impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import softuni.adoptdontshop.Model.Model.ViewModel.BreedDetailsViewModel;
-import softuni.adoptdontshop.Model.Model.ViewModel.BreedViewModel;
+import softuni.adoptdontshop.Model.Entity.Breed;
+import softuni.adoptdontshop.Model.Model.ViewModel.*;
 import softuni.adoptdontshop.Repository.BreedRepository;
 import softuni.adoptdontshop.Service.BreedService;
+import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,4 +52,29 @@ public class BreedServiceImpl implements BreedService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public BreedProfileViewModel findBreedById(Long id) {
+        return breedRepository
+                .findById(id)
+                .map(breed -> modelMapper.map(breed, BreedProfileViewModel.class))
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    @Override
+    public List<DogCardView> findAllDogsFromSpecificBreed(Long id) {
+        //TODO : throw exception
+        Breed breed = breedRepository.findById(id).orElseThrow();
+        return breed
+                .getDogs()
+                .stream()
+                .map(dog -> {
+                    DogCardView dogCardView = new DogCardView();
+                    dogCardView = modelMapper.map(dog, DogCardView.class);
+                    dogCardView.setImageUrl(dog.getPictures().get(0).getUrl());
+                    return dogCardView;
+                }).collect(Collectors.toList());
+
+    }
 }
+

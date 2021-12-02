@@ -27,4 +27,6 @@ public interface DogService {
     DogDetailsViewModel findById(Long id,String username);
 
     void updateDogProfile(DogUpdateServiceModel dogUpdateServiceModel);
+
+
 }

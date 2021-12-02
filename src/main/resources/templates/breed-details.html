@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="common_fragments/head::head"></head>
+
+<body>
+
+<div th:replace="common_fragments/navbar.html::navigation">
+</div>
+
+<div class="container" th:object="${breed}">
+    <div class="row">
+        <h3 th:text="*{name}">Breed name</h3>
+
+        <th:block th:if="${dogsFromThisBreed.size() >0}">
+            <h4>Dogs from this breed: <span th:text="${dogsFromThisBreed.size()}"></span></h4>
+        </th:block>
+
+        <th:block th:if="${dogsFromThisBreed.size() ==0}">
+            <h4>There is no dog for adoption from this breed.</h4>
+        </th:block>
+
+        <div class="col-md-4">
+            <img th:src="*{imageUrl}">
+        </div>
+        <div class="col-md-4" style="margin-left: 30px; margin-top: 20px;">
+            <p th:text="*{description}">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel totam illum odio,
+                cupiditate
+                aspernatur
+                quia aut ad eligendi alias culpa rerum perferendis nihil nesciunt unde? Voluptates eos aut odit
+                doloribus?</p>
+        </div>
+
+        <section class="bars">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <div class="progress-bar" data-label="Energy level" th:style="|--width:${breed.energyLevel}|">
+                        </div>
+                        <div class="progress-bar" data-label="Playfulness" th:style="|--width:${breed.playfulness}|">
+                        </div>
+                        <div class="progress-bar" data-label="Affection level" th:style="|--width:${breed.affectionLevel}|">
+                        </div>
+                        <div class="progress-bar" data-label="Grooming requirements" th:style="|--width:${breed.groomingRequirements}|">
+                        </div>
+                        <div class="progress-bar" data-label="Friendliness to other pets" th:style="|--width:${breed.friendlinessToOtherPets}|">
+                        </div>
+                        <div class="progress-bar" data-label="Friendliness to strangers" th:style="|--width:${breed.friendlinessToStrangers}|">
+                        </div>
+                        <div class="progress-bar" data-label="Watchfulness" th:style="|--width:${breed.watchfulness}|">
+                        </div>
+                        <div class="progress-bar" data-label="Ease of training" th:style="|--width:${breed.easeOfTraining}|">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dogs_breed">
+            <div class="container">
+                <h3>All dogs from this breed :</h3>
+                <section class="p-1">
+                    <div class="d-md-flex p-2">
+                        <div class="card m-2" style="width: 18rem;">
+                            <img class="card-img-top" data-src="holder.js/100px160/"
+                                 src="../images/Capture3 (1).JPG" alt="Card image cap" data-holder-rendered="true"
+                                 style="height:160px; width:100%; display: block;">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                            </div>
+                        </div>
+
+                        <div class="card m-2" style="width: 18rem;">
+                            <img class="card-img-top" data-src="holder.js/100px160/"
+                                 src="../images/Capture3 (1).JPG" alt="Card image cap" data-holder-rendered="true"
+                                 style="height:160px; width:100%; display: block;">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+        </section>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

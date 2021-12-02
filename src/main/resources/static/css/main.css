@@ -206,39 +206,35 @@ body {
     background-color: #333333;
 }
 
-
 /* Progress bars */
-
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 .progress-bar {
-    width: 500px;
     position: relative;
+    width: 500px;
     height: 3em;
     background-color: grey;
     border-radius: 1.5em;
     margin-top: 5px;
 }
 
-/*.progress-bar::before{*/
-/*    content: attr(data-label);*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    position: absolute;*/
-/*    left: .5em;*/
-/*    top: .5em;*/
-/*    bottom: .5em;*/
-/*    width: calc(var(--width,0) * 1%);*/
-/*    min-width:2rem;*/
-/*    max-width: calc(100%-1em);*/
-/*    background-color: green;*/
-/*    border-radius: 1em;*/
-/*    padding: 1em;*/
-/*   */
-/*    */
-/*}*/
+.progress-bar::before{
+    content: attr(data-label);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    bottom: .5em;
+    width: calc(var(--width,0) * 1%);
+    min-width:2rem;
+    max-width: calc(95%);
+    background-color: green;
+    border-radius: 1em;
+    padding: 1em;
+}
 
 /* Portfolio */
 
@@ -312,65 +308,97 @@ body {
 
 /* BREEDS */
 
-.breeds-section {
+.breed-body {
+    --gra: linear-gradient(45deg, cyan, royalblue);
+}
+
+.breed-body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.breed-main {
+    width: 98%;
+    background: white;
+    margin: 60px auto;
+    font-family: sans-serif;
+}
+
+.breed-header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.breed-header ul li {
+    list-style: none;
     padding: 20px;
+    margin: 10px;
+    float: left;
+    font-size: 20px;
+    border-radius: 35px;
+    /*background: red;*/
+
+}
+
+.breed-header ul li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.breed-header ul li.active {
+    background: var(--gra);
+}
+
+.breed-header ul li.active a {
+    color: white;
+    font-weight: bold;
+}
+
+.product-field {
+    padding: 40px 20px;
+}
+
+.product-field ul {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 40px auto;
-}
-
-.breeds-section ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
-
 }
 
-.breeds-section ul li {
+.product-field ul li {
     list-style: none;
-    background: #eee;
-    padding: 12px 20px;
-    margin: 5px;
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-
-.breeds-section ul li.active {
-    background: #181174;
-    color: white;
-}
-
-.breed-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.breed-card .itemBox {
+    width: 23.4%;
+    height: 400px;
+    transition: 0.5s all;
+    background: whitesmoke;
+    /*overflow: hidden;*/
+    border-radius: 20px;
+    padding: 10px;
+    margin: 200px 10px 0 10px;
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 5px;
-    display: block;
 }
 
-.breed-card .itemBox.hide {
-    display: none;
+/*}*/
+
+picture img {
+    width: 95%;
+    padding: 25px 0 0 0;
+    position: relative;
+    border-radius: 50px 20px 0 20px;
 }
 
-.breed-card .itemBox img {
-    position: absolute;
-    top:0;
-    left: 0;
-    width:100% ;
-    height: 100%;
-    object-fit: cover;
 
+.detail small:hover {
+    background: var(--gra);
+    color: white;
+    border-color: cyan;
 }
 
+.breed-dog {
+    box-shadow: 2px 5px 20px #777;
+    margin: 10px;
+}

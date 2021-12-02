@@ -1,55 +1,39 @@
-package softuni.adoptdontshop.Model.Entity;
-
+package softuni.adoptdontshop.Model.Model.ViewModel;
 import softuni.adoptdontshop.Model.Enum.SizeEnum;
+public class BreedProfileViewModel {
 
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table(name = "breeds")
-public class Breed extends BaseEntity {
-
-    @Column(nullable = false)
+    private Long id;
     private String name;
-    @Column(nullable = false)
-    @Lob
     private String description;
     private String imageUrl;
-
-    //Characteristics
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private SizeEnum size;
-
-    @Column(nullable = false)
     private Integer energyLevel;
-    @Column(nullable = false)
     private Integer playfulness;
-    @Column(nullable = false)
     private Integer affectionLevel;
-    @Column(nullable = false)
     private Integer groomingRequirements;
-    @Column(nullable = false)
     private Integer friendlinessToOtherPets;
-    @Column(nullable = false)
     private Integer friendlinessToStrangers;
-    @Column(nullable = false)
     private Integer watchfulness;
-    @Column(nullable = false)
     private Integer easeOfTraining;
 
-    public Breed() {
+    public BreedProfileViewModel() {
     }
-
-    @OneToMany(mappedBy = "breed",fetch = FetchType.LAZY)
-    private List<Dog> dogs;
 
     public String getName() {
         return name;
     }
 
-    public Breed setName(String name) {
+    public BreedProfileViewModel setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public BreedProfileViewModel setId(Long id) {
+        this.id = id;
         return this;
     }
 
@@ -57,17 +41,8 @@ public class Breed extends BaseEntity {
         return description;
     }
 
-    public Breed setDescription(String description) {
+    public BreedProfileViewModel setDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    public List<Dog> getDogs() {
-        return dogs;
-    }
-
-    public Breed setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
         return this;
     }
 
@@ -75,8 +50,17 @@ public class Breed extends BaseEntity {
         return imageUrl;
     }
 
-    public Breed setImageUrl(String imageUrl) {
+    public BreedProfileViewModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public SizeEnum getSize() {
+        return size;
+    }
+
+    public BreedProfileViewModel setSize(SizeEnum size) {
+        this.size = size;
         return this;
     }
 
@@ -84,7 +68,7 @@ public class Breed extends BaseEntity {
         return energyLevel;
     }
 
-    public Breed setEnergyLevel(Integer energyLevel) {
+    public BreedProfileViewModel setEnergyLevel(Integer energyLevel) {
         this.energyLevel = energyLevel;
         return this;
     }
@@ -93,7 +77,7 @@ public class Breed extends BaseEntity {
         return playfulness;
     }
 
-    public Breed setPlayfulness(Integer playfulness) {
+    public BreedProfileViewModel setPlayfulness(Integer playfulness) {
         this.playfulness = playfulness;
         return this;
     }
@@ -102,7 +86,7 @@ public class Breed extends BaseEntity {
         return affectionLevel;
     }
 
-    public Breed setAffectionLevel(Integer affectionLevel) {
+    public BreedProfileViewModel setAffectionLevel(Integer affectionLevel) {
         this.affectionLevel = affectionLevel;
         return this;
     }
@@ -111,7 +95,7 @@ public class Breed extends BaseEntity {
         return groomingRequirements;
     }
 
-    public Breed setGroomingRequirements(Integer groomingRequirements) {
+    public BreedProfileViewModel setGroomingRequirements(Integer groomingRequirements) {
         this.groomingRequirements = groomingRequirements;
         return this;
     }
@@ -120,7 +104,7 @@ public class Breed extends BaseEntity {
         return friendlinessToOtherPets;
     }
 
-    public Breed setFriendlinessToOtherPets(Integer friendlinessToOtherPets) {
+    public BreedProfileViewModel setFriendlinessToOtherPets(Integer friendlinessToOtherPets) {
         this.friendlinessToOtherPets = friendlinessToOtherPets;
         return this;
     }
@@ -129,7 +113,7 @@ public class Breed extends BaseEntity {
         return friendlinessToStrangers;
     }
 
-    public Breed setFriendlinessToStrangers(Integer friendlinessToStrangers) {
+    public BreedProfileViewModel setFriendlinessToStrangers(Integer friendlinessToStrangers) {
         this.friendlinessToStrangers = friendlinessToStrangers;
         return this;
     }
@@ -138,7 +122,7 @@ public class Breed extends BaseEntity {
         return watchfulness;
     }
 
-    public Breed setWatchfulness(Integer watchfulness) {
+    public BreedProfileViewModel setWatchfulness(Integer watchfulness) {
         this.watchfulness = watchfulness;
         return this;
     }
@@ -147,17 +131,8 @@ public class Breed extends BaseEntity {
         return easeOfTraining;
     }
 
-    public Breed setEaseOfTraining(Integer easeOfTraining) {
+    public BreedProfileViewModel setEaseOfTraining(Integer easeOfTraining) {
         this.easeOfTraining = easeOfTraining;
-        return this;
-    }
-
-    public SizeEnum getSize() {
-        return size;
-    }
-
-    public Breed setSize(SizeEnum size) {
-        this.size = size;
         return this;
     }
 }
