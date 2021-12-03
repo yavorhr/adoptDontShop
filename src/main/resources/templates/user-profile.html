@@ -11,11 +11,23 @@
 <section class="mt-5">
     <div class="container" th:object="${currentUser}">
         <div class="flex-row  d-flex justify-content-start ">
+
             <div class="col-md-3 text-center ">
                 <div class="tm">
                     <img src="../images/team members/t1.jpg" alt="" class="mb-3">
                 </div>
+
+                <h4>Choose picture:</h4>
+                <form th:method="post"
+                      th:action="@{/users/profile}"
+                enctype="multipart/form-data">
+                    <input type="text" name="title" id=""><br>
+                    <input name="picture" type="file"><br>
+                    <input type="submit" value="Submit">
+                </form>
+
             </div>
+
             <div class="col-md-9 ps-4 pt-2">
                 <h4>Personal details : </h4>
                 <h3>First name : <span th:text="*{firstName}">Yavor</span></h3>

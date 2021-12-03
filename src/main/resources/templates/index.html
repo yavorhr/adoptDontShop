@@ -83,7 +83,8 @@
                     <div class="card-body">
                         <h5 class="card-title" th:text="*{name}"></h5>
                         <p th:text="*{breed}">Breed</p>
-                        <p th:text="*{size} + ' ' + *{age} + ' ' + *{gender} + ' ' + *{colour}">Short description</p>
+                        <p th:text=" |Hi, I am *{name}!| + ' ' + |I am *{ageCalc(age)} old, a| + ' ' + |*{#strings.toLowerCase(gender)}| + ' ' + |*{#strings.toLowerCase(size)} dog, with | + ' ' + |*{#strings.toLowerCase(colour)} colour.|">Short description
+                        </p>
                         <div>
                             <a class="card-link" th:href="@{/dogs/{id}/details(id = *{id})}">Learn More</a>
                         </div>

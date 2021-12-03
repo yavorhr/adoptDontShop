@@ -9,5 +9,10 @@
       "name": "spring.mvc.hiddenmethod.init",
       "type": "java.lang.String",
       "description": "Description for spring.mvc.hiddenmethod.init."
+    },
+    {
+      "name": "api-key",
+      "type": "java.lang.String",
+      "description": "Description for api-key."
     }
   ] }

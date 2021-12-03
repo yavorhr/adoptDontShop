@@ -64,4 +64,6 @@ public class Picture extends BaseEntity{
         this.publicId = publicId;
         return this;
     }
+
+
 }

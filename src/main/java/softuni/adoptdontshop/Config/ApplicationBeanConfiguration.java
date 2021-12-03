@@ -1,5 +1,6 @@
 package softuni.adoptdontshop.Config;
 
+import com.cloudinary.Cloudinary;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +12,12 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+import java.util.Map;
+
 @Service
 public class ApplicationBeanConfiguration {
+
+    private final CloudinaryConfig config;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -52,4 +57,17 @@ public class ApplicationBeanConfiguration {
         return messageSource;
     }
 
+    public ApplicationBeanConfiguration(CloudinaryConfig config) {
+        this.config = config;
+    }
+
+    @Bean
+    public Cloudinary cloudinary() {
+        return new Cloudinary(
+                Map.of("cloud-name", config.getCloudName(),
+                        "api_key", config.getApiKey(),
+                        "api_secret", config.getApiSecret()
+                )
+        );
+    }
 }
