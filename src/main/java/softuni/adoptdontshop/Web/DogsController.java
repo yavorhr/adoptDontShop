@@ -1,12 +1,11 @@
 package softuni.adoptdontshop.Web;
 
-import org.hibernate.annotations.Cache;
 import org.modelmapper.ModelMapper;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogAddBindingModel;
 import softuni.adoptdontshop.Model.Model.BindingModel.DogUpdateBindingModel;
+import softuni.adoptdontshop.Model.Model.BindingModel.PictureBindingModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogAddServiceModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogUpdateServiceModel;
-import softuni.adoptdontshop.Model.Model.ViewModel.DogCardView;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
 import softuni.adoptdontshop.Service.BreedService;
+import softuni.adoptdontshop.Service.CloudinaryService;
 import softuni.adoptdontshop.Service.DogService;
 import softuni.adoptdontshop.Service.Impl.CurrentUser;
 import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
+
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class DogsController {
@@ -32,11 +33,13 @@ public class DogsController {
     private final DogService dogService;
     private final BreedService breedService;
     private final ModelMapper modelMapper;
+    private final CloudinaryService cloudinaryService;
 
-    public DogsController(DogService dogService, BreedService breedService, ModelMapper modelMapper) {
+    public DogsController(DogService dogService, BreedService breedService, ModelMapper modelMapper, CloudinaryService cloudinaryService) {
         this.dogService = dogService;
         this.breedService = breedService;
         this.modelMapper = modelMapper;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @ModelAttribute
@@ -48,7 +51,6 @@ public class DogsController {
 
     @GetMapping("/dogs/all")
     public String allDogs(Model model) {
-
         model.addAttribute("allDogs", dogService.findAllDogs());
         return "all-dogs";
     }
@@ -58,6 +60,20 @@ public class DogsController {
         model.addAttribute("dog", dogService.findDogById(id));
         return "dog-profile";
     }
+
+    // ADD PICTURE
+    @Transactional
+    @PostMapping("/dogs/{id}")
+    public String addDogPicture(@PathVariable Long id, Model model, PictureBindingModel pictureBindingModel) throws IOException {
+        cloudinaryService.saveDogPicture(
+                pictureBindingModel.getPicture(),
+                pictureBindingModel.getTitle(), id);
+
+        model.addAttribute("dog", dogService.findDogById(id));
+
+        return "dog-profile";
+    }
+
 
     // DELETE
     @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")

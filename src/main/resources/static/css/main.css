@@ -95,6 +95,12 @@ h4 {
     padding-top: 40px;
 }
 
+.user-profile-pic {
+    box-shadow: 2px 5px 20px #777;
+    background-color: #fff;
+    padding: 30px 20px;
+}
+
 /* Team section */
 
 #team {
@@ -220,7 +226,7 @@ body {
     margin-top: 5px;
 }
 
-.progress-bar::before{
+.progress-bar::before {
     content: attr(data-label);
     display: flex;
     align-items: center;
@@ -228,8 +234,8 @@ body {
     left: .5em;
     top: .5em;
     bottom: .5em;
-    width: calc(var(--width,0) * 1%);
-    min-width:2rem;
+    width: calc(var(--width, 0) * 1%);
+    min-width: 2rem;
     max-width: calc(95%);
     background-color: green;
     border-radius: 1em;
@@ -403,7 +409,7 @@ picture img {
     margin: 10px;
 }
 
-.breed-profile-pic{
+.breed-profile-pic {
     position: relative;
     width: 100%;
     height: fit-content;

@@ -29,22 +29,21 @@ public class UserProfileController {
 
     @GetMapping("/users/profile")
     public String userProfile(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
-        System.out.println();
         UserProfileViewModel user = this.userService.findUserByUsername(currentUser.getUserIdentifier());
         model.addAttribute("currentUser", user);
-        System.out.println();
         return "user-profile";
     }
 
     @Transactional
     @PostMapping("/users/profile")
-    public String addPicture(PictureBindingModel pictureBindingModel) throws IOException {
-        cloudinaryService.savePicture(pictureBindingModel.getPicture(), pictureBindingModel.getTitle());
-
-        return "redirect:users/profile";
+    public String addPicture(@AuthenticationPrincipal CurrentUser currentUser, PictureBindingModel pictureBindingModel, Model model) throws IOException {
+        cloudinaryService.savePicture(
+                pictureBindingModel.getPicture(),
+                pictureBindingModel.getTitle(),
+                currentUser.getUserIdentifier());
+        model.addAttribute("currentUser", this.userService.findUserByUsername(currentUser.getUserIdentifier()));
+        return "redirect:profile";
     }
-
-
 
 
 }

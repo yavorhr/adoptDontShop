@@ -14,5 +14,10 @@
       "name": "api-key",
       "type": "java.lang.String",
       "description": "Description for api-key."
+    },
+    {
+      "name": "cloudinary",
+      "type": "java.lang.String",
+      "description": "Description for cloudinary."
     }
   ] }

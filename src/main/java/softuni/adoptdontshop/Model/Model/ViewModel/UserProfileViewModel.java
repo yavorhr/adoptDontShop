@@ -10,6 +10,7 @@ public class UserProfileViewModel {
     private Integer age;
     private String email;
     private String description;
+    private String imageUrl;
 
     public UserProfileViewModel() {
     }
@@ -20,6 +21,15 @@ public class UserProfileViewModel {
 
     public UserProfileViewModel setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public UserProfileViewModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

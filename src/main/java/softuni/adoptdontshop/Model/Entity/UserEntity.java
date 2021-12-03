@@ -20,6 +20,7 @@ public class UserEntity extends BaseEntity {
     private Integer age;
     @Column(nullable = false, unique = true)
     private String email;
+    private String imageUrl;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> userRoleEntities;
@@ -33,6 +34,15 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setComments(List<Comment> comments) {
         this.comments = comments;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public UserEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 
