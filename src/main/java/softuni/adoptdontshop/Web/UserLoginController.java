@@ -17,7 +17,6 @@ import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
 @Controller
 public class UserLoginController {
 
-
     @GetMapping("/users/login")
     public String login(){
         return "auth-login";

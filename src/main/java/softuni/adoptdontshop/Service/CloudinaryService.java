@@ -15,6 +15,5 @@ public interface CloudinaryService {
 
     void savePicture(MultipartFile picture, String title,String username) throws IOException;
 
-
     void saveDogPicture(MultipartFile picture, String title, Long id) throws IOException;
 }

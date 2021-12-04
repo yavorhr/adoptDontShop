@@ -64,7 +64,7 @@ class SecurityUserServiceImplTest {
         var actual = serviceToTest.loadUserByUsername(testUser.getEmail());
 
         //ASSERT
-        Assertions.assertEquals(actual.getUsername(), testUser.getUsername());
+        Assertions.assertEquals(actual.getUsername(), testUser.getEmail());
 
         String expectedRoles = "ROLE_ADMIN, ROLE_USER";
         String actualRoles =

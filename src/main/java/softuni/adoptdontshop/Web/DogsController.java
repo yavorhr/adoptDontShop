@@ -21,6 +21,7 @@ import softuni.adoptdontshop.Service.BreedService;
 import softuni.adoptdontshop.Service.CloudinaryService;
 import softuni.adoptdontshop.Service.DogService;
 import softuni.adoptdontshop.Service.Impl.CurrentUser;
+import softuni.adoptdontshop.Service.PictureService;
 import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
 
 import javax.validation.Valid;
@@ -34,12 +35,14 @@ public class DogsController {
     private final BreedService breedService;
     private final ModelMapper modelMapper;
     private final CloudinaryService cloudinaryService;
+    private final PictureService pictureService;
 
-    public DogsController(DogService dogService, BreedService breedService, ModelMapper modelMapper, CloudinaryService cloudinaryService) {
+    public DogsController(DogService dogService, BreedService breedService, ModelMapper modelMapper, CloudinaryService cloudinaryService, PictureService pictureService) {
         this.dogService = dogService;
         this.breedService = breedService;
         this.modelMapper = modelMapper;
         this.cloudinaryService = cloudinaryService;
+        this.pictureService = pictureService;
     }
 
     @ModelAttribute
@@ -74,9 +77,20 @@ public class DogsController {
         return "dog-profile";
     }
 
+//    //DELETE PICTURE
+//    @Transactional
+//    @DeleteMapping("/dogs/{id}/details")
+//    public String deletePicture(@RequestParam("public_id") String publicId, Long id) {
+//        if (cloudinaryService.delete(publicId)){
+//            pictureService.deletePicture(publicId, id);
+//        }
+//        return "redirect:/dogs" + id + "/details" ;
+//    }
+
 
     // DELETE
-    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
+//    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
+
     @DeleteMapping("/dogs/{id}")
     public String deleteOffer(@PathVariable Long id,
                               Principal principal) {
@@ -85,7 +99,7 @@ public class DogsController {
     }
 
     // EDIT
-    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
+//    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
     @GetMapping("/dogs/{id}/edit")
     public String editOffer(@PathVariable Long id,
                             Principal principal, Model model) {
@@ -140,7 +154,7 @@ public class DogsController {
 
     @PostMapping("/dogs/add")
     public String addDog(@Valid DogAddBindingModel dogAddBindingModel, BindingResult bindingResult
-            , RedirectAttributes redirectAttributes, @AuthenticationPrincipal CurrentUser currentUser) {
+            , RedirectAttributes redirectAttributes) {
 
         //TODO : final check of the user input BindingModel validations
         if (bindingResult.hasErrors()) {
@@ -162,7 +176,7 @@ public class DogsController {
             return "redirect:add";
         }
 
-        DogAddServiceModel dogServiceModel = dogService.addNewDog(dogAddBindingModel, currentUser.getUserIdentifier());
+        DogAddServiceModel dogServiceModel = dogService.addNewDog(dogAddBindingModel);
         return "redirect:/profile/" + dogServiceModel.getId() + "/details";
     }
 

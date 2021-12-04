@@ -85,14 +85,13 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public DogAddServiceModel addNewDog(DogAddBindingModel dogAddBindingModel, String username) {
+    public DogAddServiceModel addNewDog(DogAddBindingModel dogAddBindingModel) {
         DogAddServiceModel dogAddServiceModel = modelMapper.map(dogAddBindingModel, DogAddServiceModel.class);
 
         Dog dog = modelMapper.map(dogAddBindingModel, Dog.class);
         dog.setAddedOn(LocalDate.now());
         dog.setBreed(breedRepository.findByName(dogAddServiceModel.getBreed()).orElseThrow());
         dog.setShelter(shelterRepository.findById(1L).orElseThrow());
-        dog.setUser(userRepository.findByUsername(username).orElseThrow());
         dog.setMedicalRecord(
                 dogAddServiceModel
                         .getMedicalRecord()

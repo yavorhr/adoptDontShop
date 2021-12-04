@@ -28,6 +28,6 @@ public class APIError {
     }
 
     public void addFieldWithError(String error) {
-
+        fieldWithErrors.add(error);
     }
 }

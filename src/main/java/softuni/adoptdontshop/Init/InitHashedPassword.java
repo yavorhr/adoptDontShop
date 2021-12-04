@@ -17,7 +17,7 @@ public class InitHashedPassword implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(passwordEncoder.encode("test"));
+        System.out.println(passwordEncoder.encode("12345"));
     }
 }
 

@@ -6,4 +6,6 @@ import softuni.adoptdontshop.Model.Entity.Picture;
 
 @Repository
 public interface PictureRepository extends JpaRepository<Picture,Long> {
+
+    void deleteAllByPublicId(String publicId);
 }

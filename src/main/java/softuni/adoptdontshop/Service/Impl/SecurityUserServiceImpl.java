@@ -42,7 +42,7 @@ public class SecurityUserServiceImpl implements UserDetailsService {
                         .collect(Collectors.toList());
 
         return new CurrentUser(
-                userEntity.getUsername(),
+                userEntity.getEmail(),
                 userEntity.getPassword(),
                 authorities);
     }

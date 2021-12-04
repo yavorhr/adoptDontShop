@@ -16,7 +16,7 @@ public interface DogService {
 
     boolean doesDogAlreadyExistInDatabase(String name, String breed, Integer age);
 
-    DogAddServiceModel addNewDog(DogAddBindingModel dogAddBindingModel, String username);
+    DogAddServiceModel addNewDog(DogAddBindingModel dogAddBindingModel);
 
     DogDetailsViewModel findDogById(Long id);
 
