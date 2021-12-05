@@ -54,6 +54,7 @@ public class CommentsRestControllerTest {
 
     private UserEntity testUser;
 
+
     @BeforeEach
     void setUp() {
         testUser = new UserEntity();
@@ -108,6 +109,7 @@ public class CommentsRestControllerTest {
     }
 
     private Dog initDog() {
+
         Dog testDog = new Dog();
         testDog
                 .setName("testDog")

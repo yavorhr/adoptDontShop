@@ -1,6 +1,7 @@
 package softuni.adoptdontshop.Service.Impl;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import softuni.adoptdontshop.Model.Entity.Breed;
 import softuni.adoptdontshop.Model.Model.ViewModel.*;
@@ -23,21 +24,6 @@ public class BreedServiceImpl implements BreedService {
     }
 
     @Override
-    public List<BreedViewModel> findAllBreedsNames() {
-
-        return breedRepository
-                .findAllBreedsSortedByNameAsc()
-                .stream()
-                .map(breed -> {
-                    BreedViewModel breedViewModel = new BreedViewModel();
-                    breedViewModel.setId(breed.getId());
-                    breedViewModel.setName(breed.getName());
-                    return breedViewModel;
-                })
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<BreedDetailsViewModel> findAllBreedsWithNamesAndSize() {
         return breedRepository
                 .findAll()
@@ -49,6 +35,23 @@ public class BreedServiceImpl implements BreedService {
                     breedDetailsViewModel.setImageUrl(breed.getImageUrl());
                     breedDetailsViewModel.setSize(breed.getSize());
                     return breedDetailsViewModel;
+                })
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    @Cacheable("findAllBreeds")
+    public List<BreedViewModel> findAllBreedsNames() {
+
+        return breedRepository
+                .findAllBreedsSortedByNameAsc()
+                .stream()
+                .map(breed -> {
+                    BreedViewModel breedViewModel = new BreedViewModel();
+                    breedViewModel.setId(breed.getId());
+                    breedViewModel.setName(breed.getName());
+                    return breedViewModel;
                 })
                 .collect(Collectors.toList());
     }

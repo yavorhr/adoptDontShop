@@ -2,8 +2,8 @@ package softuni.adoptdontshop.Web;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -17,11 +17,7 @@ import softuni.adoptdontshop.Model.Model.BindingModel.PictureBindingModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogAddServiceModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.DogUpdateServiceModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.DogDetailsViewModel;
-import softuni.adoptdontshop.Service.BreedService;
-import softuni.adoptdontshop.Service.CloudinaryService;
-import softuni.adoptdontshop.Service.DogService;
-import softuni.adoptdontshop.Service.Impl.CurrentUser;
-import softuni.adoptdontshop.Service.PictureService;
+import softuni.adoptdontshop.Service.*;
 import softuni.adoptdontshop.Web.exception.ResourceNotFoundException;
 
 import javax.validation.Valid;
@@ -33,13 +29,15 @@ public class DogsController {
 
     private final DogService dogService;
     private final BreedService breedService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
     private final CloudinaryService cloudinaryService;
     private final PictureService pictureService;
 
-    public DogsController(DogService dogService, BreedService breedService, ModelMapper modelMapper, CloudinaryService cloudinaryService, PictureService pictureService) {
+    public DogsController(DogService dogService, BreedService breedService, UserService userService, ModelMapper modelMapper, CloudinaryService cloudinaryService, PictureService pictureService) {
         this.dogService = dogService;
         this.breedService = breedService;
+        this.userService = userService;
         this.modelMapper = modelMapper;
         this.cloudinaryService = cloudinaryService;
         this.pictureService = pictureService;
@@ -76,6 +74,15 @@ public class DogsController {
 
         return "dog-profile";
     }
+
+    @GetMapping("/dogs/{id}/inquire")
+    public String dogEnquireForm(@PathVariable Long id, Model model,@AuthenticationPrincipal UserDetails currentUser) {
+
+        model.addAttribute("user",userService.findUserByUsername(currentUser.getUsername()));
+        model.addAttribute("dog", dogService.findDogById(id));
+        return "inquire-form";
+    }
+
 
 //    //DELETE PICTURE
 //    @Transactional
@@ -177,7 +184,7 @@ public class DogsController {
         }
 
         DogAddServiceModel dogServiceModel = dogService.addNewDog(dogAddBindingModel);
-        return "redirect:/profile/" + dogServiceModel.getId() + "/details";
+        return "redirect:/dogs/" + dogServiceModel.getId() + "/details";
     }
 
     @ExceptionHandler({ResourceNotFoundException.class})

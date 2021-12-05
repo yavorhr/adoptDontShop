@@ -1,6 +1,7 @@
 package softuni.adoptdontshop.Web;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -28,8 +29,8 @@ public class UserProfileController {
     }
 
     @GetMapping("/users/profile")
-    public String userProfile(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
-        UserProfileViewModel user = this.userService.findUserByUsername(currentUser.getUserIdentifier());
+    public String userProfile(@AuthenticationPrincipal UserDetails currentUser, Model model) {
+        UserProfileViewModel user = this.userService.findUserByUsername(currentUser.getUsername());
         model.addAttribute("currentUser", user);
         return "user-profile";
     }
@@ -41,6 +42,7 @@ public class UserProfileController {
                 pictureBindingModel.getPicture(),
                 pictureBindingModel.getTitle(),
                 currentUser.getUserIdentifier());
+
         model.addAttribute("currentUser", this.userService.findUserByUsername(currentUser.getUserIdentifier()));
         return "redirect:profile";
     }

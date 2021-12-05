@@ -83,9 +83,9 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     }
 
     @Override
-    public void savePicture(MultipartFile picture, String title, String username) throws IOException {
+    public void savePicture(MultipartFile picture, String title, String email) throws IOException {
 
-        UserEntity userEntity = userRepository.findByUsername(username).orElseThrow();
+        UserEntity userEntity = userRepository.findByUsername(email).orElseThrow();
 
         PictureUser pictureUserEntity = createPictureUserEntity(picture, title);
 

@@ -29,7 +29,6 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 //TODO to think what else to be visible to everybody
                 .antMatchers("/", "/users/login", "/users/register", "/donations", "/about").permitAll()
-                .antMatchers("/dogs/**").permitAll()
                 .antMatchers("/breeds/**").permitAll()
                 //only ADMIN can access "/admin" page
                 .antMatchers("/admin", "/dogs/add").hasRole(UserRoleEnum.ADMIN.name())
@@ -38,7 +37,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .and()
                 .formLogin()
                 .loginPage("/users/login")
-                .usernameParameter("email")
+                .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/users/login-error")

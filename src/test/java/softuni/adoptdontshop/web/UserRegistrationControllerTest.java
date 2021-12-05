@@ -24,8 +24,7 @@ import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -67,14 +66,21 @@ class UserRegistrationControllerTest {
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         )
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/users/login"));
 
         Assertions.assertEquals(4, userRepository.count());
-        Optional<UserEntity> newlyCreatedUserOpt = userRepository.findByEmail(TEST_USER_EMAIL);
 
+        Optional<UserEntity> newlyCreatedUserOpt = userRepository.findByUsername(TEST_USER_USERNAME);
         Assertions.assertTrue(newlyCreatedUserOpt.isPresent());
         UserEntity newlyCreatedUser = newlyCreatedUserOpt.get();
+
         Assertions.assertEquals(TEST_USER_AGE, newlyCreatedUser.getAge());
+        Assertions.assertEquals(TEST_USER_USERNAME, newlyCreatedUser.getUsername());
+        Assertions.assertEquals(TEST_USER_EMAIL, newlyCreatedUser.getEmail());
+        Assertions.assertEquals("Pesho", newlyCreatedUser.getFirstName());
+
+
     }
 
 

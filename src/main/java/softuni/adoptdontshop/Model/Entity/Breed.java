@@ -41,7 +41,7 @@ public class Breed extends BaseEntity {
     public Breed() {
     }
 
-    @OneToMany(mappedBy = "breed",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "breed",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Dog> dogs;
 
     public String getName() {

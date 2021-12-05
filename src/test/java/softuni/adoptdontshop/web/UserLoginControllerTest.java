@@ -9,47 +9,64 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 import softuni.adoptdontshop.Model.Entity.UserEntity;
+import softuni.adoptdontshop.Model.Entity.UserRoleEntity;
+import softuni.adoptdontshop.Model.Enum.UserRoleEnum;
+import softuni.adoptdontshop.Repository.RoleRepository;
 import softuni.adoptdontshop.Repository.UserRepository;
+
+import java.util.Set;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WithMockUser("userTest@none.com")
+
 @SpringBootTest
 @AutoConfigureMockMvc
 
 public class UserLoginControllerTest {
 
+    private static final String TEST_USER_USERNAME = "testUser";
+    private static final String TEST_USER_PASSWORD = "test111";
 
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private WebApplicationContext wac;
 
     @Autowired
     PasswordEncoder passwordEncoder;
 
     private UserEntity testUser;
+    private UserRoleEntity testRole;
 
     @BeforeEach
     void setUp() {
         testUser = new UserEntity();
+        testRole = initUserRole();
 
         testUser.setUsername("testUser")
                 .setFirstName("firstName")
                 .setLastName("lastName")
                 .setEmail("userTest@none.com")
                 .setDescription("some test description")
-                .setAge(33);
+                .setAge(33)
+                .setRoles(Set.of(testRole));
+        initMockMvc();
 
-        testUser.setPassword(passwordEncoder.encode("test"));
+        testUser.setPassword(passwordEncoder.encode(TEST_USER_PASSWORD));
 
         testUser = userRepository.save(testUser);
     }
@@ -66,28 +83,38 @@ public class UserLoginControllerTest {
                 .andExpect(view().name("auth-login"));
     }
 
-    private static final String TEST_USER_EMAIL = "userTest@none.com";
-    private static final String TEST_USER_PASSWORD = "test";
-
     @Test
     void testLoginUser() throws Exception {
         mockMvc.perform(post("/users/login")
-                .param("email", TEST_USER_EMAIL)
+                .param("username", TEST_USER_USERNAME)
                 .param("password", TEST_USER_PASSWORD)
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         )
-                .andExpect(status().is3xxRedirection());
+                .andExpect(authenticated())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
     }
 
     @Test
     void testLoginUserNotSuccessful() throws Exception {
         mockMvc.perform(post("/users/login")
-                .param("email", "wrong@email.com")
+                .param("username", "wrong_user")
                 .param("password", "test1111")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         )
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(forwardedUrl("/users/login-error"));
+    }
+
+    private UserRoleEntity initUserRole() {
+        return roleRepository.save(new UserRoleEntity()
+                .setRole(UserRoleEnum.USER));
+    }
+
+    private void initMockMvc() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+                .apply(springSecurity())
+                .build();
     }
 }

@@ -54,8 +54,8 @@ public class CommentServiceImpl implements CommentService {
         var dog = dogRepository.findById(commentServiceModel.getDogId())
                 .orElseThrow(() -> new ObjectNotFoundException("Route with id" + commentServiceModel.getDogId() + " not found!"));
 
-        var user = userRepository.findByEmail(commentServiceModel.getCreator())
-                .orElseThrow(() -> new ObjectNotFoundException("User with email" + commentServiceModel.getCreator() + " not found!"));
+        var user = userRepository.findByUsername(commentServiceModel.getCreator())
+                .orElseThrow(() -> new ObjectNotFoundException("User with username" + commentServiceModel.getCreator() + " not found!"));
 
         Comment newComment = new Comment();
         newComment.setApproved(false);

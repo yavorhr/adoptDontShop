@@ -1,6 +1,7 @@
 package softuni.adoptdontshop.web;
 
 
+import org.hibernate.validator.constraints.Length;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import softuni.adoptdontshop.Repository.DonationRepository;
 
 import javax.persistence.Column;
 import javax.persistence.Lob;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -65,6 +67,34 @@ public class DonationControllerTest {
                 .andExpect(status().is3xxRedirection());
 
         Assertions.assertEquals(1, donationRepository.count());
+
+//        Optional<UserEntity> newlyCreatedUserOpt = donationRepository.findTEST_USER_EMAIL);
+//
+//        Assertions.assertTrue(newlyCreatedUserOpt.isPresent());
+//        UserEntity newlyCreatedUser = newlyCreatedUserOpt.get();
+//        Assertions.assertEquals(TEST_USER_AGE, newlyCreatedUser.getAge());
+    }
+
+    @Test
+    void testDonationsFail() throws Exception {
+        mockMvc.perform(post("/donations")
+                .param("firstName", TEST_USER_FIRST_NAME)
+                .param("lastName", TEST_USER_LAST_NAME)
+                .param("sum", String.valueOf(-30))
+                .param("phoneNumber", "+35988888888")
+                .param("email", "test")
+                .param("creditCardNumber", "111111111111")
+                .param("cardHolderName", "some random name")
+                .param("expiration", "03/26")
+                .param("text", "some random text")
+                .param("cvv", "333")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        )
+                .andExpect(status().is3xxRedirection());
+
+
+
 //        Optional<UserEntity> newlyCreatedUserOpt = donationRepository.findTEST_USER_EMAIL);
 //
 //        Assertions.assertTrue(newlyCreatedUserOpt.isPresent());

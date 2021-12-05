@@ -23,11 +23,11 @@ public class SecurityUserServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         UserEntity userEntity = userRepository
-                .findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " not found!"));
+                .findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not found!"));
 
         return mapToUserDetails(userEntity);
     }
@@ -42,7 +42,7 @@ public class SecurityUserServiceImpl implements UserDetailsService {
                         .collect(Collectors.toList());
 
         return new CurrentUser(
-                userEntity.getEmail(),
+                userEntity.getUsername(),
                 userEntity.getPassword(),
                 authorities);
     }

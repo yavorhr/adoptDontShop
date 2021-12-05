@@ -16,17 +16,18 @@
                     th:action="@{/users/login}"
                     th:method="POST">
                 <div>
-                    <label for="email" class="form-label">Email</label>
+                    <label for="username" class="form-label">Username</label>
                     <input
+                            th:value="${username}"
                             type="text"
                             required
-                            id="email"
-                            name="email"
+                            id="username"
+                            name="username"
                             class="form-control"
-                            placeholder="Email">
+                            placeholder="Username">
                 </div>
                 <small class="invalid-feedback">
-                    <span class="bg-danger"> Email is not correct</span>
+                    <span class="bg-danger">Username is not correct.</span>
                 </small>
 
                 <div class="mb-3">

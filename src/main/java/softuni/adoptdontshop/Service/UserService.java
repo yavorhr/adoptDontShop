@@ -1,4 +1,5 @@
 package softuni.adoptdontshop.Service;
+import softuni.adoptdontshop.Model.Model.ServiceModel.UserLoginServiceModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.UserRegistrationServiceModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.UserProfileViewModel;
 
@@ -13,4 +14,8 @@ public interface UserService {
     boolean isEmailFree(String email);
 
     UserProfileViewModel findUserByUsername(String userIdentifier);
+
+    UserProfileViewModel findByEmail(String userIdentifier);
+
+    void login(UserLoginServiceModel userLoginServiceModel);
 }

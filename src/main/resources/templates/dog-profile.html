@@ -34,14 +34,14 @@
                                 class="gallery-item" width="300px" height="300px"
                                 alt="gallery">
 
-<!--                        <form-->
-<!--                                th:action="@{/dogs/{id}(id=*{id})}"-->
-<!--                                th:method="delete">-->
-<!--                            <input th:type="hidden"-->
-<!--                                   name="public_id"-->
-<!--                                   th:value="${p.getPublicId()}">-->
-<!--                            <input type="submit" value="Delete">-->
-<!--                        </form>-->
+                        <!--                        <form-->
+                        <!--                                th:action="@{/dogs/{id}(id=*{id})}"-->
+                        <!--                                th:method="delete">-->
+                        <!--                            <input th:type="hidden"-->
+                        <!--                                   name="public_id"-->
+                        <!--                                   th:value="${p.getPublicId()}">-->
+                        <!--                            <input type="submit" value="Delete">-->
+                        <!--                        </form>-->
                     </div>
                 </div>
             </div>
@@ -166,9 +166,10 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-outline-success ">
-            Enquire about <span th:text="*{name}"></span>
-        </button>
+
+        <a class="btn btn-outline-success" th:href="@{/dogs/{id}/inquire(id=*{id})}"> Enquire about <span
+                th:text="*{name}"></span></a>
+
 
         <div class="mt-5 mb-4 ">
             <!-- Comments submission -->

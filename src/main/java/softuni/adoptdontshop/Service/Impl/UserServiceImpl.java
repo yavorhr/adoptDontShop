@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import softuni.adoptdontshop.Model.Entity.UserRoleEntity;
 import softuni.adoptdontshop.Model.Entity.UserEntity;
 import softuni.adoptdontshop.Model.Enum.UserRoleEnum;
+import softuni.adoptdontshop.Model.Model.ServiceModel.UserLoginServiceModel;
 import softuni.adoptdontshop.Model.Model.ServiceModel.UserRegistrationServiceModel;
 import softuni.adoptdontshop.Model.Model.ViewModel.UserProfileViewModel;
 import softuni.adoptdontshop.Repository.RoleRepository;
@@ -47,12 +48,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+
     public UserProfileViewModel findUserByUsername(String userIdentifier) {
         UserEntity userEntity = userRepository
                 .findByUsername(userIdentifier)
                 .orElseThrow();
 
         return modelMapper.map(userEntity, UserProfileViewModel.class);
+    }
+
+    @Override
+    public UserProfileViewModel findByEmail(String userIdentifier) {
+        UserEntity userEntity = userRepository
+                .findByEmail(userIdentifier)
+                .orElseThrow();
+        return modelMapper.map(userEntity, UserProfileViewModel.class);
+    }
+
+    @Override
+    public void login(UserLoginServiceModel loginServiceModel) {
+        UserDetails principal = securityUserService
+                .loadUserByUsername(loginServiceModel.getUsername());
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                principal,
+                loginServiceModel.getPassword(),
+                principal.getAuthorities()
+        );
+
+        SecurityContextHolder.getContext()
+                .setAuthentication(authentication);
     }
 
     @Override

@@ -58,13 +58,13 @@ class SecurityUserServiceImplTest {
     @Test
     void testUserFound() {
         //ARRANGE
-        Mockito.when(mockUserRepository.findByEmail(testUser.getEmail())).thenReturn(Optional.of(testUser));
+        Mockito.when(mockUserRepository.findByUsername(testUser.getUsername())).thenReturn(Optional.of(testUser));
 
         //ACT
-        var actual = serviceToTest.loadUserByUsername(testUser.getEmail());
+        var actual = serviceToTest.loadUserByUsername(testUser.getUsername());
 
         //ASSERT
-        Assertions.assertEquals(actual.getUsername(), testUser.getEmail());
+        Assertions.assertEquals(actual.getUsername(), testUser.getUsername());
 
         String expectedRoles = "ROLE_ADMIN, ROLE_USER";
         String actualRoles =
