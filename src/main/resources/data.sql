@@ -12,43 +12,100 @@ VALUES (2, 'USER');
 -- USERS
 
 INSERT INTO users (id, age, description, email, first_name, last_name, password, username)
-VALUES (1, 31, 'Just doing my job!', 'admin@abv.bg', 'admin', 'adminov',
+VALUES (1, 31, 'Just doing my job!', 'admin@abv.bg', 'Admin', 'Adminov',
         '6b0628e300188a8aa14f3ed53a77a5d76f24d47b2686ec7388c4f01f8dcc1d1c3f17377f301a5c62', 'admin');
 
 INSERT INTO users (id, age, description, email, first_name, last_name, password, username)
-VALUES (2, 19, 'I am Pesho from Pernik. Nice to be here!', 'pesho@abv.bg', 'pesho', 'peshov',
+VALUES (2, 19, 'I am Pesho from Pernik. Nice to be here!', 'pesho@abv.bg', 'Petar', 'Petrov',
         '6b0628e300188a8aa14f3ed53a77a5d76f24d47b2686ec7388c4f01f8dcc1d1c3f17377f301a5c62', 'pesho');
 
 INSERT INTO users (id, age, description, email, first_name, last_name, password, username)
-VALUES (3, 22, 'I love your cause and I want to support you in every way!', 'petya@abv.bg', 'petya', 'petrova',
+VALUES (3, 22, 'I love your cause and I want to support you in every way!', 'petya@yahoo.bg', 'Petya', 'Vasileva',
         '6b0628e300188a8aa14f3ed53a77a5d76f24d47b2686ec7388c4f01f8dcc1d1c3f17377f301a5c62', 'petya');
 
 INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
-VALUES  (1,1);
+VALUES (1, 1);
 INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
-VALUES  (1,2);
+VALUES (1, 2);
 
 INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
-VALUES  (2,2);
+VALUES (2, 2);
 INSERT INTO users_user_role_entities(user_entity_id, user_role_entities_id)
-VALUES  (3,2);
+VALUES (3, 2);
 
 # -- donations
 
-INSERT INTO donations (`id`, email, first_name, last_name, sum, text,contributed_on)
-VALUES (1,'yomov@abv.bg','Ivan','Yomov',50,'Keep the good work!','2021-11-05');
+INSERT INTO donations (`id`, email, first_name, last_name, sum, text, contributed_on)
+VALUES (1, 'yomov@abv.bg', 'Ivan', 'Yomov', 50, 'Keep the good work!', '2021-11-05');
 
-INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text,contributed_on)
-VALUES (2, 'dragan@gmail.com', 'dragan', 'draganov', 500, '+359888444333', 'awesome job, keep doing it!','2021-12-01');
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (2, 'dragan@gmail.com', 'dragan', 'draganov', 500, '+359888444333', 'awesome job, keep doing it!', '2021-12-01');
 
-INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text,contributed_on)
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
 VALUES (3, 'georgi@gmail.com', 'georgi', 'georgiev', 200, '+359887666444',
-        'thank you for your contribution to the society!','2021-11-15');
+        'thank you for your contribution to the society!', '2021-11-15');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (4, 'georgi@gmail.com', 'georgi', 'georgiev', 200, '+359887666444',
+        'thank you for your contribution to the society!', '2021-11-14');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (5, 'mihailP@gmail.com', 'Mihail', 'Mihaylov', 200, '+359887666213',
+        'keep up the good work!', '2021-12-02');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (6, 'pavlina@gmail.com', 'Pavlina', 'Nikolova', 20, '+359887312321',
+        'thank you for your contribution to the society!', '2021-12-06');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (7, 'littleP@gmail.com', 'Dragan', 'Draganov', 250, '+359887666892',
+        'thank you for your contribution to the society!', '2021-12-07');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (8, 'valio@gmail.com', 'Valentin', 'Iliev', 165, '+359887572864',
+        'I love what you are doing!', '2021-12-08');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (9, 'michaelB@gmail.com', 'Michael', 'Boston', 550, '+359887576938',
+        'thank you for your contribution to the society!', '2021-10-15');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (10, 'georgiGeorgiev@gmail.com', 'Georgi', 'Georgiev', 175, '+359887758475',
+        'thank you for your contribution to the society!', '2021-10-14');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (11, 'tomatomov@gmail.com', 'Toma', 'Tomov', 30, '+359887673852',
+        'not a lot, but from my heart!', '2021-10-12');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (12, 'parev@gmail.com', 'Milcho', 'Parev', 40, '+359887578349',
+        'I adopted a dog from you, thank you for everything!', '2021-10-07');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (13, 'matilda@gmail.com', 'Matilda', 'Penkov', 220, '+359887487215',
+        'you are just awesome!', '2021-09-15');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (14, 'tomatomov@gmail.com', 'Toma', 'Tomov', 200, '+359887673852',
+        'me again!', '2021-09-12');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (15, 'viki_m@gmail.com', 'Viktoriya', 'Moneva', 100, '+359887567281',
+        'be my guests and never stop your cause!', '2021-09-09');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (16, 'milkog@gmail.com', 'Milko', 'Grigorov', 125, '+359887630626',
+        'I am happy I am glad to help!', '2021-09-18');
+
+INSERT INTO donations (`id`, email, first_name, last_name, sum, phone_number, text, contributed_on)
+VALUES (17, 'joroj@gmail.com', 'Georgi', 'Jilski', 200, '+359887572831',
+        'here is something from me too!', '2021-09-27');
+
 
 -- Shelter
 
-INSERT INTO shelter (`id`, name, capacity, description)
-VALUES (1, 'Gorni Bogrov', 1000, 'The biggest shelter in Sofia');
+INSERT INTO shelter (`id`, name, capacity)
+VALUES (1, 'Gorni Bogrov', 150);
 
 -- Medical records
 
@@ -181,11 +238,11 @@ VALUES ('Dalmatian',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id, adopted_on)
 VALUES (1, 'Frances', 'FEMALE', 14, 'Brown', 'MEDIUM', 12,
         'Frances is a very gentle affectionate dog and she is playful and confident with children. She suits 5+yo kids. She is calm and easy to handle and walks on loose lead. She came from the pound with an injured tail from wagging it too much and hitting the kennel wall. Her tail is very long but is slowly healing.',
         'She comes desexed, C5 vaccinated, heartworm free and microchipped. Also included for the love and health of our dogs is a free Health and Wellness Voucher with our DR Vet.',
-        'MEDIUM', true, 'kids, dogs and other people', now(), false, null, 11, 1);
+        'MEDIUM', true, 'kids, dogs and other people', now(), true, 11, 1, date('2021-12-12'));
 
 INSERT INTO pictures(id, title, url, dog_id)
 VALUES (1, 'Frances',
@@ -210,11 +267,11 @@ VALUES (4, 'Frances',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id, adopted_on)
 VALUES (2, 'Benji', 'MALE', 42, 'Brown', 'MEDIUM', 33,
         'Benji needs time to trust you. He is not so high energy and not jumpy like many at his age but he is strong. He is often hesitant to walk. He ignored cars but lunges at some passing dogs. He much prefers walking on bush tracks rather than roadways. Volunteers say “Beautiful happy big boy. Very dog reactive but very friendly with humans. Loved his splash pool.” "A but reluctant to walk at first. Once over the hill he walked so well on loose lead. Wonderful temperament. Super friendly and affectionate" He can be a bit sensitive about having his legs touched. He has a thicker lab like coat and weighs around 33kg.',
         'He comes desexed, C5 vaccinated, heartworm free and microchipped. Also included for the love and health of our dogs is a free Health and Wellness Voucher with our DR Vet.',
-        'LARGE', false, 'kids, but afraid of stranger people', now(), false, null, 5, 1);
+        'LARGE', false, 'kids, but afraid of stranger people', now(), true, 5, 1, date('2021-12-04'));
 
 INSERT INTO pictures(id, title, url, dog_id)
 VALUES (5, 'Benji',
@@ -240,11 +297,11 @@ VALUES (8, 'Benji',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id, adopted_on)
 VALUES (3, 'Banjo', 'MALE', 21, 'White and Brown', 'SHORT', 13,
         'Banjo is a sensitive highly anxious boy who needs a lot of reassurance from an experienced calm and confident adult. He is very loving to people he trusts. Banjo will growl or snap if he feels threatened or cornered. He is groomed under sedation or with a muzzle as he is sensitive to touch of parts of face and hind legs. He is social with other small dogs. He has a non-shedding coat and weighs 6.6kg.',
         'He comes desexed, C5 vaccinated, heartworm free and microchipped. Also included for the love and health of our dogs is a free Health and Wellness Voucher with our DR Vet',
-        'SMALL', true, 'kids, other dogs and strangers', now(), false, null, 2, 1);
+        'SMALL', true, 'kids, other dogs and strangers', now(), true, 2, 1, date('2021-12-01'));
 
 
 INSERT INTO pictures(id, title, url, dog_id)
@@ -266,7 +323,7 @@ VALUES (11, 'Banjo',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id)
 VALUES (4, 'Boo', 'MALE', 26, 'Brown and White', 'SHORT', 16,
         'Hi I’m Boo🐾
 I am a 2 year old Beagle looking for a new home! My old mum and dad can’t keep me at their place anymore cause I’ve decided to start wandering too far from home so I need a new home with a secure back yard!
@@ -274,7 +331,7 @@ If you can’t tell from the picture my favourite thing in the whole world is to
 I currently live with 3 other pups who don’t seem to like me very much but I’m not interested in them, all I care about is my ball or rope and someone to play with! So maybe a new home where I can be the only dog and centre of attention would be good! I have been around cats and even though they’re a bit strange I don’t mind them at all, can’t focus on them too much when I can focus on playing with my ball instead!
 My old mum and dad love me lots but just can’t give me what I need right now but will be very picky on my next home! A new young couple or family that has the time and patience to take me on should definitely submit an application! Can’t wait to meet you!',
         'She comes desexed, C5 vaccinated, heartworm free and microchipped. Also included for the love and health of our dogs is a free Health and Wellness Voucher with our DR Vet',
-        'SMALL', true, 'kids, other dogs and strangers', now(), false, null, 2, 1);
+        'SMALL', true, 'kids, other dogs and strangers', now(), false, 2, 1);
 
 
 INSERT INTO pictures(id, title, url, dog_id)
@@ -300,14 +357,14 @@ VALUES (15, 'Boo',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id)
 VALUES (5, 'James', 'MALE', 8, 'Black and White', 'MEDIUM', 11,
         'James is a 9 week old beautiful Border collie boy pup who is now available for adoption. James and his two brothers have been together from the beginning and love each other’s company so much, they are very sweet natured loving boys that are intelligent so should be easy to train. They are responding to their names, know how to come and sit already. They have typical staffy characteristics with energy, playfulness and love to have company most of the time, they are all only going to be medium sized dogs and have slim builds.
 James is a happy little chap but also likes his quiet time more than his brothers, he gets on well with other dogs and is use to both inside and outside environments in which to run and play in so will need access to both of these with his new home.
 James loves company and loves being around other dogs which is why we will be looking for a forever home with another medium sized companion dog for him to go with and a family that has some spare time during the week as he is still a pup and needs extra attention and training. He enjoys games like tug of war and chase with his foster dogs but will quite happily have a snuggle or play in the yard with all his toys.
 He loves his outside environment so please NO apartments or courtyard applications as he will be a medium/big dog (but not large) so will need plenty of space. ',
         'As James is not yet desexed and vaccinated, he is only available for adoption to Sofia city, because he will need to be returned to a local vet for desexing when he is approximately 5/6 months old. Please NO out of area applications.',
-        'MEDIUM', true, 'kids, other dogs and strangers', now(), false, null, 10, 1);
+        'MEDIUM', true, 'kids, other dogs and strangers', now(), false, 10, 1);
 
 
 INSERT INTO pictures(id, title, url, dog_id)
@@ -332,7 +389,7 @@ VALUES (19, 'James',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id, adopted_on)
 VALUES (6, 'Rose', 'FEMALE', 35, 'Black', 'MEDIUM', 36,
         'Meet Rose - the very sweet adult Rottweiler. She’s a very loving little guy who is extremely social once he comes out of his shell.
 Rose is very friendly towards people, little kids, cats and all other dogs. Anyone he comes into contact with loves him. She has bonded really well with his foster brother and his favourite thing to do is play, so Freddie would be happiest with a friendly puppy pal to rough and tumble with.
@@ -340,7 +397,7 @@ Rose is very clever and a quick learner. Since coming into care a month ago he h
 Rose is eager to learn and please you so will come when called every time and will do anything for a treat. He loves food! Use this to deter him from typical puppy behavior like stealing shoes. Big juicy raw bones and other healthy long lasting chew food or enrichment toys will keep his teething and puppy mind occupied.
 Rose will need a big yard with high fences & an active family to keep up with what will be a big high energy boy. He will need more training on the lead & continued encouragement for outside toileting. The extra effort now in his puppy months will be worth it with this cheeky boy who loves any attention he can get.',
         'Rose is vaccinated, microchipped and will need to be returned to our DRN approved vet for desexing. For this reason she is not available to our of area adoptions',
-        'LARGE', true, 'kids and dogs', now(), false, null, 7, 1);
+        'LARGE', true, 'kids and dogs', now(), true, 7, 1, date('2021-11-11'));
 
 
 INSERT INTO pictures(id, title, url, dog_id)
@@ -365,12 +422,12 @@ VALUES (23, 'Rose',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted, breed_id, shelter_id)
 VALUES (7, 'Daisy', 'FEMALE', 40, 'White with black dots', 'MEDIUM', 24,
         'Daisy is a mature lady, who still has a few puppy-like behaviours. She still finds life super interesting and has plenty of energy, life and love to share in her new home. She still enjoys a daily walk and loves a game with a tennis ball. Layla enjoys car rides and is toilet trained. Layla is an outgoing lady who enjoys making friends with other dogs and new people!
 We recommend Daisy for a home with children aged 8 years and older. Please remember that all interactions between children and dogs should be actively monitored.',
         'Daisy is vaccinated, microchipped and desexed. Recently she got wormed and tested for rabies. For this reason she is available to our of Sofia-city adoptions',
-        'MEDIUM', true, 'kids,dogs and strangers', now(), false, null, 12, 1);
+        'MEDIUM', true, 'kids,dogs and strangers', now(), false, 12, 1);
 
 
 INSERT INTO pictures(id, title, url, dog_id)
@@ -395,7 +452,7 @@ VALUES (27, 'Daisy',
 INSERT INTO dogs(id, name, gender, age, colour, coat_length, weight, description, medical_notes, size, house_trained,
                  get_along_with,
                  added_on,
-                 is_adopted, user_entity_id, breed_id, shelter_id)
+                 is_adopted,  breed_id, shelter_id)
 VALUES (8, 'Mikka', 'FEMALE', 5, 'White and Brown', 'LONG', 3,
         'Mikka is an affectionate girl once she trusts you. She is not a fan of being picked up but happy to be led. She is a sweet cuddly girl who loves belly rubs.
 She is best as the only dog in the household. Mikka came with a tumour on her mouth and 2 teeth embedded in her lower jaw which have all been removed. Our specialist said it was a very low grade slow growing tumour which should not present her with major issues should it re-occur.
@@ -404,7 +461,7 @@ She would suit a person with vet nursing experience. She has a low shedding coat
 Suit Home Based Worker: Unable to cope alone and has shown signs of separation anxiety. Needs human company.
 Apartment Friendly: Could cope in an apartment environment. Regular walks or use of an artificial grass patch is suggested.',
         'She comes desexed, C5 vaccinated, heartworm free and microchipped. Also included for the love and health of our dogs is a free Health and Wellness Voucher with our DR Vet.',
-        'SMALL', false, 'kids,dogs and strangers', now(), false, null, 4, 1);
+        'SMALL', false, 'kids,dogs and strangers', now(), false, 4, 1);
 
 INSERT INTO pictures(id, title, url, dog_id)
 VALUES (28, 'Mikka',

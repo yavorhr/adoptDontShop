@@ -28,5 +28,5 @@ public interface DogService {
 
     void updateDogProfile(DogUpdateServiceModel dogUpdateServiceModel);
 
-
+    DogDetailsViewModel adoptDogById(Long id, String username);
 }

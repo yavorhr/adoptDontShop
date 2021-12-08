@@ -19,6 +19,13 @@
     border-bottom: 2px solid lightslategray;
 }
 
+.language-select {
+    margin-right: 30px;
+}
+
+.language-select a:hover {
+    border-bottom: 2px solid lightslategray;
+}
 
 .mynav a {
     margin-right: 30px;
@@ -104,7 +111,14 @@ h4 {
 /* Team section */
 
 #team {
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Flag_of_Libya_%281977%E2%80%932011%2C_3-2%29.svg/1200px-Flag_of_Libya_%281977%E2%80%932011%2C_3-2%29.svg.png");
+    position: relative;
+    border: 1px solid #3b3939;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 30px;
+    margin-bottom: 50px;
+    background: rgba(139, 129, 123, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
 .tm {
@@ -113,13 +127,13 @@ h4 {
     box-shadow: 2px 5px 20px #777;
 }
 
-.tm i {
+.tm span {
     color: #731396;
     font-size: 40px;
     padding: 3px;
 }
 
-.tm i:hover {
+.tm span:hover {
     color: #181174
 }
 
@@ -247,7 +261,6 @@ body {
 /* Dog details gallery  */
 
 
-
 .gallery {
     position: relative;
     border: 1px solid #fff;
@@ -349,8 +362,6 @@ body {
     float: left;
     font-size: 20px;
     border-radius: 35px;
-    /*background: red;*/
-
 }
 
 .breed-header ul li a {
@@ -420,3 +431,269 @@ picture img {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     background: rgba(94, 41, 5, 0.2);
 }
+
+/* CONTACT PAGE */
+
+.inquire-pic {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    border-radius: 60%;
+    padding: 1px;
+    border: 8px solid transparent;
+    background: linear-gradient(60deg, #EFA51A 10%, #ce00 100%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background: rgba(94, 41, 5, 0.2);
+}
+
+.inquire-div p {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+
+.dear-text {
+    font-weight: 800;
+}
+
+.inquire-div span {
+    font-weight: 800;
+}
+
+.inquire-section {
+    min-height: 100vh;
+    background: url("https://res.cloudinary.com/yavorhr/image/upload/v1637668684/adoptDontShop/cover/2858872_qdg1hh.jpg");
+}
+
+/* ABOUT US  */
+
+.tm .box {
+    position: relative;
+    display: flex;
+}
+
+.tm .box p {
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.contact-page {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url("https://res.cloudinary.com/yavorhr/image/upload/v1638900733/adoptDontShop/cover/Dog-Background-Pictures_n7vvif.jpg");
+    background-size: cover;
+    width: 100%;
+}
+
+.contact-page .content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.contact-page .content h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.send-message {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+
+.contact-page .content p {
+    font-weight: 300;
+    color: antiquewhite;
+}
+
+.contact-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.contact-container .contactInfo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-container .contactInfo .box {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.contact-container .contactInfo .box .icon {
+    min-width: 60px;
+    height: 60px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    font-size: 22px;
+}
+
+.contact-container .contactInfo .box .text {
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: antiquewhite;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.contact-container .contactInfo .box .text h3 {
+    font-weight: 500;
+    color: white;
+}
+
+.contactForm {
+    width: 40%;
+    padding: 40px;
+    background: #fff;
+    background: rgba(238, 233, 233, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+
+.contactForm h2 {
+    font-size: 30px;
+    color: #e5e5e5;
+    font-weight: 500;
+}
+
+.contactForm .inputBox {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contactForm .inputBox input,
+.contactForm .inputBox textarea {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+}
+
+.contactForm .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span {
+    color: #ffffff;
+    font-size: 12px;
+    transform: translateY(-20px);
+}
+
+.contactForm .inputBox input[type="submit"] {
+    width: 100px;
+    background: darkslategrey;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+@media (max-width: 991px) {
+    .contact-page {
+        padding: 50px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-container .contactInfo {
+        margin-bottom: 40px;
+    }
+
+    .contact-container .contactInfo {
+        width: 100%;
+    }
+}
+
+/* SHELTER */
+
+.shelter-1 {
+    width: 100%;
+    height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5%;
+    box-shadow: 0px 2px 5px #777;
+
+}
+
+.shelter-2 {
+    width: 100%;
+    height: 300px;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 20%;
+    box-shadow: 0px 2px 5px #777;
+}
+
+.shelter-3 {
+    width: 100%;
+    height: 300px;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 20%;
+    box-shadow: 0px 2px 5px #777;
+}
+
+.shelter-4 {
+    width: 60%;;
+    height: 350px;
+    align-items: center;
+    text-align: center;
+    position: center;
+    margin-left: 70%;
+    border-radius: 10%;
+    border: 4px solid transparent;
+    background: linear-gradient(60deg, #8b7f35 10%, #ce00 100%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background: rgba(163, 158, 154, 0.2);
+}
+
+.shelter-dogs {
+    width: 30%;
+    height: 350px;
+    border-radius: 10%;
+    padding: 10px;
+    margin: 5px;
+    position: relative;
+    border: 4px solid transparent;
+    background: linear-gradient(60deg, #8b7f35 10%, #ce00 100%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background: rgba(163, 158, 154, 0.2);
+}
+

@@ -32,7 +32,7 @@ import softuni.adoptdontshop.Repository.UserRepository;
 import java.time.Instant;
 import java.util.List;
 
-@WithMockUser("userTest@none.com")
+@WithMockUser("userTest")
 @SpringBootTest
 @AutoConfigureMockMvc
 public class CommentsRestControllerTest {
@@ -53,7 +53,6 @@ public class CommentsRestControllerTest {
     private UserRepository userRepository;
 
     private UserEntity testUser;
-
 
     @BeforeEach
     void setUp() {

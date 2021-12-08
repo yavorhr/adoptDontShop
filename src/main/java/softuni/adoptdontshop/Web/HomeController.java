@@ -28,4 +28,14 @@ public class HomeController {
         return "about";
     }
 
+    @GetMapping("/contact")
+    public String contactPage() {
+        return "contact-page";
+    }
+
+    @GetMapping("/shelter")
+    public String shelterPage() {
+        return "shelter";
+    }
+
 }

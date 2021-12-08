@@ -8,9 +8,24 @@
 <div th:fragment="navigation">
 
     <nav class="navbar navbar-expand-lg navbar-default bg-light mynav">
-        <a class="navbar-brand" th:href="@{/}"><img src="/images/logo_navbar.JPG" alt="logo" class="rounded-circle" width="100" height="100"></a>
+        <a class="navbar-brand" th:href="@{/}"><img src="/images/logo_navbar.JPG" alt="logo" class="rounded-circle"
+                                                    width="100" height="100"></a>
+
+
+        <form th:method="get">
+            <select class="language-select"
+                    onchange="this.form.submit()"
+                    id="lang"
+                    name="lang">
+                <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+            </select>
+        </form>
+
+
         <a class="navbar-brand" th:href="@{/donations}">Donate</a>
-        <a class="navbar-brand" th:href="@{/about}">About</a>
+        <a class="navbar-brand" th:href="@{/about}">About us</a>
+        <a class="navbar-brand" th:href="@{/contact}">Contact</a>
 
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -63,7 +78,7 @@
                     <a class="nav-link d-none d-md-inline ms-2" aria-current="page" href="#">Tips</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-none d-md-inline ms-2" href="#">Our shelters</a>
+                    <a class="nav-link d-none d-md-inline ms-2" th:href="@{/shelter}">About the shelter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-none d-md-inline ms-2" href="#">Before adoption</a>

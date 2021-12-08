@@ -19,7 +19,7 @@ public class Donation extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal sum;
     private String phoneNumber;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
     @Lob
     private String text;

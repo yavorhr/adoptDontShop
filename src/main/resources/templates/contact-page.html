@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="common_fragments/head::head"></head>
+
+
+<body>
+
+<header th:replace="common_fragments/navbar.html::navigation"></header>
+
+<section class="contact-page">
+    <div class="content">
+        <h2>Contacts:</h2>
+    </div>
+    <div class="container contact-container">
+
+        <div class="contactInfo">
+            <div class="box">
+                <div class="icon"><span class="material-icons">location_on</span></div>
+                <div class="text">
+                    <h3>
+                        Address
+                    </h3>
+                    <p>Sofia, village Gorni Bogrov</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="icon"><span class="material-icons">work</span></div>
+                <div class="text">
+                    <h3>
+                        Working hours
+                    </h3>
+                    <p>Monday - Friday, 08:00 - 16:30</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="icon"><span class="material-icons">email</span></div>
+                <div class="text">
+                    <h3>
+                        Email
+                    </h3>
+                    <p>gorni.rescue@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="icon"><span class="material-icons">phone</span></div>
+                <div class="text">
+                    <h3>
+                        Phone
+                    </h3>
+                    <p>+359888 444 555</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contactForm">
+            <form action="">
+                <h2 class="send-message">Send Message</h2>
+                <div class="inputBox">
+                    <input type="text" name="" required="required">
+                    <span>Full name</span>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="" required="required">
+                    <span>Email</span>
+                </div>
+
+                <div class="inputBox">
+                    <textarea type="text" name="" required="required"> </textarea>
+                    <span></span>
+                </div>
+
+                <div class="inputBox">
+                    <input type="submit" name="" value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

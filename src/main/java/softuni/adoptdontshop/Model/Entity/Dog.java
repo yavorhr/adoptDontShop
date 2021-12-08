@@ -24,6 +24,7 @@ public class Dog extends BaseEntity {
     private boolean isAdopted;
     private LocalDate lastModified;
     private LocalDate addedOn;
+    private LocalDate adoptedOn;
     @Column(nullable = false)
     @Lob
     private String description;
@@ -31,6 +32,16 @@ public class Dog extends BaseEntity {
     private String medicalNotes;
 
     //Dog characteristics
+
+
+    public LocalDate getAdoptedOn() {
+        return adoptedOn;
+    }
+
+    public Dog setAdoptedOn(LocalDate adoptedOn) {
+        this.adoptedOn = adoptedOn;
+        return this;
+    }
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -65,9 +76,6 @@ public class Dog extends BaseEntity {
 
     @ManyToOne
     private Breed breed;
-
-    @ManyToOne
-    private UserEntity userEntity;
 
     public Dog() {
     }
@@ -154,15 +162,6 @@ public class Dog extends BaseEntity {
         return this;
     }
 
-    public UserEntity getUser() {
-        return userEntity;
-    }
-
-    public Dog setUser(UserEntity userEntity) {
-        this.userEntity = userEntity;
-        return this;
-    }
-
     public GenderEnum getGender() {
         return gender;
     }
@@ -241,15 +240,6 @@ public class Dog extends BaseEntity {
 
     public Dog setMedicalNotes(String medicalNotes) {
         this.medicalNotes = medicalNotes;
-        return this;
-    }
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public Dog setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
         return this;
     }
 

@@ -28,7 +28,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 //TODO to think what else to be visible to everybody
-                .antMatchers("/", "/users/login", "/users/register", "/donations", "/about").permitAll()
+                .antMatchers("/", "/users/login", "/users/register", "/donations", "/about", "/contact", "/shelter").permitAll()
                 .antMatchers("/breeds/**").permitAll()
                 //only ADMIN can access "/admin" page
                 .antMatchers("/admin", "/dogs/add").hasRole(UserRoleEnum.ADMIN.name())

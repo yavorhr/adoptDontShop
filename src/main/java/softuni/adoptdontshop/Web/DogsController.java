@@ -76,10 +76,10 @@ public class DogsController {
     }
 
     @GetMapping("/dogs/{id}/inquire")
-    public String dogEnquireForm(@PathVariable Long id, Model model,@AuthenticationPrincipal UserDetails currentUser) {
+    public String dogEnquireForm(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetails currentUser) {
 
-        model.addAttribute("user",userService.findUserByUsername(currentUser.getUsername()));
-        model.addAttribute("dog", dogService.findDogById(id));
+        model.addAttribute("user", userService.findUserByUsername(currentUser.getUsername()));
+        model.addAttribute("dog", dogService.adoptDogById(id, currentUser.getUsername()));
         return "inquire-form";
     }
 

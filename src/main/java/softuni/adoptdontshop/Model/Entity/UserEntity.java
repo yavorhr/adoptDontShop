@@ -71,18 +71,6 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "userEntity")
-    private List<Dog> addedDogs;
-
-    public List<Dog> getAddedDogs() {
-        return addedDogs;
-    }
-
-    public UserEntity setAddedDogs(List<Dog> addedDogs) {
-        this.addedDogs = addedDogs;
-        return this;
-    }
-
     public String getFirstName() {
         return firstName;
     }

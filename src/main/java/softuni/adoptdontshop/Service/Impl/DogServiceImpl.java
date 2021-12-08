@@ -187,6 +187,22 @@ public class DogServiceImpl implements DogService {
         dogRepository.save(dog);
 
     }
+
+    @Override
+    public DogDetailsViewModel adoptDogById(Long id, String username) {
+        return dogRepository
+                .findById(id)
+                .map(dog -> {
+                    dog.setAdopted(true);
+                    dogRepository.save(dog);
+
+                    DogDetailsViewModel dogDetailsViewModel = new DogDetailsViewModel();
+                    modelMapper.map(dog, dogDetailsViewModel);
+                    dogDetailsViewModel.setBreed(dog.getBreed().getName());
+                    return dogDetailsViewModel;
+                })
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
 }
 
 

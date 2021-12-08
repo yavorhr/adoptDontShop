@@ -35,8 +35,6 @@ public class UserServiceImpl implements UserService {
         this.securityUserService = securityUserService;
     }
 
-
-
     @Override
     public boolean isUsernameFree(String username) {
         return userRepository.findByUsernameIgnoreCase(username).isEmpty();
