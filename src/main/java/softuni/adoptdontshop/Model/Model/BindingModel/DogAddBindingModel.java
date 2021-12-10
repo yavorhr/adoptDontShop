@@ -4,15 +4,14 @@ import softuni.adoptdontshop.Model.Enum.CoatLengthEnum;
 import softuni.adoptdontshop.Model.Enum.GenderEnum;
 import softuni.adoptdontshop.Model.Enum.MedicalRecordEnum;
 import softuni.adoptdontshop.Model.Enum.SizeEnum;
+
 import javax.validation.constraints.*;
 import java.util.Set;
 
 public class DogAddBindingModel {
 
     //Basic data
-
-
-    @Size(min = 2, max = 15)
+    @Pattern(regexp = "[A-Za-z]{2,15}")
     private String name;
     @NotNull
     @Positive
@@ -35,6 +34,7 @@ public class DogAddBindingModel {
     @Positive
     private Integer weight;
     @NotEmpty
+    @Pattern(regexp = "[A-Za-z]+")
     private String colour;
     @NotNull
     private CoatLengthEnum coatLength;
@@ -44,7 +44,7 @@ public class DogAddBindingModel {
     private String getAlongWith;
 
     //Dog medical record
-
+    @NotNull
     private Set<MedicalRecordEnum> medicalRecord;
 
     public DogAddBindingModel() {

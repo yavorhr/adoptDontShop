@@ -14,10 +14,11 @@
     <section class="pt-5">
         <div class="container ">
             <div class="row col-md-12">
-                <h4>
+                <h4 class="h-cap">
                     Meet, <span th:text="*{name}"> </span> !
                 </h4>
-                <h3 th:text="*{size} + ' ' + *{gender} + ' ' + *{breed} + ' ' + *{colour}">
+                <h3 class="txt-cap-low"
+                    th:text="|A *{size}, | +  *{gender}  + | *{(breed)} dog, |  +  |with *{colour} color|">
                 </h3>
             </div>
         </div>
@@ -65,85 +66,84 @@
 
             <div class="col-md-4">
                 <div class="ps-5 pt-4">
-                    <h3 class="mb-4">About</h3>
-
                     <div>
-                        <h4> Age : <span th:text="*{age}"></span>
+                        <h4 class="txt-cap-low"> Age : <span th:text="*{ageCalc(age)}"></span>
                         </h4>
                     </div>
                     <div>
-                        <h4> Weight : <span th:text="*{weight}"></span> kilos
+                        <h4 class="txt-cap-low "> Weight : <span th:text="*{weight}"></span> kilos
                         </h4>
                     </div>
                     <div>
-                        <h4> House trained :
+                        <h4 class="txt-cap-low "> House trained :
                             <span th:text="*{houseTrained} ? 'Yes' : 'No'"></span>
                         </h4>
                     </div>
                     <div>
-                        <h4> Coat length :
+                        <h4 class="txt-cap-low "> Coat length :
                             <span th:text="*{coatLength}"></span>
                         </h4>
                     </div>
                     <div>
-                        <h4> Feels good with :
-
+                        <h4 class="txt-cap-low "> Feels good with :
                             <span th:text="*{getGetAlongWith()}"></span>
                         </h4>
                     </div>
 
                     <div>
-                        <h4> Added on :
+                        <h4 class="txt-cap-low "> Added on :
                             <p th:text="*{addedOn}"></p>
                         </h4>
                     </div>
 
                     <th:block sec:authorize="hasRole('ADMIN')">
-                        <a class="btn btn-link" th:href="@{/dogs/{id}/edit(id=*{id})}">Update</a>
-                        <form th:action="@{/dogs/{id}(id=*{id})}"
-                              th:method="delete">
-                            <input type="submit" class="btn btn-link" value="Delete"/>
-                        </form>
-                        <div class="mt-3">
-                            <p>Choose picture: </p>
+                        <div class="buttons-dog-profile">
+                            <a class="btn btn-warning me-5" th:href="@{/dogs/{id}/edit(id=*{id})}">Update</a>
+
+                            <form th:action="@{/dogs/{id}(id=*{id})}"
+                                  th:method="delete">
+                                <input type="submit" class="btn btn-danger" value="Delete"/>
+                            </form>
+                        </div>
+
+                        <div class=" upload-pic">
+                            <p class="ms-3 mt-3">Choose picture: </p>
                             <form
                                     th:method="post"
                                     th:action="@{/dogs/{id}(id=*{id})}"
                                     enctype="multipart/form-data">
-                                <input type="text" name="title" id="" class="mb-2">
+                                <input type="text" name="title" id="" class="mb-2 ms-3">
                                 <input name="picture" type="file" placeholder="Enter some name of the picture.."
-                                       class="mb-2">
-                                <input type="submit" value="Submit" class="mb-2">
+                                       class="mb-2 ms-3">
+                                <input type="submit" value="Submit" class="mb-2 me-1">
                             </form>
+                        </div>
+
+                    </th:block>
+
+                    <th:block sec:authorize="!hasRole('ADMIN')">
+                        <div class="d-flex justify-content-center mt-5">
+                            <a class="btn btn-outline-success" th:href="@{/dogs/{id}/inquire(id=*{id})}"> Enquire about
+                                <span
+                                        th:text="*{name}"></span></a>
                         </div>
                     </th:block>
 
                 </div>
             </div>
 
-            <div class="mt-5">
+            <div>
                 <div class="row">
                     <div class="col-md-8">
-                        <h3>About <span th:text="*{name}"></span></h3>
-                        <p th:text="*{description}" class="mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Natus voluptatibus est
-                            mollitia
-                            praesentium, corrupti ad numquam, nam quis libero omnis placeat id rem aliquam quae minima
-                            vel
-                            assumenda explicabo magni.</p>
+                        <h3 class="txt-cap-low">About <span th:text="*{name}"></span></h3>
+                        <p th:text="*{description}" class="mt-4 "></p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-8">
-                        <h3>Medical notes</h3>
-                        <p th:text="*{medicalNotes}" class="mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Natus voluptatibus est
-                            mollitia
-                            praesentium, corrupti ad numquam, nam quis libero omnis placeat id rem aliquam quae minima
-                            vel
-                            assumenda explicabo magni.</p>
+                        <h3 class="txt-cap-low">Medical notes</h3>
+                        <p th:text="*{medicalNotes}" class="mt-4 "></p>
                     </div>
                     <div class="col-md-4">
                         <table class="table">
@@ -166,17 +166,12 @@
             </div>
         </div>
 
-
-        <a class="btn btn-outline-success" th:href="@{/dogs/{id}/inquire(id=*{id})}"> Enquire about <span
-                th:text="*{name}"></span></a>
-
-
-        <div class="mt-5 mb-4 ">
+        <div class="mb-4">
             <!-- Comments submission -->
             <form id="commentForm" method="POST"
                   th:action="@{/api/{dogId}/comments(dogId=${dog.id})}">
                 <div class="form-group">
-                    <h4>Leave a comment</h4>
+                    <h4 class="txt-cap-low">Leave a comment</h4>
                     <label for="message">Message</label>
                     <textarea name="message"
                               id="message"

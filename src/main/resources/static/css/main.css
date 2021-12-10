@@ -697,3 +697,218 @@ picture img {
     background: rgba(163, 158, 154, 0.2);
 }
 
+/* TEXT TRANSFORM */
+
+.h-cap {
+    text-transform: capitalize;
+}
+
+.txt-cap-low::first-letter {
+    text-transform: uppercase;
+}
+
+.txt-cap-low {
+    text-transform: lowercase;
+}
+
+.table {
+    border: 1px solid #fff;
+    border-radius: 20px;
+    color: #ffffff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(94, 41, 5, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+
+.buttons-dog-profile {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.upload-pic {
+    border: 1px solid #fff;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(94, 41, 5, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    padding-bottom: 20px;
+}
+
+.dog-div-add {
+    margin-top: 35px;
+}
+
+.dog-div-add input {
+    margin-left: 10px;
+}
+
+.dog-div-add select {
+    margin-left: 10px;
+}
+
+/* LOGIN */
+
+.login-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: sans-serif;
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1639150140/adoptDontShop/cover/jose-ramos-BWCgQw25XUE-unsplash_foqaxn.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.box-login {
+    width: 400px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    background: rgba(107, 184, 226, 0.5);
+    text-align: center;
+}
+
+.box-login h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Permanent Marker', cursive;
+
+}
+
+.box-login input[type="text"], .box-login input[type="password"] {
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 3px solid #168598;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box-login input[type="text"]:focus,
+.box-login input[type="password"]:focus {
+    width: 280px;
+    border-color: #168598;
+}
+
+.box-login small{
+    border-radius: 20px;
+}
+
+.box-login input[type="submit"] {
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 3px solid #168598;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.box-login input[type="submit"]:hover {
+    background: #168598;
+}
+
+
+/* REGISTER */
+
+.register-body {
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1637668684/adoptDontShop/cover/2858872_qdg1hh.jpg");
+    background-position: bottom;
+}
+
+.signup-form {
+    width: 400px;
+    text-align: center;
+    background-position: center;
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1637668693/adoptDontShop/cover/2858790_spnvip.jpg");
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px #777;
+}
+
+.signup-form h1 {
+    margin-top: 50px;
+    font-family: 'Permanent Marker', cursive;
+    color: #fff;
+    font-size: 40px;
+}
+
+.signup-form input {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 44px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: "montserrat", sans-serif;
+}
+
+.signup-form textarea {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 70px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: "montserrat", sans-serif;
+}
+
+
+.txtb {
+    margin: 30px 0;
+    background: rgba(255, 255, 255, .7);
+    border-radius: 6px;
+}
+
+.signup-btn {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: saddlebrown;
+    color: #fff;
+    border-radius: 44px;
+    cursor: pointer;
+    transition: 0.8s;
+    background: rgba(106, 66, 66, 0.7);
+}
+
+.signup-btn:hover {
+    transform: scale(0.96);
+}
+
+.signup-form a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "montserrat", sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    transition: 0.8s;
+    display: block;
+}
+
+.signup-form a:hover {
+    background: rgba(0, 0, 0, .3);
+}
+
+
+
+

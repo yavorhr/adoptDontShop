@@ -31,7 +31,6 @@ public class DogDetailsViewModel {
     private SizeEnum size;
 
     private List<Picture> pictures;
-
     private List<MedicalRecord> medicalRecord = new LinkedList<>();
 
     public DogDetailsViewModel() {
@@ -188,5 +187,23 @@ public class DogDetailsViewModel {
     public DogDetailsViewModel setMedicalRecord(List<MedicalRecord> medicalRecord) {
         this.medicalRecord = medicalRecord;
         return this;
+    }
+
+    public String ageCalc(Integer age) {
+        this.age = age;
+
+        if (age < 12) {
+            return String.format("%d months old", age);
+        }
+
+        //13 % 12 == 1
+        int months = age % 12;
+        //13 / 12 == 1
+        int year = age / 12;
+
+        if (year == 1) {
+            return String.format("%d year and %d months", year, months);
+        }
+        return String.format("%d years and %d months", year, months);
     }
 }

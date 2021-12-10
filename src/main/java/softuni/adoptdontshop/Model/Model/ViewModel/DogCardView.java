@@ -18,8 +18,6 @@ public class DogCardView {
     public DogCardView() {
     }
 
-
-
     public String getImageUrl() {
         return imageUrl;
     }

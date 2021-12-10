@@ -10,17 +10,17 @@
 <div th:replace="common_fragments/navbar::navigation"></div>
 
 <div class="add-dog">
-    <div class="container">
+    <div class="container justify-content-xl-center">
         <div class="row">
             <form
                     th:action="@{/dogs/add}"
                     th:object="${dogAddBindingModel}"
                     th:method="POST"
-                    class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+                    class="main-form mx-auto col-md-6 col-lg-6 d-flex flex-column justify-content-center">
                 <div class="box-dog-add-main-info">
 
-                    <h3 class="text-center">Essential information</h3>
-                    <div class="form-group col-md-6 mb-3 justify-content-end">
+                    <h3 class="text-center txt-cap-low ">Essential information</h3>
+                    <div class="form-group col-md-6 col-lg-6 mb-3 justify-content-xl-center">
                         <label for="inputName" class="font-weight-bold">Name</label>
                         <input
                                 th:field="*{name}"
@@ -73,7 +73,8 @@
                     </div>
 
                     <div th:if="${dogAlreadyAdded}" class="form-group col-md-8 mb-3 justify-content-end">
-                        <p class="bg-danger rounded text-center text-">Please note that there is already existing Dog with the given
+                        <p class="bg-danger rounded text-center text-">Please note that there is already existing Dog
+                            with the given
                             name, age and breed.
                             Please check if your entries are correct and proceed again.
                         <p>
@@ -95,49 +96,45 @@
                         </small>
                     </div>
 
-                    <div>
-                        <div class="form-group mb-3 col-md-6">
-                            <label for="inputDescription" class="col-form-label ">Description</label>
-                        </div>
-                        <div class="form-group">
-                    <textarea
-                            th:field="*{description}"
-                            th:errorclass="is-invalid"
-                            id="inputDescription"
-                            class="form-control"
-                            aria-describedby="inputDescriptionError"
-                            placeholder="Please fill the history of the dog...">></textarea>
-                            <small id="inputDescriptionError"
-                                   class="invalid-feedback text-light form-text bg-danger rounded">Description length
-                                must be more
-                                than 5 characters</small>
-                        </div>
+                    <div class="text-area-dog-add">
+                        <label for="inputDescription" class="col-form-label ">Description</label>
+                        <textarea
+                                th:field="*{description}"
+                                th:errorclass="is-invalid"
+                                id="inputDescription"
+                                class="form-control"
+                                aria-describedby="inputDescriptionError"
+                                placeholder="Please fill the history of the dog...">
+                    </textarea>
+                        <small id="inputDescriptionError"
+                               class="invalid-feedback text-light form-text bg-danger rounded" style="width: 400px;">Description
+                            length
+                            must be more
+                            than 5 characters</small>
                     </div>
 
-                    <div>
-                        <div class="form-group mb-3 col-md-6">
-                            <label for="inputMedicalNotes" class="col-form-label ">Medical notes</label>
-                        </div>
-                        <div class="form-group">
-                    <textarea
-                            th:field="*{medicalNotes}"
-                            th:errorclass="is-invalid"
-                            id="inputMedicalNotes"
-                            class="form-control"
-                            placeholder="Please fill the current medical notes ..."
-                            aria-describedby="inputDescriptionError"></textarea>
-                            <small id="inputMedicalNotesError"
-                                   class="invalid-feedback form-text text-light bg-danger rounded">Medical notes length
-                                must be
-                                more than 5 characters</small>
-                        </div>
+                    <div class="text-area-dog-add">
+                        <label for="inputMedicalNotes" class="col-form-label ">Medical notes</label>
+                        <textarea
+                                th:field="*{medicalNotes}"
+                                th:errorclass="is-invalid"
+                                id="inputMedicalNotes"
+                                class="form-control"
+                                placeholder="Please fill the current medical notes ..."
+                                aria-describedby="inputDescriptionError">
+                    </textarea>
+                        <small id="inputMedicalNotesError"
+                               class="invalid-feedback form-text text-light bg-danger rounded"
+                               style="width: 400px">Medical notes length
+                            must be
+                            more than 5 characters</small>
                     </div>
+
                 </div>
 
-                <div class="box-add-dog-advanced-characteristics">
-
-                    <h3 class="text-center">More details</h3>
-                    <div class="form-group col-md-6 mb-3">
+                <div class="box-add-dog-advanced-characteristics col-md-12">
+                    <h3 class="text-center txt-cap-low">More details</h3>
+                    <div class="form-group col-md-6 dog-div-add">
                         <label for="gender">Gender</label>
                         <select
                                 th:field="*{gender}"
@@ -149,15 +146,17 @@
                             <option
                                     th:each="g : ${T(softuni.adoptdontshop.Model.Enum.GenderEnum).values()}"
                                     th:value="${g}"
-                                    th:text="${g}">Select gender
+                                    th:text="${#strings.toLowerCase(g)}">Select gender
                             </option>
                         </select>
                         <small id="inputGenderError"
-                               class="invalid-feedback form-text text-light bg-danger rounded">Please select
-                            gender.</small>
+                               class="invalid-feedback form-text text-light bg-danger rounded"
+                               style="width: 200px">Please select
+                            gender.
+                        </small>
                     </div>
 
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 dog-div-add ">
                         <label for="coat-length">Coat length</label>
                         <select
                                 th:field="*{coatLength}"
@@ -169,16 +168,17 @@
                             <option
                                     th:each="c : ${T(softuni.adoptdontshop.Model.Enum.CoatLengthEnum).values()}"
                                     th:value="${c}"
-                                    th:text="${c}">Select coat length
+                                    th:text="${#strings.toLowerCase(c)}">Select coat length
                             </option>
                         </select>
                         <small id="inputCoatLengthError"
+                               style="width: 260px"
                                class="invalid-feedback text-light form-text bg-danger rounded">Please select coat
                             length.
                         </small>
                     </div>
 
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 dog-div-add">
                         <label for="size">Size</label>
                         <select
                                 th:field="*{size}"
@@ -190,15 +190,16 @@
                             <option
                                     th:each="s : ${T(softuni.adoptdontshop.Model.Enum.SizeEnum).values()}"
                                     th:value="${s}"
-                                    th:text="${s}">Select size
+                                    th:text="${#strings.toLowerCase(s)}">Select size
                             </option>
                         </select>
                         <small id="sizeInputError"
+                               style="width: 160px"
                                class="invalid-feedback  form-text text-light bg-danger rounded">Please select
                             size.</small>
                     </div>
 
-                    <div class="form-group col-md-5 mb-3">
+                    <div class="form-group col-md-6 dog-div-add">
                         <label for="house-trained">House trained</label>
                         <select
                                 th:field="*{houseTrained}"
@@ -212,8 +213,10 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="colour" class="font-weight-bold">Colour</label>
+                    <div class="form-group col-md-6 dog-div-add">
+                        <div>
+                            <label for="colour" class="font-weight-bold col-form-label">Colour</label>
+                        </div>
                         <input
                                 th:field="*{colour}"
                                 th:errorclass="is-invalid"
@@ -221,14 +224,17 @@
                                 type="text"
                                 class="form-control"
                                 aria-describedby="inputColourError"
-                                placeholder="My colour is ...">
+                                placeholder="My colour is ..."
+                                style="resize: horizontal;width: 170px">
                         <small id="inputColourError"
-                               class="invalid-feedback text-light form-text bg-danger rounded">Please insert colour.
+                               style="width: 190px"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Please insert valid
+                            colour.
                         </small>
                     </div>
 
 
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 dog-div-add">
                         <label for="getAlongWith" class="font-weight-bold">Get a long with</label>
                         <input
                                 th:field="*{getAlongWith}"
@@ -237,13 +243,15 @@
                                 type="text"
                                 class="form-control"
                                 aria-describedby="inputGetAlongWithError"
-                                placeholder="I feel good with ...">
+                                placeholder="I feel good with ..."
+                                style="resize: horizontal;width: 170px">
                         <small id="getAlongWithError"
+                               style="width: 200px"
                                class="invalid-feedback  form-text text-light bg-danger rounded">Please insert short
                             information.</small>
                     </div>
 
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 dog-div-add">
                         <label for="weight" class="font-weight-bold">Weight</label>
                         <input
                                 th:field="*{weight}"
@@ -252,8 +260,10 @@
                                 type="number"
                                 class="form-control"
                                 aria-describedby="inputWeightError"
-                                placeholder="My weight is ...">
+                                placeholder="My weight is ..."
+                                style="resize: horizontal;width: 170px">
                         <small id="inputWeightError"
+                               style="width: 200px"
                                class="invalid-feedback text-light form-text bg-danger rounded">Weight must be greater
                             than 0.
                         </small>
@@ -263,32 +273,36 @@
                 </div>
 
                 <div class="box-add-dog-medical-stats">
-                    <h3 class="text-center">Medical record</h3>
+                    <h3 class="text-center txt-cap-low">Medical record</h3>
                     <div class="form-group p-3">
                         <label class="p-2" for="medicalRecord"></label>
                         <input
                                 th:each="m : ${T(softuni.adoptdontshop.Model.Enum.MedicalRecordEnum).values()}"
                                 th:text="${m}"
-                                th:value="${m}"
+                                th:value="${#strings.capitalize(m)}"
                                 class="m-3"
+                                th:errorclass="is-invalid"
                                 type="checkbox"
                                 name="medicalRecord"
                                 id="medicalRecord"
                                 value="1" text="medicalRecord">
                         <br>
+                        <small id="inputMedicalTests"
+                               style="width: 370px"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Dogs without test for Rabies can't be added.
+                        </small>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col col-md-4">
-                        <div class="button-holder d-flex justify-content-center">
-                            <input type="submit" class="btn btn-info btn-lg" value="Add dog"/>
-                        </div>
+                <div class="align-self-center col col-md-4">
+                    <div class="button-holder d-flex justify-content-center">
+                        <input type="submit" class="btn btn-info btn-lg" value="Add dog"/>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
 </div>
 
 

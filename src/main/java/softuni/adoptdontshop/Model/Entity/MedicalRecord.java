@@ -6,9 +6,8 @@ import javax.persistence.*;
 @Table(name = "medical_records")
 public class MedicalRecord extends BaseEntity{
 
-    @Column(nullable = false,unique = true)
+    @Column(unique = true)
     @Enumerated(EnumType.STRING)
-
     private MedicalRecordEnum name;
 
     public MedicalRecord() {

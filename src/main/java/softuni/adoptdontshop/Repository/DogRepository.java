@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface DogRepository extends JpaRepository<Dog,Long> {
 
-    @Query(value = "SELECT * FROM dogs ORDER BY dogs.id DESC LIMIT 8", nativeQuery = true)
+    @Query(value = "SELECT * FROM dogs d WHERE d.is_adopted=false ORDER BY d.id DESC LIMIT 8", nativeQuery = true)
     List<Dog> findDogsHomePage();
 
     Optional<Dog> findByNameAndAge(String name, Integer age);

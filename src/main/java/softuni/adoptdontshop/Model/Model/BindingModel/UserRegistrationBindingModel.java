@@ -12,10 +12,10 @@ import javax.validation.constraints.Size;
 public class UserRegistrationBindingModel {
 
     @NotBlank
-    @Size(min = 4, max = 20)
+    @Size
     @UniqueUsername
     private String username;
-    @NotBlank
+    @NotBlank(message = "Email is required.")
     @Email
     @UniqueEmail
     private String email;

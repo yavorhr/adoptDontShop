@@ -67,6 +67,7 @@ public class DogServiceImpl implements DogService {
         return dogRepository
                 .findAll()
                 .stream()
+                .filter(dog -> !dog.isAdopted())
                 .map(dog -> {
                     DogCardView dogCardView = modelMapper.map(dog, DogCardView.class);
                     dogCardView.setBreed(dog.getBreed().getName());
@@ -92,13 +93,15 @@ public class DogServiceImpl implements DogService {
         dog.setAddedOn(LocalDate.now());
         dog.setBreed(breedRepository.findByName(dogAddServiceModel.getBreed()).orElseThrow());
         dog.setShelter(shelterRepository.findById(1L).orElseThrow());
-        dog.setMedicalRecord(
-                dogAddServiceModel
-                        .getMedicalRecord()
-                        .stream()
-                        .map(medicalRecordService::findMedicalRecord)
-                        .collect(Collectors.toList())
-        );
+
+            dog.setMedicalRecord(
+                    dogAddServiceModel
+                            .getMedicalRecord()
+                            .stream()
+                            .map(medicalRecordService::findMedicalRecord)
+                            .collect(Collectors.toList())
+            );
+
 
         Picture picture = new Picture();
         picture.setUrl(dogAddBindingModel.getImageUrl());

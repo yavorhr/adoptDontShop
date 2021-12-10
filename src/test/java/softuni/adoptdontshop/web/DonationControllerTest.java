@@ -1,7 +1,6 @@
 package softuni.adoptdontshop.web;
 
 
-import org.hibernate.validator.constraints.Length;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,14 +9,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import softuni.adoptdontshop.Model.Entity.UserEntity;
 import softuni.adoptdontshop.Repository.DonationRepository;
 
-import javax.persistence.Column;
-import javax.persistence.Lob;
-import javax.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.util.Optional;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -59,14 +52,14 @@ public class DonationControllerTest {
                 .param("lastName", TEST_USER_LAST_NAME)
                 .param("sum", String.valueOf(SUM))
                 .param("phoneNumber", "+35988888888")
-                .param("email", "testUserEmail@test.com")
+                .param("email", TEST_USER_EMAIL)
                 .param("text", "some random text")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         )
                 .andExpect(status().is3xxRedirection());
 
-        Assertions.assertEquals(1, donationRepository.count());
+        Assertions.assertEquals(16, donationRepository.count());
 
 //        Optional<UserEntity> newlyCreatedUserOpt = donationRepository.findTEST_USER_EMAIL);
 //

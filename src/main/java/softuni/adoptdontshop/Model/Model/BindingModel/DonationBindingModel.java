@@ -20,6 +20,7 @@ public class DonationBindingModel {
     @Positive
     private BigDecimal sum;
 
+    @Pattern(regexp = "\\+[0-9]{12}")
     private String phoneNumber;
 
     @NotEmpty
@@ -29,16 +30,16 @@ public class DonationBindingModel {
     @Lob
     private String text;
 
-    @Length(min = 12, max = 12)
+    @Pattern(regexp = "[0-9]{12}")
     private String creditCardNumber;
 
     @Size(min = 5, max = 30)
     private String cardHolderName;
 
-    @Size(min = 5, max = 5)
+   @Pattern(regexp = "[0-9]{2}\\/[0-9]{2}")
     private String expiration;
 
-    @Size(min = 3, max = 3)
+    @Pattern(regexp = "[0-9]{3}")
     private String cvv;
 
     public DonationBindingModel() {

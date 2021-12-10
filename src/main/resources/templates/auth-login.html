@@ -4,38 +4,31 @@
 
 <head th:replace="common_fragments/head::head"><title>Login</title></head>
 
-<body>
+<body class="login-body">
 
 <div th:replace="common_fragments/navbar::navigation"></div>
 
-
-<section>
-    <div class="d-flex justify-content-center align-items-center container mt-5 ">
-        <div class="row ">
-            <form
+            <form class="box-login"
                     th:action="@{/users/login}"
                     th:method="POST">
-                <div>
-                    <label for="username" class="form-label">Username</label>
+                <h1>Login</h1>
                     <input
-                            th:value="${username}"
                             type="text"
+                            name="username"
+                            th:value="${username}"
                             required
                             id="username"
-                            name="username"
                             class="form-control"
                             placeholder="Username">
-                </div>
                 <small class="invalid-feedback">
                     <span class="bg-danger">Username is not correct.</span>
                 </small>
 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
                     <input
-                            id="password"
-                            name="password" required
                             type="password"
+                            name="password" required
+                            id="password"
                             class="form-control"
                             placeholder="Password"/>
                 </div>
@@ -44,16 +37,11 @@
                     Invalid email or password.
                 </p>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="submit" value="Login"></input>
             </form>
-        </div>
-    </div>
-</section>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
