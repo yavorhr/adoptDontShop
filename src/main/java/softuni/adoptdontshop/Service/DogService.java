@@ -20,7 +20,7 @@ public interface DogService {
 
     DogDetailsViewModel findDogById(Long id);
 
-    void deleteOffer(Long id);
+    void deleteDog(Long id);
 
     boolean isAdmin(String username, Long id);
 

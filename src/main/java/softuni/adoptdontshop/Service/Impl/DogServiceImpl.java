@@ -128,7 +128,7 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public void deleteOffer(Long id) {
+    public void deleteDog(Long id) {
         dogRepository.deleteById(id);
     }
 

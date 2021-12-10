@@ -68,7 +68,7 @@ public class Dog extends BaseEntity {
     @OneToMany(mappedBy = "dog",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "dog", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "dog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Picture> pictures = new ArrayList<>();
 
     @ManyToOne

@@ -83,32 +83,30 @@ public class DogsController {
         return "inquire-form";
     }
 
-
-//    //DELETE PICTURE
-//    @Transactional
-//    @DeleteMapping("/dogs/{id}/details")
-//    public String deletePicture(@RequestParam("public_id") String publicId, Long id) {
-//        if (cloudinaryService.delete(publicId)){
-//            pictureService.deletePicture(publicId, id);
-//        }
-//        return "redirect:/dogs" + id + "/details" ;
-//    }
+    //DELETE PICTURE
+    @Transactional
+    @DeleteMapping("/dogs/{id}/pic")
+    public String deletePicture(@RequestParam("public_id") String publicId, @PathVariable Long id) {
+        if (cloudinaryService.delete(publicId)){
+            pictureService.deletePicture(publicId);
+        }
+        return "redirect:/dogs/" + id + "/details" ;
+    }
 
 
     // DELETE
 //    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
-
     @DeleteMapping("/dogs/{id}")
-    public String deleteOffer(@PathVariable Long id,
+    public String deleteDog(@PathVariable Long id,
                               Principal principal) {
-        dogService.deleteOffer(id);
+        dogService.deleteDog(id);
         return "redirect:/dogs/all";
     }
 
     // EDIT
 //    @PreAuthorize("@dogServiceImpl.isAdmin(#principal.name, #id)")
     @GetMapping("/dogs/{id}/edit")
-    public String editOffer(@PathVariable Long id,
+    public String editDog(@PathVariable Long id,
                             Principal principal, Model model) {
 
         DogDetailsViewModel dogDetailsViewModel = dogService.findById(id, principal.getName());

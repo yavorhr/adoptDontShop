@@ -15,30 +15,18 @@ import java.util.stream.Collectors;
 public class PictureServiceImpl implements PictureService {
 
     private final PictureRepository pictureRepository;
-    private final DogRepository dogRepository;
 
-    public PictureServiceImpl(PictureRepository pictureRepository, DogRepository dogRepository) {
+    public PictureServiceImpl(PictureRepository pictureRepository) {
         this.pictureRepository = pictureRepository;
-        this.dogRepository = dogRepository;
+
     }
 
     @Override
-    public void deletePicture(String publicId, Long id) {
+    public void deletePicture(String publicId) {
 
-        Dog dog = dogRepository.findById(id).orElseThrow();
-
-        List<Picture> collect = dog.getPictures();
-        collect.forEach(picture -> {
-            if (picture.getPublicId().equals(publicId)) {
-               picture.setDog(null);
-            }
-        });
-
-        dog.setPictures(collect);
+    pictureRepository.deleteAllByPublicId(publicId);
 
 
 
-        dogRepository.save(dog);
-        pictureRepository.deleteAllByPublicId(publicId);
     }
 }
