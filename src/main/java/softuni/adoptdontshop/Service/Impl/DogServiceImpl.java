@@ -2,7 +2,6 @@ package softuni.adoptdontshop.Service.Impl;
 
 
 import org.modelmapper.ModelMapper;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import softuni.adoptdontshop.Model.Entity.Dog;
@@ -94,13 +93,13 @@ public class DogServiceImpl implements DogService {
         dog.setBreed(breedRepository.findByName(dogAddServiceModel.getBreed()).orElseThrow());
         dog.setShelter(shelterRepository.findById(1L).orElseThrow());
 
-            dog.setMedicalRecord(
-                    dogAddServiceModel
-                            .getMedicalRecord()
-                            .stream()
-                            .map(medicalRecordService::findMedicalRecord)
-                            .collect(Collectors.toList())
-            );
+        dog.setMedicalRecord(
+                dogAddServiceModel
+                        .getMedicalRecord()
+                        .stream()
+                        .map(medicalRecordService::findMedicalRecord)
+                        .collect(Collectors.toList())
+        );
 
 
         Picture picture = new Picture();
@@ -197,6 +196,7 @@ public class DogServiceImpl implements DogService {
                 .findById(id)
                 .map(dog -> {
                     dog.setAdopted(true);
+                    dog.setAdoptedOn(LocalDate.now());
                     dogRepository.save(dog);
 
                     DogDetailsViewModel dogDetailsViewModel = new DogDetailsViewModel();
@@ -205,6 +205,46 @@ public class DogServiceImpl implements DogService {
                     return dogDetailsViewModel;
                 })
                 .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    @Override
+    public Integer findDogsFirstQuarter() {
+        Integer adoptedDogsFirstQuarter = dogRepository.findAdoptedDogsFirstQuarter();
+
+        if (adoptedDogsFirstQuarter == null) {
+            return 0;
+        }
+        return dogRepository.findAdoptedDogsFirstQuarter();
+    }
+
+    @Override
+    public Integer findDogsSecondQuarter() {
+        Integer adoptedDogsSecondQuarter = dogRepository.findAdoptedDogsSecondQuarter();
+
+        if (adoptedDogsSecondQuarter == null) {
+            return 0;
+        }
+        return dogRepository.findAdoptedDogsSecondQuarter();
+    }
+
+    @Override
+    public Integer findDogsThirdQuarter() {
+        Integer adoptedDogsThirdQuarter = dogRepository.findAdoptedDogsThirdQuarter();
+
+        if (adoptedDogsThirdQuarter == null) {
+            return 0;
+        }
+        return dogRepository.findAdoptedDogsThirdQuarter();
+    }
+
+    @Override
+    public Integer findDogsFourthQuarter() {
+        Integer adoptedDogsFourthQuarter = dogRepository.findAdoptedDogsFourthQuarter();
+
+        if (adoptedDogsFourthQuarter == null) {
+            return 0;
+        }
+        return dogRepository.findAdoptedDogsFourthQuarter();
     }
 }
 

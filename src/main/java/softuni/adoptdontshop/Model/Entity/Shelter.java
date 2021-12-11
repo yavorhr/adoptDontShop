@@ -1,9 +1,7 @@
 package softuni.adoptdontshop.Model.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "shelter")
@@ -13,6 +11,18 @@ public class Shelter extends BaseEntity {
     private String name;
     @Column(nullable = false)
     private Integer capacity;
+
+    @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
+    private List<Dog> dogs;
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public Shelter setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+        return this;
+    }
 
     public Shelter() {
     }

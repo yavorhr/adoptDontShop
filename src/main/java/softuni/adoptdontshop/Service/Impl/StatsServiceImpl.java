@@ -15,7 +15,6 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     public void onRequest() {
-        //Authentication пази принципала или UserDetails;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails){

@@ -803,7 +803,7 @@ picture img {
     border-color: #168598;
 }
 
-.box-login small{
+.box-login small {
     border-radius: 20px;
 }
 
@@ -907,6 +907,176 @@ picture img {
 
 .signup-form a:hover {
     background: rgba(0, 0, 0, .3);
+}
+
+/* ADMIN STATS PAGE */
+
+.h1-welcome{
+    font-family: 'Permanent Marker', cursive;
+}
+
+.h2-welcome{
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: large;
+    margin-bottom: 20px;
+}
+
+.table-body {
+   height: 100vh;
+}
+
+.table-div table {
+    border-collapse: collapse;
+    height: 200px;
+    border: 1px solid #bdc3c7;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table-div tr {
+    transition: all .2s ease-in;
+    cursor: pointer;
+}
+
+.table-div th,
+.table-div td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-div td {
+    color: #050505;
+    background-color: #e5e5e5;
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+.table-div .header {
+    background-color: #29292a;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: large;
+    color: #fff;
+}
+
+.table-div h2 {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #111111;
+    padding: 10px 0px;
+}
+
+.table-div .content:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Website table */
+
+.website-div table {
+    border-collapse: collapse;
+    border: 1px solid #bdc3c7;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.website-div tr {
+    transition: all .2s ease-in;
+    cursor: pointer;
+}
+
+.website-div th,
+.website-div td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: medium;
+}
+
+.website-div .header {
+    background-color: #29292a;
+    color: #fff;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: large;
+}
+
+.website-div h2 {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #151515;
+    padding: 10px;
+}
+
+.website-div .content:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.website-div .content td{
+    background-color: #e5e5e5;
+    color: #050505;
+}
+
+/* SHELTER INFO TABLE */
+
+.shelter-info-div table {
+    border-collapse: collapse;
+    border: 1px solid #bdc3c7;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shelter-info-div tr {
+    transition: all .2s ease-in;
+    cursor: pointer;
+}
+
+.shelter-info-div th,
+.shelter-info-div td {
+    padding: 12px;
+    text-align: center;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: medium;
+    border-bottom: 1px solid #ddd;
+}
+
+.shelter-info-div .header {
+    background-color: #29292a;
+    color: #fff;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: medium;
+}
+
+.shelter-info-div h2 {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #050505;
+    padding: 10px 0px;
+}
+
+.shelter-info-div .content:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shelter-info-div .content td{
+    background-color: #e5e5e5;
+    color: #050505;
+}
+
+/* CURVE ADOPTIONS */
+
+.curve-adoptions{
+    margin-top: 20px;
+}
+
+.curve-adoptions h2{
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 20px;
 }
 
 

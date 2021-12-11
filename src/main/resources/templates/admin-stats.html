@@ -23,7 +23,7 @@
 
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
 
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {'packages': ['corechart']});
@@ -37,31 +37,25 @@
         function drawChart() {
 
             // Create the data table.
-            var data = google.visualization.arrayToDataTable([
-                ['Month', 'Adopted', 'Captured'],
-                ['January', 1000, 400],
-                ['February', 1170, 460],
-                ['March', 660, 1120],
-                ['April', 1030, 540],
-                ['May', 1030, 540],
-                ['June', 1030, 540],
-                ['July', 1030, 540],
-                ['August', 1030, 540],
-                ['September', 1030, 540],
-                ['October', 1030, 540],
-                ['November', 1030, 540],
-                ['December', 1030, 540],
+            var data = new google.visualization.DataTable();
+
+            data.addColumn('string', 'Q');
+            data.addColumn('number', 'dogs');
+
+
+            data.addRows([
+                /*[# th:each="row : ${chartData}"]*/
+                [[${row}]],
+                /*[/]*/
             ]);
 
-
             var options = {
-                title: 'Adopted / captured dogs in 2021',
                 curveType: 'function',
-                legend: {position: 'bottom'}
+                legend: {position: 'center'},
+                chartArea: {left: "40%"}
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
             chart.draw(data, options);
         }
     </script>
@@ -69,42 +63,98 @@
 </head>
 
 
-<body>
+<body class="table-body">
 <header th:replace="common_fragments/navbar.html::navigation"></header>
 
-<div class="container-fluid">
-    <h1 class="text-center mt-5">Welcome to admin panel!</h1>
-    <p>Here you can find some useful information regarding our website, shelter statistics and our finances.</p>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-12 text-center">
+            <h1 class=" mt-5 h1-welcome">Welcome to admin panel!</h1>
+            <h2 class="h2-welcome mb-5">Here you can find some useful information for our website, shelter statistics and our
+                donations.</h2>
+        </div>
+
+        <div class="col-md-12 text-center row justify-content-center mb-3 ">
+            <div class="website-div">
+                <h2> Website requests </h2>
+                <table class="table table-responsive">
+                    <tr class="header">
+                        <th>Total requests</th>
+                        <th>Anonymous requests</th>
+                        <th>Authorized requests</th>
+                    </tr>
+                    <tr class="content">
+                        <td>
+                            <th:block th:text="${stats.getTotalRequests()}"></th:block>
+                        </td>
+                        <td>
+                            <th:block th:text="${stats.getAnonymousRequests()}"></th:block>
+                        </td>
+                        <td>
+                            <th:block th:text="${stats.getAuthRequests()}"></th:block>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center curve-adoptions mb-3 ">
+            <h2>Adopted dogs curve for 2021</h2>
+            <div id="curve_chart" style="width: 900px; height: 500px"></div>
+        </div>
+
+
+        <div class="col-md-12 text-center row justify-content-center mb-3 ">
+            <div class="shelter-info-div">
+                <h2>Shelter capacity overview</h2>
+                <table class="table table-responsive">
+                    <tr class="header">
+                        <th>Current Shelter capacity</th>
+                        <th>Dogs at the shelter</th>
+                        <th>Free slots</th>
+                    </tr>
+                    <tr class="content" th:object="${capacity}">
+                        <td th:text="*{getCapacity()}"></td>
+                        <td th:text="*{getAdopted()}">Current dogs at the shelter</td>
+                        <td th:text="*{getFreeSlots()}">Free slots</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="table-div col-md-12 mb-5">
+            <h2> History of donations </h2>
+            <table>
+                <tr class="header">
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Donation amount</th>
+                    <th>Date</th>
+                    <th>Message</th>
+
+                </tr>
+                <tr class="content" th:each="d : ${donations}" th:object="${d}">
+                    <td th:text="*{firstName}">John</td>
+                    <td th:text="*{lastName}">Doe</td>
+                    <td th:text="*{email}">john@abv.bg</td>
+                    <td th:text="*{phoneNumber}">+359888333222</td>
+                    <td th:text="*{sum}">300</td>
+                    <td th:text="*{contributedOn}">2021-10-21</td>
+                    <td th:text="*{text}">Hello!</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
 </div>
-
-<div>
-    <h3>Website requests: </h3>
-    <h3 class="text-center mt-5">Total requests
-        <th:block th:text="${stats.getTotalRequests()}"></th:block>
-    </h3>
-    <h3 class="text-center  mt-5">Anonymous requests
-        <th:block th:text="${stats.getAnonymousRequests()}"></th:block>
-    </h3>
-    <h3 class="text-center mt-5">Authorized requests
-        <th:block th:text="${stats.getAuthRequests()}"></th:block>
-    </h3>
-</div>
-
-<div>
-    <h3>Adopted dogs in last year vs dogs entered the Shelter</h3>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
-</div>
-
-
-
-<div>
-    <h3>Shelter current capacity</h3>
-</div>
-
-<div>
-    Raised money in last year
-</div>
-
 
 </body>
 </html>
