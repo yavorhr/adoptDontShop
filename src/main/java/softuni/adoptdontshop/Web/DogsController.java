@@ -160,8 +160,6 @@ public class DogsController {
     @PostMapping("/dogs/add")
     public String addDog(@Valid DogAddBindingModel dogAddBindingModel, BindingResult bindingResult
             , RedirectAttributes redirectAttributes) {
-
-        //TODO : final check of the user input BindingModel validations
         if (bindingResult.hasErrors()) {
             redirectAttributes
                     .addFlashAttribute("dogAddBindingModel", dogAddBindingModel)

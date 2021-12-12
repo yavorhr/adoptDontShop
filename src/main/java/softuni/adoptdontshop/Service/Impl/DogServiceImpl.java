@@ -49,7 +49,6 @@ public class DogServiceImpl implements DogService {
     public List<DogCardView> findDogsHomePage() {
         return dogRepository.findDogsHomePage()
                 .stream()
-                //TODO : to create one mapping method for dog -> dogViewModel
                 .map(
                         dog -> {
                             DogCardView dogCardView = modelMapper.map(dog, DogCardView.class);

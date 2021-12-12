@@ -9,9 +9,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import softuni.adoptdontshop.Model.Entity.Donation;
 import softuni.adoptdontshop.Repository.DonationRepository;
-
-
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -51,7 +50,7 @@ public class DonationControllerTest {
                 .param("firstName", TEST_USER_FIRST_NAME)
                 .param("lastName", TEST_USER_LAST_NAME)
                 .param("sum", String.valueOf(SUM))
-                .param("phoneNumber", "+35988888888")
+                .param("phoneNumber", "+359888888888")
                 .param("email", TEST_USER_EMAIL)
                 .param("text", "some random text")
                 .with(csrf())
@@ -59,13 +58,13 @@ public class DonationControllerTest {
         )
                 .andExpect(status().is3xxRedirection());
 
-        Assertions.assertEquals(16, donationRepository.count());
+        Assertions.assertEquals(17, donationRepository.count());
+        Donation newDonation = donationRepository.findById(18L).get();
 
-//        Optional<UserEntity> newlyCreatedUserOpt = donationRepository.findTEST_USER_EMAIL);
-//
-//        Assertions.assertTrue(newlyCreatedUserOpt.isPresent());
-//        UserEntity newlyCreatedUser = newlyCreatedUserOpt.get();
-//        Assertions.assertEquals(TEST_USER_AGE, newlyCreatedUser.getAge());
+        Assertions.assertEquals(TEST_USER_FIRST_NAME, newDonation.getFirstName());
+        Assertions.assertEquals(TEST_USER_LAST_NAME, newDonation.getLastName());
+        Assertions.assertEquals(TEST_USER_EMAIL, newDonation.getEmail());
+        Assertions.assertEquals("+359888888888", newDonation.getPhoneNumber());
     }
 
     @Test

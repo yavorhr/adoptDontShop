@@ -15,7 +15,6 @@ Same logic is used for the Edit functionality.
  */
 
 /*  Errors handled with
-//TODO : да помисля коя грешка да ми е в @ControllerAdvice. И коя грешка да е персонализирана за определен контролер.
 1. @ControllerAdvice global 404. This Exception is for all controllers.
 2. @ExceptionHandler 500 - for Dogs and Breeds exception.
 3. White label error page - handled with BasicErrorController from Spring Boot.
@@ -44,7 +43,7 @@ Use case : to clean the cache of findAllDogs() and findAllBreeds() ? Or use Cach
  */
 
 /*
-//TODO:
+
 User is locked() functionality ?
   */
 

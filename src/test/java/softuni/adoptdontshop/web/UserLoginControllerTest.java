@@ -1,6 +1,4 @@
 package softuni.adoptdontshop.web;
-
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,10 +26,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
-
 public class UserLoginControllerTest {
 
     private static final String TEST_USER_USERNAME = "testUser";
@@ -67,7 +63,6 @@ public class UserLoginControllerTest {
         initMockMvc();
 
         testUser.setPassword(passwordEncoder.encode(TEST_USER_PASSWORD));
-
         testUser = userRepository.save(testUser);
     }
 

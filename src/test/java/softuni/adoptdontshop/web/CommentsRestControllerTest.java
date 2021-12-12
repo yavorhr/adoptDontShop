@@ -58,7 +58,7 @@ public class CommentsRestControllerTest {
     void setUp() {
         testUser = new UserEntity();
 
-        testUser.setUsername("testUser")
+        testUser.setUsername("userTest")
                 .setFirstName("firstName")
                 .setLastName("lastName")
                 .setPassword("test")

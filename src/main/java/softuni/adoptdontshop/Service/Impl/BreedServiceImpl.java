@@ -66,7 +66,6 @@ public class BreedServiceImpl implements BreedService {
 
     @Override
     public List<DogCardView> findAllDogsFromSpecificBreed(Long id) {
-        //TODO : throw exception
         Breed breed = breedRepository.findById(id).orElseThrow();
         return breed
                 .getDogs()

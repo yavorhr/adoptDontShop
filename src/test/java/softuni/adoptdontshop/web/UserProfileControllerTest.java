@@ -40,11 +40,8 @@ public class UserProfileControllerTest {
     @Autowired
     private RoleRepository roleRepository;
 
-
-
     @Autowired
     PasswordEncoder passwordEncoder;
-
 
     @BeforeEach
     void setUp() {

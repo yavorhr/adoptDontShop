@@ -79,9 +79,5 @@ class UserRegistrationControllerTest {
         Assertions.assertEquals(TEST_USER_USERNAME, newlyCreatedUser.getUsername());
         Assertions.assertEquals(TEST_USER_EMAIL, newlyCreatedUser.getEmail());
         Assertions.assertEquals("Pesho", newlyCreatedUser.getFirstName());
-
-
     }
-
-
 }

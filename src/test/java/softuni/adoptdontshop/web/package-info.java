@@ -1,6 +1,6 @@
 package softuni.adoptdontshop.web;
 
-//TODO - delete before submitting project
+
 
 /*
 
