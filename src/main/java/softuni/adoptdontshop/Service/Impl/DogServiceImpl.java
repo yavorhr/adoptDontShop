@@ -172,7 +172,8 @@ public class DogServiceImpl implements DogService {
                 .setGender(dogServiceModel.getGender())
                 .setSize(dogServiceModel.getSize())
                 .setHouseTrained(dogServiceModel.isHouseTrained())
-                .setGetAlongWith(dogServiceModel.getGetAlongWith());
+                .setGetAlongWith(dogServiceModel.getGetAlongWith())
+                .setLastModified(LocalDate.now());
 
         dog.getMedicalRecord().clear();
         dog.setMedicalRecord(

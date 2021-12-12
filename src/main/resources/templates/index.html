@@ -5,29 +5,34 @@
 
 <head th:replace="common_fragments/head::head"></head>
 
-<body>
+<body class="index-page">
 <div th:replace="common_fragments/navbar.html::navigation">
 </div>
 
-<div class="container-fluid">
-    <h5 class="text-center mt-5">Welcome,
+<div class="container-fluid index-div text-center ">
+    <h5 class=" mt-5 mb-3">Welcome to our webpage,
         <span
                 sec:authorize="isAuthenticated()"
                 sec:authentication="name">
             Name of the logged in user.
         </span>
-
-        <span sec:authorize="!isAuthenticated()" >
-            Anonymous!
+        <span sec:authorize="!isAuthenticated()">
+            Anonymous
         </span>
     </h5>
+    <p>
+        We thank you for being here. We stand up for the cause that nothing would work if it was not for each of us
+        coming to a point where we realise: I want to help and I will. Here. Today. Me.
+    </p>
+    <h5 class="mt-4">Thank you for being one of us. Together we can achieve so much more!</h5>
 </div>
+
 
 <section class="m-5">
     <div class="card bg-dark text-white ">
-        <img class="card-img" src="../images/front.JPG" alt="Card image">
+        <img class="card-img img-fluid" style="display: block" src="../images/front.JPG" alt="Responsive image">
         <div class="card-img-overlay">
-            <h5 class="main-card-text display-4 position-absolute top-50 start-50 translate-middle "> "Saving one
+            <h5 class="main-card-text text-center"> "Saving one
                 dog will
                 not change the world, but surely for that one dog, the world will change forever." </h5>
         </div>
@@ -35,7 +40,7 @@
 </section>
 
 
-<div class="container">
+<div class="container p-text-index mb-3">
     For almost two decades, PetRescue has helped in creating true social change by bringing pet adoption
     into
     the mainstream. Our work has helped make a difference to the Australian rescue community and thousands
@@ -47,17 +52,19 @@
     each year.
 </div>
 
-<div class="position-absolute start-50 m-">
-    <a class="btn" th:href="@{/dogs/all}">
-        <button class="btn btn btn-success " type="submit">Adopt</button>
-    </a>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <a class="btn" th:href="@{/dogs/all}">
+            <button type="button " class="btn btn-outline-success btn-adopt">Adopt now!</button>
+        </a>
+    </div>
 </div>
 
 <section class="pt-5 pb-5">
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center mb-auto p-2 ">
-                <h3 class="text-center txt-cap-low ">Available dogs for adoption :
+                <h3 class="text-center txt-cap-low dogs-adoption-h3 ">Available dogs for adoption :
                 </h3>
             </div>
             <div class="col-md-3 p-2 text-center"
@@ -69,7 +76,8 @@
                     <div class="card-body">
                         <h5 class="card-title" th:text="*{name}"></h5>
                         <p th:text="*{breed}">Breed</p>
-                        <p th:text=" |Hi, I am *{name}!| + ' ' + |I am *{ageCalc(age)} old, a| + ' ' + |*{#strings.toLowerCase(gender)}| + ' ' + |*{#strings.toLowerCase(size)} dog, with | + ' ' + |*{#strings.toLowerCase(colour)} colour.|">Short description
+                        <p th:text=" |Hi, I am *{name}!| + ' ' + |I am *{ageCalc(age)} old, a| + ' ' + |*{#strings.toLowerCase(gender)}| + ' ' + |*{#strings.toLowerCase(size)} dog, with | + ' ' + |*{#strings.toLowerCase(colour)} colour.|">
+                            Short description
                         </p>
                         <div>
                             <a class="card-link" th:href="@{/dogs/{id}/details(id = *{id})}">Learn More</a>

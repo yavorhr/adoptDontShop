@@ -10,7 +10,7 @@
 
 <div class="container mt-5" style="height: 100vh" >
     <div class="row d-flex justify-content-center">
-        <div class="signup-form ">
+        <div class="signup-form">
             <form
                     th:action="@{/users/register}"
                     th:method="post"
@@ -40,8 +40,9 @@
                             min="2" max="20"
                             placeholder="Username"
                             class="txtb"/>
-                    <p class="invalid-feedback errors alert alert-danger">
-                        Username is required and must be between 4 and 20 symbols.
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                       class="invalid-feedback errors alert alert-danger">
+                      Username is required.
                     </p>
                 </div>
 

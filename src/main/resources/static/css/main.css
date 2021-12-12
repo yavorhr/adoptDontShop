@@ -93,9 +93,271 @@ h4 {
 }
 
 .main-card-text {
-    font-family: 'Mochiy Pop One', sans-serif;
+    font-family: 'Caveat', sans-serif;
+    font-size: 30px;
 }
 
+.card-img-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.index-div h5 {
+    font-family: 'Caveat', sans-serif;
+    font-size: 40px;
+}
+
+.index-div {
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 30px;
+}
+
+.p-text-index {
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 20px;
+}
+
+.btn-adopt {
+    border: 2px solid #000;
+    font-family: "montserrat", sans-serif;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    min-width: 200px;
+    margin: 10px;
+    max-width: 200px;
+}
+
+.dogs-adoption-h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 35px;
+    font-weight: 300;
+    color: #050505;
+}
+
+.card-body h5 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: #050505;
+}
+
+.card-body p {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #050505;
+}
+
+.index-page {
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1639313915/Paws_twv0z3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    justify-content: center;
+}
+
+.body-breed-details {
+    background-color: #FEFEF6;
+}
+
+.dogs-breed-section h3 {
+    font-family: 'Caveat', sans-serif;
+    color: black;
+}
+
+.product-field {
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1639313915/Paws_twv0z3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    justify-content: center;
+}
+
+.breed-body, .breed-main, .breed-header {
+    background-color: #FEFEF6;
+}
+
+.card-body a {
+    text-decoration: none;
+    background: #198754;
+    color: #fff;
+    padding: 8px 20px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+
+.card-body a:hover {
+    background: #66FB9D;
+}
+
+.breed-dog h5 {
+    font-family: 'Caveat', sans-serif;
+    font-size: 30px;
+    color: black;
+}
+
+.breed-dog a {
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+}
+
+.about-page-headings h3 {
+    font-family: 'Dancing Script', sans-serif;
+    color: black;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+
+
+.about-body, .shelter-body {
+    background-color: #FEFEF6;
+}
+
+.shelter-text-p {
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: normal;
+    color: black;
+}
+
+.breed-descr-p {
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.dogs-breed h3 {
+    font-family: 'Dancing Script', sans-serif;
+    color: black;
+}
+
+.breed-details-h4 {
+    font-family: 'Caveat', sans-serif;
+    color: black;
+}
+
+.dog-details-div h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+}
+
+.dog-details-div h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+}
+
+.all-dogs-body {
+    background-image: url("https://res.cloudinary.com/yavorhr/image/upload/v1639313915/Paws_twv0z3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    justify-content: center;
+}
+
+.learn-more-dog-profile a {
+    text-decoration: none;
+    background: #198754;
+    color: #fff;
+    padding: 8px 20px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    margin-bottom: 10px;
+}
+
+.profile-body{
+    background-color: #FEFEF6;
+}
+
+.user-profile-headings h3{
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+}
+
+.user-profile-headings p{
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.user-profile-headings h4{
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.learn-more-dog-profile a:hover {
+    background: #66FB9D;
+}
+
+.all-dogs-heading {
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: saddlebrown;
+}
+
+.dog-details-div p {
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+
+
+.dog-h4-heading {
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 40px;
+    color: black;
+}
+
+
+.map-shelter-heading {
+    font-family: 'Source Sans 3', sans-serif;
+    color: black;
+}
+
+
+.about-page-headings p {
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: lighter;
+}
+
+.meet-team-h2 {
+    font-family: 'Dancing Script', sans-serif;
+    color: #000;
+}
+
+#team p {
+    font-family: "Source Sans 3", sans-serif;
+}
+
+.donation-navbar-a {
+    text-decoration: none;
+    background: #ffeb00;
+    color: #fff;
+    padding: 8px 20px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+
+.donation-navbar-a:hover {
+    background: #f67c15;
+}
 
 .gapmargin200 {
     margin-left: 200px;
@@ -222,8 +484,25 @@ body {
 
 /* Donation form layout */
 
+.donation-body{
+    background-color: #FEFEF6;
+}
+
+
 .donation-form {
     background-color: #333333;
+}
+
+.donation-text h3{
+    font-family: "Caveat",sans-serif;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.donation-text p{
+    font-family: "Source Sans 3",sans-serif;
+    color: black;
+    font-size: 20px;
 }
 
 /* Progress bars */
@@ -325,6 +604,18 @@ body {
 #donation-p {
     margin: auto;
     text-align: center;
+    font-family: "Source Sans 3",sans-serif;
+    color: black;
+}
+
+.payment-details-h2{
+    font-family: "Source Sans 3",sans-serif;
+    color: black;
+}
+
+.thanks-h2{
+    font-family: "Source Sans 3",sans-serif;
+    color: black;
 }
 
 /* BREEDS */
@@ -773,6 +1064,7 @@ picture img {
     transform: translate(-50%, -50%);
     background: rgba(107, 184, 226, 0.5);
     text-align: center;
+    margin-top: 40px;
 }
 
 .box-login h1 {
@@ -780,8 +1072,8 @@ picture img {
     text-transform: uppercase;
     font-weight: 500;
     font-family: 'Permanent Marker', cursive;
-
 }
+
 
 .box-login input[type="text"], .box-login input[type="password"] {
     background: none;
@@ -908,6 +1200,7 @@ picture img {
 .signup-form a:hover {
     background: rgba(0, 0, 0, .3);
 }
+
 
 /* ADMIN STATS PAGE */
 

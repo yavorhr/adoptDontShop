@@ -5,27 +5,27 @@
 
 <head th:replace="common_fragments/head::head"></head>
 
-<body>
+<body class="body-breed-details">
 
 <div th:replace="common_fragments/navbar.html::navigation">
 </div>
 
 <div class="container" th:object="${breed}">
     <div class="row">
-        <h3 th:text="*{name}">Breed name</h3>
+        <h4 class="breed-details-h4 mt-4" th:text="*{name}">Breed name</h4>
 
         <th:block th:if="${dogsFromThisBreed.size() >0}">
-            <h4>Dogs from this breed: <span th:text="${dogsFromThisBreed.size()}"></span></h4>
+            <h4 class="breed-details-h4 mb-1">Dogs from this breed: <span th:text="${dogsFromThisBreed.size()}"></span></h4>
         </th:block>
 
         <th:block th:if="${dogsFromThisBreed.size() ==0}">
-            <h4>There is no dog for adoption from this breed.</h4>
+            <h4 class="breed-details-h4 mt-2">There is no dog for adoption from this breed.</h4>
         </th:block>
 
         <div class="col-md-6">
             <img class="breed-profile-pic" th:src="*{imageUrl}">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 breed-descr-p">
             <p th:text="*{description}">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel totam illum odio,
                 cupiditate
                 aspernatur
@@ -34,7 +34,7 @@
         </div>
 
 
-        <div class="col-md-6 mt-4 mb-4">
+        <div class="col-md-6 mt-5 mb-5">
             <div class="progress-bar" data-label="Energy level" th:style="|--width:${breed.energyLevel}|">
             </div>
             <div class="progress-bar" data-label="Playfulness" th:style="|--width:${breed.playfulness}|">
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 mt-4 mb-4">
+        <div class="col-md-6 mt-5 mb-5">
             <div class="progress-bar" data-label="Friendliness to other pets"
                  th:style="|--width:${breed.friendlinessToOtherPets}|">
             </div>
@@ -61,8 +61,7 @@
             </div>
         </div>
 
-
-        <section class="dogs_breed">
+        <section class="dogs-breed-section">
             <div class="container">
                 <h3 th:if="${dogsFromThisBreed.size()>0}">All dogs from this breed :</h3>
                 <div class="row">

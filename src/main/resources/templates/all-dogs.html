@@ -7,7 +7,7 @@
     <title>All dogs</title>
 </head>
 
-<body>
+<body class="all-dogs-body">
 
 <header th:replace="common_fragments/navbar.html::navigation"></header>
 
@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center mb-auto p-2 ">
-                <h3 class="text-center txt-cap-low ">Currently we have <span th:text="${allDogs.size()}">number</span> dogs for adoption :
+                <h3 class="text-center txt-cap-low all-dogs-heading ">Currently we have <span th:text="${allDogs.size()}">number</span> dogs for adoption :
                 </h3>
             </div>
 
@@ -30,15 +30,7 @@
                         <p th:text=" |Hi, I am *{name}!| + ' ' + |I am *{ageCalc(age)} old, a| + ' ' + |*{#strings.toLowerCase(gender)}| + ' ' + |*{#strings.toLowerCase(size)} dog, with | + ' ' + |*{#strings.toLowerCase(colour)} colour.|">Short description</p>
                     </div>
 
-                    <th:block sec:authorize="!hasRole('ADMIN')">
-                        <div class="d-flex justify-content-center mt-5">
-                            <a class="btn btn-outline-success" th:href="@{/dogs/{id}/inquire(id=*{id})}"> Enquire about
-                                <span
-                                        th:text="*{name}"></span></a>
-                        </div>
-                    </th:block>
-
-                    <div>
+                    <div class="learn-more-dog-profile">
                         <a class="card-link" th:href="@{/dogs/{id}/details(id = *{id})}">Learn More</a>
                     </div>
                 </div>

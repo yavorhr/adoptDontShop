@@ -14,9 +14,9 @@
     <section class="pt-5">
         <div class="container ">
             <div class="row col-md-12">
-                <h4 class="h-cap">
+                <h2 class="h-cap dog-h4-heading">
                     Meet, <span th:text="*{name}"> </span> !
-                </h4>
+                </h2>
                 <h3 class="txt-cap-low"
                     th:text="|A *{size}, | +  *{gender}  + | *{(breed)} dog, |  +  |with *{colour} color|">
                 </h3>
@@ -135,7 +135,7 @@
             </div>
 
             <div>
-                <div class="row">
+                <div class="row about-heading" >
                     <div class="col-md-8">
                         <h3 class="txt-cap-low">About <span th:text="*{name}"></span></h3>
                         <p th:text="*{description}" class="mt-4 "></p>
