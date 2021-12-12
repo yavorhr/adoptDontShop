@@ -911,18 +911,18 @@ picture img {
 
 /* ADMIN STATS PAGE */
 
-.h1-welcome{
+.h1-welcome {
     font-family: 'Permanent Marker', cursive;
 }
 
-.h2-welcome{
+.h2-welcome {
     font-family: 'Mochiy Pop One', sans-serif;
     font-size: large;
     margin-bottom: 20px;
 }
 
 .table-body {
-   height: 100vh;
+    height: 100vh;
 }
 
 .table-div table {
@@ -1015,7 +1015,7 @@ picture img {
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-.website-div .content td{
+.website-div .content td {
     background-color: #e5e5e5;
     color: #050505;
 }
@@ -1063,22 +1063,65 @@ picture img {
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-.shelter-info-div .content td{
+.shelter-info-div .content td {
     background-color: #e5e5e5;
     color: #050505;
 }
 
 /* CURVE ADOPTIONS */
 
-.curve-adoptions{
+.curve-adoptions {
     margin-top: 20px;
 }
 
-.curve-adoptions h2{
+.curve-adoptions h2 {
     font-family: 'Mochiy Pop One', sans-serif;
     font-size: 20px;
 }
 
+/* EXCEPTIONS STYLING */
 
+.page-not-found-404 {
+    margin: 0;
+    padding: 0;
+    font-family: "montserrat", sans-serif;
+    min-height: 100vh;
+    background-image: linear-gradient(125deg, #774D2B, #ded6d6);
+}
 
+.container-page-not-found {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #343434;
+}
+
+.container-page-not-found h1 {
+    font-size: 240px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 20px;
+    background: url("https://res.cloudinary.com/yavorhr/image/upload/v1638725614/rhtvpgudfv7kg8x7bcxw.jpg") center no-repeat;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.container-page-not-found a {
+    text-decoration: none;
+    background: #774D2B;
+    color: #fff;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+
+.container-page-not-found a:hover {
+    background: #E7B342;
+
+}
 

@@ -10,11 +10,11 @@ import softuni.adoptdontshop.Repository.CommentRepository;
 import softuni.adoptdontshop.Repository.DogRepository;
 import softuni.adoptdontshop.Repository.UserRepository;
 import softuni.adoptdontshop.Service.CommentService;
-import softuni.adoptdontshop.Web.exception.ObjectNotFoundException;
+import softuni.adoptdontshop.Web.exception.GlobalNotFoundException;
+
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
         Optional<Dog> optDog = dogRepository.findById(id);
 
         if (optDog.isEmpty()) {
-            throw new ObjectNotFoundException("Dog with id " + id + " was not found!");
+            throw new GlobalNotFoundException();
         }
 
         return optDog
@@ -52,10 +52,10 @@ public class CommentServiceImpl implements CommentService {
     public CommentViewModel createComment(CommentServiceModel commentServiceModel) {
 
         var dog = dogRepository.findById(commentServiceModel.getDogId())
-                .orElseThrow(() -> new ObjectNotFoundException("Route with id" + commentServiceModel.getDogId() + " not found!"));
+                .orElseThrow(GlobalNotFoundException::new);
 
         var user = userRepository.findByUsername(commentServiceModel.getCreator())
-                .orElseThrow(() -> new ObjectNotFoundException("User with username" + commentServiceModel.getCreator() + " not found!"));
+                .orElseThrow(GlobalNotFoundException::new);
 
         Comment newComment = new Comment();
         newComment.setApproved(false);

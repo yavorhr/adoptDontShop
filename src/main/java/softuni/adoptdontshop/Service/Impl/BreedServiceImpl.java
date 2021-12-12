@@ -77,7 +77,6 @@ public class BreedServiceImpl implements BreedService {
                     dogCardView.setImageUrl(dog.getPictures().get(0).getUrl());
                     return dogCardView;
                 }).collect(Collectors.toList());
-
     }
 }
 

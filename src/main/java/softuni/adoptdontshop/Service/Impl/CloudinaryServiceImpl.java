@@ -43,12 +43,6 @@ public class CloudinaryServiceImpl implements CloudinaryService {
         this.dogRepository = dogRepository;
     }
 
-//    public CloudinaryServiceImpl(Cloudinary cloudinary, CloudinaryService cloudinaryService, PictureRepository pictureRepository) {
-//        this.cloudinary = cloudinary;
-//        this.cloudinaryService = cloudinaryService;
-//        this.pictureRepository = pictureRepository;
-//    }
-
     @Override
     public PictureUser upload(MultipartFile multipartFile) throws IOException {
         File tempFile = File.createTempFile(TEMP_FILE, multipartFile.getOriginalFilename());
@@ -84,11 +78,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 
     @Override
     public void savePicture(MultipartFile picture, String title, String email) throws IOException {
-
         UserEntity userEntity = userRepository.findByUsername(email).orElseThrow();
-
         PictureUser pictureUserEntity = createPictureUserEntity(picture, title);
-
         userEntity.setImageUrl(pictureUserEntity.getUrl());
 
         pictureUserRepositorty.save(pictureUserEntity);
@@ -97,7 +88,6 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 
     private PictureUser createPictureUserEntity(MultipartFile file, String title) throws IOException {
         final PictureUser uploaded = this.cloudinaryService.upload(file);
-
         return new PictureUser().
                 setPublicId(uploaded.getPublicId()).
                 setTitle(title).
@@ -107,9 +97,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     @Override
     public void saveDogPicture(MultipartFile picture, String title, Long id) throws IOException {
         Dog dog = dogRepository.findById(id).orElseThrow();
-
         Picture pictureEntity = createPictureDogEntity(picture, title);
-
         pictureEntity.setDog(dog);
 
         pictureRepository.save(pictureEntity);
@@ -118,7 +106,6 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 
     private Picture createPictureDogEntity(MultipartFile file, String title) throws IOException {
         final PictureUser uploaded = this.cloudinaryService.upload(file);
-
         return new Picture().
                 setPublicId(uploaded.getPublicId()).
                 setTitle(title).

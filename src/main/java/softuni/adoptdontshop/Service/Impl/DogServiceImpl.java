@@ -62,7 +62,6 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public List<DogCardView> findAllDogs() {
-
         return dogRepository
                 .findAll()
                 .stream()
@@ -76,7 +75,6 @@ public class DogServiceImpl implements DogService {
                 .collect(Collectors.toList());
     }
 
-    //TODO : to check if works correct. Think if this is optimal way to check for exisiting dog
     @Override
     public boolean doesDogAlreadyExistInDatabase(String name, String breed, Integer age) {
         boolean findByNameAndAge = dogRepository.findByNameAndAge(name, age).isPresent();
@@ -100,7 +98,6 @@ public class DogServiceImpl implements DogService {
                         .map(medicalRecordService::findMedicalRecord)
                         .collect(Collectors.toList())
         );
-
 
         Picture picture = new Picture();
         picture.setUrl(dogAddBindingModel.getImageUrl());
@@ -157,7 +154,6 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public void updateDogProfile(DogUpdateServiceModel dogServiceModel) {
-        //TODO - exception
 
         Dog dog = dogRepository
                 .findById(dogServiceModel.getId())
@@ -187,7 +183,6 @@ public class DogServiceImpl implements DogService {
                         .collect(Collectors.toList()));
 
         dogRepository.save(dog);
-
     }
 
     @Override
